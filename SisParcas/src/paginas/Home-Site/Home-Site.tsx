@@ -1,14 +1,16 @@
 //React
 import React from "react";
+import { TituloPersona } from "../../atomos/TituloPersona/TituloPersona";
+import { IconeTeste } from "../../atomos/ChakraIcon/ChakraIcon";
 
 //Componentes
-import { TextoFormatado } from "../../atomos/TextoFormatado/TextoFormatado";
+
 
 export default function HomeSite() {
     return (
         <>
-            <TextoFormatado texto="The Parcas" fontFamily="PersonaM" fontSize="100" color="black" />
-
+            <TituloPersona fontFamily="PersonaM" texto="Laele" fontSize="100" color="cor.P1" />
+            <IconeTeste boxSize={10} />
         </>
     )
 }
