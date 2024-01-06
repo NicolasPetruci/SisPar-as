@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'PersonaG';
+    src: url(./public/fonts/Persona/PersonaGeneral.ttf);
+}
+
+@font-face {
+    font-family: 'PersonaM';
+    src: url(./public/fonts/Persona/PersonaMenu.ttf);
+}
