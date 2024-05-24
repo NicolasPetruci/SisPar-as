@@ -23,18 +23,11 @@ const config: ThemeConfig = {
 const theme = extendBaseTheme({
   colors: {
     cor: {
-      P1: "#a507e8",
-      P2: "#62068a",
-      P3: "#36024d",
-      P4: "#190024",
-      S1: "#ffd000",
-      S2: "#cca700",
-      S3: "#967b03",
-      S4: "#5e4d02",
-      T1: "#e6e6e6",
-      T2: "#b3b2b1",
-      T3: "#70706f",
-      T4: "#383838",
+      P1: "#6D65A7",
+      P2: "#462271",
+      P3: "#EFF7FA",
+      P4: "#F5CC22",
+      P5: "#0E0E0E",
     }
 
   }

@@ -3,7 +3,8 @@ import React from "react"
 
 //Router
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import HomeSite from "./paginas/Home-Site/Home-Site";
+import Teste from "./paginas/Home-Site/Teste";
+import LoginSistema from "./paginas/Login-Sistema/Login-Sistema";
 
 function App() {
 
@@ -15,7 +16,8 @@ function App() {
 
         <Routes>
           {/* Telas Iniciais */}
-          <Route path="/" element={<HomeSite />} />
+          <Route path="/teste" element={<Teste />} />
+          <Route path="/" element={<LoginSistema />} />
         </Routes>
       </BrowserRouter>
     </>

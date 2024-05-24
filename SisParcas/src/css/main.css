@@ -1,3 +1,119 @@
+/* Estilos de Botões Gradientes */
+.roxo-aceita {
+    background-image: linear-gradient(to right, #2D1F3E 0%, #462271 51%, #2D1F3E 100%);
+    margin: 10px;
+    padding: 15px 45px;
+    text-align: center;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;
+    box-shadow: 0 0 20px #eee;
+    border-radius: 10px;
+    display: block;
+}
+
+.roxo-aceita:hover {
+    background-position: right center;
+    color: #fff;
+    text-decoration: none;
+}
+
+.roxo-amarelo {
+    background-image: linear-gradient(to right, #462271 0%, #F5CC22 51%, #462271 100%);
+    margin: 10px;
+    padding: 15px 45px;
+    text-align: center;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;
+    box-shadow: 0 0 20px #eee;
+    border-radius: 10px;
+    display: block;
+}
+
+.roxo-amarelo:hover {
+    background-position: right center;
+    color: #fff;
+    text-decoration: none;
+}
+
+.roxo-lilas {
+    background-image: linear-gradient(to right, #462271 0%, #6D65A7 51%, #462271 100%);
+    margin: 10px;
+    padding: 15px 45px;
+    text-align: center;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;
+    box-shadow: 0 0 20px #eee;
+    border-radius: 10px;
+    display: block;
+}
+
+.roxo-lilas:hover {
+    background-position: right center;
+    color: #fff;
+    text-decoration: none;
+}
+
+.amarelo-rejeita {
+    background-image: linear-gradient(to right, #55470D 0%, #F5CC22 51%, #55470D 100%);
+    margin: 10px;
+    padding: 15px 45px;
+    text-align: center;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;
+    box-shadow: 0 0 20px #eee;
+    border-radius: 10px;
+    display: block;
+}
+
+.amarelo-rejeita:hover {
+    background-position: right center;
+    color: #fff;
+    text-decoration: none;
+}
+
+.preto-lilas {
+    background-image: linear-gradient(to right, #0E0E0E 0%, #6D65A7 51%, #0E0E0E 100%);
+    margin: 10px;
+    padding: 15px 45px;
+    text-align: center;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;
+    box-shadow: 0 0 20px #eee;
+    border-radius: 10px;
+    display: block;
+}
+
+.preto-lilas:hover {
+    background-position: right center;
+    color: #fff;
+    text-decoration: none;
+}
+
+.lilas-branco {
+    background-image: linear-gradient(to right, #6D65A7 0%, #EFF7FA 51%, #6D65A7 100%);
+    margin: 10px;
+    padding: 15px 45px;
+    text-align: center;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;
+    box-shadow: 0 0 20px #eee;
+    border-radius: 10px;
+    display: block;
+}
+
+.lilas-branco:hover {
+    background-position: right center;
+    color: #fff;
+    text-decoration: none;
+}
+
+/* Fontes */
 @font-face {
     font-family: 'PersonaG';
     src: url(./public/fonts/Persona/PersonaGeneral.ttf);
