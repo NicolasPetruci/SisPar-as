@@ -3,8 +3,8 @@ import React from "react"
 
 //Router
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Teste from "./paginas/Home-Site/Teste";
-import LoginSistema from "./paginas/Login-Sistema/Login-Sistema";
+import Teste from "./components/paginas/Home-Site/Teste";
+import LoginSistema from "./components/paginas/Login-Sistema/Login-Sistema";
 
 function App() {
 
