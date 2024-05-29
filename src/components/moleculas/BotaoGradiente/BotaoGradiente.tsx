@@ -1,13 +1,12 @@
-import { Button } from "@chakra-ui/react";
-import { TextoFormatado } from "../../atomos/TextoFormatado/TextoFormatado";
-import Botao from "../../atomos/Botao/Botao";
+import Botao, { propsBotao } from "../../atomos/Botao/Botao";
 
 
-interface propsBotaoGradiente {
+
+interface propsBotaoGradiente extends propsBotao {
     estilo?: "roxo-aceita" | "amarelo-rejeita" | "preto-lilas" | "lilas-branco" | "roxo-amarelo" | "roxo-lilas";
     children?: string | JSX.Element;
-    fonte?: string;
-    tamanhoDaFonte?: string;
+    
+    
 }
 
 /* 
@@ -22,7 +21,7 @@ Roxo-Lilas -> Alerta de confirmação
 export default function BotaoGradiente(props: propsBotaoGradiente) {
     return (
         <>
-            <Botao fonte={props.fonte} tamanhoTexto={props.tamanhoDaFonte} classe={props.estilo} descricao={props.children} />
+            <Botao fonte={props.fonte} tamanhoTexto={props.tamanhoTexto} classe={props.estilo} descricao={props.children} larguraBotao={props.larguraBotao} />
         </>
     )
 }

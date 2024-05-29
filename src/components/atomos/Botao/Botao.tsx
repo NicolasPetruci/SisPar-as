@@ -2,7 +2,7 @@ import { Button, Flex, Link, Text } from '@chakra-ui/react';
 import { Link as LinkRouter } from 'react-router-dom';
 import { TextoFormatado } from '../TextoFormatado/TextoFormatado';
 
-interface propsBotao {
+export interface propsBotao {
     to?: string;
     href?: string;
     target?: string;
@@ -13,12 +13,14 @@ interface propsBotao {
     pesoFonte?: string;
     marginX?: string;
     alturaBotao?: string | object;
-    larguraBotao?: string | object;
+    larguraBotao?: string | object
     arredondamentoBorda?: string;
     sombraBotao?: string;
     tamanhoTexto?: string;
     classe?: string;
     fonte?: string;
+    whiteSpace?: string;
+    children?: JSX.Element;
     aoClicar?: () => void;
 }
 
@@ -36,7 +38,8 @@ const botaoEstilizado = (props: propsBotao) => {
             boxShadow={props.sombraBotao}
             className={props.classe}
         >
-            <TextoFormatado color={props.corTexto} fontSize={props.tamanhoTexto} fontFamily={props.fonte} texto={props.descricao} />
+            <TextoFormatado whiteSpace={props.whiteSpace} color={props.corTexto} fontSize={props.tamanhoTexto} fontFamily={props.fonte} texto={props.descricao} />
+            {props.children}
         </Button>
     );
 };

@@ -5,6 +5,7 @@ interface Props {
     texto?: string | JSX.Element,
     fontSize?: string | "12",
     color?: string | "black",
+    whiteSpace?: string;
 
 }
 
@@ -12,7 +13,7 @@ export function TextoFormatado(props: Props) {
 
     return (
         <>
-            <Text color={props.color} fontSize={props.fontSize} fontFamily={props.fontFamily || "PersonaM"}>
+            <Text whiteSpace={props.whiteSpace} color={props.color} fontSize={props.fontSize} fontFamily={props.fontFamily || "PersonaM"}>
                 {props.texto}
             </Text>
         </>

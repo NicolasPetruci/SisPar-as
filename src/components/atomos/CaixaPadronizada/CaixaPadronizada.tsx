@@ -15,6 +15,9 @@ interface PropsCaixaPadronizada {
     justificarComponente?: string | { [key: string]: string };
     alinharItem?: string | { [key: string]: string };
     distancia?: string | { [key: string]: string };
+    margem?: string;
+    borda?: string;
+    direcao?: "row" | "column";
 }
 
 /*
@@ -47,6 +50,9 @@ export default function CaixaPadronizada(props: PropsCaixaPadronizada) {
                 justifyContent={props.justificarComponente || 'center'}
                 alignItems={props.alinharItem || 'center'}
                 gap={props.distancia || '0px'}
+                margin={props.margem || '0'}
+                border={props.borda || '0'}
+                flexDirection={props.direcao || "row"}
             >
                 {props.children}
             </Flex>
