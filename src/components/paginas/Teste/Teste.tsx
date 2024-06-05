@@ -3,7 +3,6 @@ import React from "react";
 
 //Componentes
 import BotaoGradiente from "../../moleculas/BotaoGradiente/BotaoGradiente";
-import NavbarSistemas from "../../organismos/NavbarSistema/NavbarSistema";
 import { Grid, GridItem } from '@chakra-ui/react'
 
 export default function Teste() {
