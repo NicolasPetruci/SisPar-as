@@ -1,16 +1,16 @@
-//React
-import React from "react";
+
 
 //Componentes
 import BotaoGradiente from "../../moleculas/BotaoGradiente/BotaoGradiente";
 import { Grid, GridItem } from '@chakra-ui/react'
+import ComponentePermissao from "../../../routes/ComponentePermissao/ComponentePermissao";
 
 export default function Teste() {
     return (
         <>
             <Grid templateColumns='repeat(1, 1fr)' gap={6}>
                 <GridItem>
-                    
+
                 </GridItem>
                 <GridItem>
                     <BotaoGradiente estilo={"roxo-aceita"} larguraBotao={"10px"}>Roxo-Lilas</BotaoGradiente>
@@ -25,6 +25,11 @@ export default function Teste() {
                     <BotaoGradiente estilo={"roxo-amarelo"} larguraBotao={"10px"}>Roxo-Lilas</BotaoGradiente>
                 </GridItem>
 
+                <ComponentePermissao cargo="">
+                    <>
+                        oi gata
+                    </>
+                </ComponentePermissao>
 
             </Grid>
 

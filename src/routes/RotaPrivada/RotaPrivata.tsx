@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { Navigate, PathRouteProps, Route } from "react-router-dom"
-import { useAuth } from "../context/AuthContext";
-import { api } from "../services/apiService";
+import { useAuth } from "../../context/AuthContext";
+import { api } from "../../services/apiService";
 
 
 // type propsRotaData = RouteProps & {
@@ -17,10 +17,9 @@ const PrivateRoute: (React.FC<propsRotaData>) = ({ cargo, children }) => {
     const [permission, setPermission] = useState([] as string[])
 
     useEffect(() => {
-
         async function loadRoles() {
             const response = api.get('/cargo');
-            const findRole = (await response).data.find((r: string) => r === cargo)
+            const findRole = (await response).data.some((c: string) => cargo?.split(',').includes(c))
             setPermission(findRole);
         }
 

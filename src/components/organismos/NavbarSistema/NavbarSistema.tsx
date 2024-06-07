@@ -4,7 +4,7 @@ import Botao from "../../atomos/Botao/Botao";
 import CaixaPadronizada from "../../atomos/CaixaPadronizada/CaixaPadronizada";
 
 interface propsNavbar {
-    children: JSX.Element;
+    children?: JSX.Element;
 }
 
 

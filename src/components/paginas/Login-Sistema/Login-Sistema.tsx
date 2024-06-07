@@ -6,12 +6,10 @@ import {
 } from '@chakra-ui/react'
 import { useCallback, useState } from "react";
 import { useAuth } from "../../../context/AuthContext";
-
-
-
-
+import { useNavigate } from "react-router-dom";
 
 export default function LoginSistema() {
+    const navigate = useNavigate();
 
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
@@ -22,6 +20,7 @@ export default function LoginSistema() {
         event.preventDefault();
 
         await signIn({ email, senha })
+        navigate('/menu')
 
     }, [email, senha])
     return (
