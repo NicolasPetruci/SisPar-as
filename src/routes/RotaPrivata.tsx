@@ -10,9 +10,10 @@ import { api } from "../services/apiService";
 
 interface propsRotaData extends PathRouteProps {
     cargo?: string;
+    children: JSX.Element;
 }
 
-const PrivateRoute: (React.FC<propsRotaData>) = ({ cargo, ...rest }) => {
+const PrivateRoute: (React.FC<propsRotaData>) = ({ cargo, children }) => {
     const [permission, setPermission] = useState([] as string[])
 
     useEffect(() => {
@@ -26,11 +27,6 @@ const PrivateRoute: (React.FC<propsRotaData>) = ({ cargo, ...rest }) => {
         loadRoles()
     }, [])
 
-
-
-
-
-
     const { userLogged } = useAuth();
 
     if (!userLogged()) {
@@ -38,11 +34,11 @@ const PrivateRoute: (React.FC<propsRotaData>) = ({ cargo, ...rest }) => {
     }
 
     if (!cargo && userLogged()) {
-        return <Route {...rest} />
+        return children;
     }
 
     return (
-        permission ? <Route {...rest} /> : <Navigate to='/' />
+        permission ? children : <Navigate to='/' />
     )
 
 }

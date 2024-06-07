@@ -20,16 +20,15 @@ export default function Rota() {
                 <Route path="/" element={<LoginSistema />} />
 
                 {/* Menus */}
-                <PrivateRoute path="/menu" element={<MenuSistema />} />
+                <Route path="/menu" element={<MenuSistema />} />
 
                 {/* Sistema */}
-                
-                <PrivateRoute path="/rpg" cargo="DONO" element={<RPGSistema />} />
-                <PrivateRoute path="/usuarios" element={<UsuariosSistema />} />
-                <PrivateRoute path="/forum" element={<ForumSistema />} />
-                <PrivateRoute path="/hallDaFama" element={<HallDaFamaSistema />} />
-                <PrivateRoute path="/parcasAwards" element={<ParcasAwardsSistema />} />
-                <PrivateRoute path="/eventos" element={<EventosSistema />} />
+                <Route path="/rpg" element={<PrivateRoute cargo=""><RPGSistema /></PrivateRoute>} />
+                <Route path="/usuarios" element={<PrivateRoute><UsuariosSistema /></PrivateRoute>} />
+                <Route path="/forum" element={<ForumSistema />} />
+                <Route path="/hallDaFama" element={<HallDaFamaSistema />} />
+                <Route path="/parcasAwards" element={<ParcasAwardsSistema />} />
+                <Route path="/eventos" element={<EventosSistema />} />
 
                 {/* Site */}
             </Routes>
