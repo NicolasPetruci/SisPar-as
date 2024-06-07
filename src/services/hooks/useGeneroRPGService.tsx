@@ -1,20 +1,20 @@
 import { useContext, useState } from "react";
-import Usuario from "../../interface/Usuario";
+import GeneroRPG from "../../interface/GeneroRPG";
 import { api } from "../apiService";
 import { AuthContext } from "../../context/AuthContext";
 
 
-export const useUsuarioService = () => {
+export const useGeneroRPGService = () => {
     const authContext = useContext(AuthContext);
 
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState();
 
-    const createUsuario = async (usuarioData: Usuario) => {
+    const createGeneroRPG = async (generorpgData: GeneroRPG) => {
         try {
             setLoading(true);
-            const response = await api.post('/usuario', usuarioData, {
+            const response = await api.post('/genero', generorpgData, {
                 headers: {
                     Authorization: `Bearer ${authContext.token}`
                 }
@@ -28,10 +28,10 @@ export const useUsuarioService = () => {
         }
     };
 
-    const deleteUsuario = async (usuarioId: number) => {
+    const deleteGeneroRPG = async (generorpgId: number) => {
         try {
             setLoading(false);
-            const response = await api.delete(`/usuario/${usuarioId}`, {
+            const response = await api.delete(`/genero/${generorpgId}`, {
                 headers: {
                     Authorization: `Bearer ${authContext.token}`
                 }
@@ -45,10 +45,10 @@ export const useUsuarioService = () => {
         }
     };
 
-    const getAllUsuario = async () => {
+    const getAllGeneroRPG = async () => {
         try {
             setLoading(true);
-            const response = await api.get('/usuario', {
+            const response = await api.get('/genero', {
                 headers: {
                     Authorization: `Bearer ${authContext.token}`
                 }
@@ -62,10 +62,10 @@ export const useUsuarioService = () => {
         }
     }
 
-    const getUsuario = async (usuarioId: number) => {
+    const getGeneroRPG = async (generorpgId: number) => {
         try {
             setLoading(false);
-            const response = await api.get(`/usuario/${usuarioId}`, {
+            const response = await api.get(`/genero/${generorpgId}`, {
                 headers: {
                     Authorization: `Bearer ${authContext.token}`
                 }
@@ -79,10 +79,10 @@ export const useUsuarioService = () => {
         }
     };
 
-    const updateUsuario = async (usuarioId: number, updatedData: Usuario) => {
+    const updateGeneroRPG = async (generorpgId: number, updatedData: GeneroRPG) => {
         try {
             setLoading(false);
-            const response = await api.patch(`/usuario/${usuarioId}`, updatedData, {
+            const response = await api.patch(`/genero/${generorpgId}`, updatedData, {
                 headers: {
                     Authorization: `Bearer ${authContext.token}`
                 }
@@ -96,5 +96,5 @@ export const useUsuarioService = () => {
         }
     };
 
-    return { createUsuario, deleteUsuario, getAllUsuario, getUsuario, updateUsuario, data, loading, error }
+    return { createGeneroRPG, deleteGeneroRPG, getAllGeneroRPG, getGeneroRPG, updateGeneroRPG, data, loading, error }
 }

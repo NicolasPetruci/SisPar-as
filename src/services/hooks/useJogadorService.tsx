@@ -1,20 +1,20 @@
 import { useContext, useState } from "react";
-import Usuario from "../../interface/Usuario";
+import Jogador from "../../interface/Jogador";
 import { api } from "../apiService";
 import { AuthContext } from "../../context/AuthContext";
 
 
-export const useUsuarioService = () => {
+export const useJogadorService = () => {
     const authContext = useContext(AuthContext);
 
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState();
 
-    const createUsuario = async (usuarioData: Usuario) => {
+    const createJogador = async (jogadorData: Jogador) => {
         try {
             setLoading(true);
-            const response = await api.post('/usuario', usuarioData, {
+            const response = await api.post('/jogador', jogadorData, {
                 headers: {
                     Authorization: `Bearer ${authContext.token}`
                 }
@@ -28,10 +28,10 @@ export const useUsuarioService = () => {
         }
     };
 
-    const deleteUsuario = async (usuarioId: number) => {
+    const deleteJogador = async (jogadorId: number) => {
         try {
             setLoading(false);
-            const response = await api.delete(`/usuario/${usuarioId}`, {
+            const response = await api.delete(`/jogador/${jogadorId}`, {
                 headers: {
                     Authorization: `Bearer ${authContext.token}`
                 }
@@ -45,10 +45,10 @@ export const useUsuarioService = () => {
         }
     };
 
-    const getAllUsuario = async () => {
+    const getAllJogador = async () => {
         try {
             setLoading(true);
-            const response = await api.get('/usuario', {
+            const response = await api.get('/jogador', {
                 headers: {
                     Authorization: `Bearer ${authContext.token}`
                 }
@@ -62,10 +62,10 @@ export const useUsuarioService = () => {
         }
     }
 
-    const getUsuario = async (usuarioId: number) => {
+    const getJogador = async (jogadorId: number) => {
         try {
             setLoading(false);
-            const response = await api.get(`/usuario/${usuarioId}`, {
+            const response = await api.get(`/jogador/${jogadorId}`, {
                 headers: {
                     Authorization: `Bearer ${authContext.token}`
                 }
@@ -79,10 +79,10 @@ export const useUsuarioService = () => {
         }
     };
 
-    const updateUsuario = async (usuarioId: number, updatedData: Usuario) => {
+    const updateJogador = async (jogadorId: number, updatedData: Jogador) => {
         try {
             setLoading(false);
-            const response = await api.patch(`/usuario/${usuarioId}`, updatedData, {
+            const response = await api.patch(`/jogador/${jogadorId}`, updatedData, {
                 headers: {
                     Authorization: `Bearer ${authContext.token}`
                 }
@@ -96,5 +96,5 @@ export const useUsuarioService = () => {
         }
     };
 
-    return { createUsuario, deleteUsuario, getAllUsuario, getUsuario, updateUsuario, data, loading, error }
+    return { createJogador, deleteJogador, getAllJogador, getJogador, updateJogador, data, loading, error }
 }

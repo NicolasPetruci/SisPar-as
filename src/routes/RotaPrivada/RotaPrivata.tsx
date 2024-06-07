@@ -18,9 +18,14 @@ const PrivateRoute: (React.FC<propsRotaData>) = ({ cargo, children }) => {
 
     useEffect(() => {
         async function loadRoles() {
-            const response = api.get('/cargo');
-            const findRole = (await response).data.some((c: string) => cargo?.split(',').includes(c))
+
+
+            const response = await api.get('/cargos');
+            console.log(response.data)
+            const findRole = response.data.find((c: string) => cargo?.split(',').includes(c));
             setPermission(findRole);
+            console.log(findRole);
+
         }
 
         loadRoles()

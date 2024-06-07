@@ -21,7 +21,7 @@ interface TokenState {
 
 }
 
-const AuthContext = createContext<AuthContextState>({} as AuthContextState);
+export const AuthContext = createContext<AuthContextState>({} as AuthContextState);
 
 const AuthProvider: React.FC<Props> = ({ children }) => {
     const [token, setToken] = useState<TokenState>(() => {
@@ -32,7 +32,7 @@ const AuthProvider: React.FC<Props> = ({ children }) => {
 
             return { token }
         }
-        return { } as TokenState;
+        return {} as TokenState;
     })
 
 

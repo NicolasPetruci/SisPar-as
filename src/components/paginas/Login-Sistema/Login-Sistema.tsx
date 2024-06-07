@@ -25,15 +25,14 @@ export default function LoginSistema() {
     }, [email, senha])
     return (
         <>
-            <FormControl gap="10px" onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit}>
                 <FormLabel> Input Email </FormLabel>
                 <Input type="email" onChange={e => setEmail(e.target.value)} />
                 <FormLabel> Input senha</FormLabel>
                 <Input type="password" onChange={e => setSenha(e.target.value)} />
 
                 <Button type="submit"> Login</Button>
-
-            </FormControl>
+            </form>
         </>
     )
 }

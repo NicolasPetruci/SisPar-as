@@ -1,20 +1,20 @@
 import { useContext, useState } from "react";
-import Usuario from "../../interface/Usuario";
+import Evento from "../../interface/Evento";
 import { api } from "../apiService";
 import { AuthContext } from "../../context/AuthContext";
 
 
-export const useUsuarioService = () => {
+export const useEventoService = () => {
     const authContext = useContext(AuthContext);
 
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState();
 
-    const createUsuario = async (usuarioData: Usuario) => {
+    const createEvento = async (eventoData: Evento) => {
         try {
             setLoading(true);
-            const response = await api.post('/usuario', usuarioData, {
+            const response = await api.post('/evento', eventoData, {
                 headers: {
                     Authorization: `Bearer ${authContext.token}`
                 }
@@ -28,10 +28,10 @@ export const useUsuarioService = () => {
         }
     };
 
-    const deleteUsuario = async (usuarioId: number) => {
+    const deleteEvento = async (eventoId: number) => {
         try {
             setLoading(false);
-            const response = await api.delete(`/usuario/${usuarioId}`, {
+            const response = await api.delete(`/evento/${eventoId}`, {
                 headers: {
                     Authorization: `Bearer ${authContext.token}`
                 }
@@ -45,10 +45,10 @@ export const useUsuarioService = () => {
         }
     };
 
-    const getAllUsuario = async () => {
+    const getAllEvento = async () => {
         try {
             setLoading(true);
-            const response = await api.get('/usuario', {
+            const response = await api.get('/evento', {
                 headers: {
                     Authorization: `Bearer ${authContext.token}`
                 }
@@ -62,10 +62,10 @@ export const useUsuarioService = () => {
         }
     }
 
-    const getUsuario = async (usuarioId: number) => {
+    const getEvento = async (eventoId: number) => {
         try {
             setLoading(false);
-            const response = await api.get(`/usuario/${usuarioId}`, {
+            const response = await api.get(`/evento/${eventoId}`, {
                 headers: {
                     Authorization: `Bearer ${authContext.token}`
                 }
@@ -79,10 +79,10 @@ export const useUsuarioService = () => {
         }
     };
 
-    const updateUsuario = async (usuarioId: number, updatedData: Usuario) => {
+    const updateEvento = async (eventoId: number, updatedData: Evento) => {
         try {
             setLoading(false);
-            const response = await api.patch(`/usuario/${usuarioId}`, updatedData, {
+            const response = await api.patch(`/evento/${eventoId}`, updatedData, {
                 headers: {
                     Authorization: `Bearer ${authContext.token}`
                 }
@@ -96,5 +96,5 @@ export const useUsuarioService = () => {
         }
     };
 
-    return { createUsuario, deleteUsuario, getAllUsuario, getUsuario, updateUsuario, data, loading, error }
+    return { createEvento, deleteEvento, getAllEvento, getEvento, updateEvento, data, loading, error }
 }

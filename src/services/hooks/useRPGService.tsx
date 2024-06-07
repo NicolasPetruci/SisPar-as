@@ -1,20 +1,20 @@
 import { useContext, useState } from "react";
-import Usuario from "../../interface/Usuario";
+import RPG from "../../interface/RPG";
 import { api } from "../apiService";
 import { AuthContext } from "../../context/AuthContext";
 
 
-export const useUsuarioService = () => {
+export const useRPGService = () => {
     const authContext = useContext(AuthContext);
 
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState();
 
-    const createUsuario = async (usuarioData: Usuario) => {
+    const createRPG = async (rpgData: RPG) => {
         try {
             setLoading(true);
-            const response = await api.post('/usuario', usuarioData, {
+            const response = await api.post('/rpg', rpgData, {
                 headers: {
                     Authorization: `Bearer ${authContext.token}`
                 }
@@ -28,10 +28,10 @@ export const useUsuarioService = () => {
         }
     };
 
-    const deleteUsuario = async (usuarioId: number) => {
+    const deleteRPG = async (rpgId: number) => {
         try {
             setLoading(false);
-            const response = await api.delete(`/usuario/${usuarioId}`, {
+            const response = await api.delete(`/rpg/${rpgId}`, {
                 headers: {
                     Authorization: `Bearer ${authContext.token}`
                 }
@@ -45,10 +45,10 @@ export const useUsuarioService = () => {
         }
     };
 
-    const getAllUsuario = async () => {
+    const getAllRPG = async () => {
         try {
             setLoading(true);
-            const response = await api.get('/usuario', {
+            const response = await api.get('/rpg', {
                 headers: {
                     Authorization: `Bearer ${authContext.token}`
                 }
@@ -62,10 +62,10 @@ export const useUsuarioService = () => {
         }
     }
 
-    const getUsuario = async (usuarioId: number) => {
+    const getRPG = async (rpgId: number) => {
         try {
             setLoading(false);
-            const response = await api.get(`/usuario/${usuarioId}`, {
+            const response = await api.get(`/rpg/${rpgId}`, {
                 headers: {
                     Authorization: `Bearer ${authContext.token}`
                 }
@@ -79,10 +79,10 @@ export const useUsuarioService = () => {
         }
     };
 
-    const updateUsuario = async (usuarioId: number, updatedData: Usuario) => {
+    const updateRPG = async (rpgId: number, updatedData: RPG) => {
         try {
             setLoading(false);
-            const response = await api.patch(`/usuario/${usuarioId}`, updatedData, {
+            const response = await api.patch(`/rpg/${rpgId}`, updatedData, {
                 headers: {
                     Authorization: `Bearer ${authContext.token}`
                 }
@@ -96,5 +96,5 @@ export const useUsuarioService = () => {
         }
     };
 
-    return { createUsuario, deleteUsuario, getAllUsuario, getUsuario, updateUsuario, data, loading, error }
+    return { createRPG, deleteRPG, getAllRPG, getRPG, updateRPG, data, loading, error }
 }
