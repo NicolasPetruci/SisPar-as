@@ -4,10 +4,6 @@ import { useAuth } from "../../context/AuthContext";
 import { api } from "../../services/apiService";
 
 
-// type propsRotaData = RouteProps & {
-//     cargo?: string;
-// }
-
 interface propsRotaData extends PathRouteProps {
     cargo?: string;
     children: JSX.Element;
@@ -20,9 +16,10 @@ const PrivateRoute: (React.FC<propsRotaData>) = ({ cargo, children }) => {
         async function loadRoles() {
 
 
-            const response = await api.get('/cargos');
+            const response = await api.get(`/usuario/cargo`);
+
+            const findRole = response.data.some((c: string) => cargo?.split(',').includes(c));
             console.log(response.data)
-            const findRole = response.data.find((c: string) => cargo?.split(',').includes(c));
             setPermission(findRole);
             console.log(findRole);
 
@@ -30,6 +27,8 @@ const PrivateRoute: (React.FC<propsRotaData>) = ({ cargo, children }) => {
 
         loadRoles()
     }, [])
+
+
 
     const { userLogged } = useAuth();
 

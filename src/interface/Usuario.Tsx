@@ -7,6 +7,6 @@ export default interface Usuario {
     telefone: string,
     senha: string,
     aniversario: string,
-    cargo: Cargo,
+    id_cargo: string[],
 
 }

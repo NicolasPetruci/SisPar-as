@@ -14,6 +14,7 @@ interface Props {
 interface UsuarioData {
     email: string;
     senha: string;
+    id_cargo: string;
 }
 
 interface TokenState {
@@ -37,8 +38,8 @@ const AuthProvider: React.FC<Props> = ({ children }) => {
 
 
 
-    const signIn = useCallback(async ({ email, senha }: UsuarioData) => {
-        const response = await api.post("/usuario/login", { email, senha })
+    const signIn = useCallback(async ({ email, senha, id_cargo }: UsuarioData) => {
+        const response = await api.post("/usuario/login", { email, senha, id_cargo })
 
         const { token } = response.data;
 
