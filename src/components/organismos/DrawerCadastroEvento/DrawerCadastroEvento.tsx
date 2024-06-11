@@ -35,6 +35,10 @@ export default function DrawerCadastroEvento({
         local: evento ? evento.local : "",
         online: evento ? evento.online : "Não",
         id_tipo_evento: evento ? evento.id_tipo_evento : 0,
+        tipo_evento: evento ? evento.tipo_evento : {
+            descricao: "",
+            id: 0,
+        }
 
     })
 
@@ -190,25 +194,37 @@ export default function DrawerCadastroEvento({
 
                         <FormLabel>Tipo Evento:</FormLabel>
                         <Select
-                            value={evento.id_tipo_evento}
-                            defaultValue={tipoEvento{}}>
-                        {tipoEvento.map(tipo => (
-                            <option key={tipo.id} value={tipo.descricao}>
-                                {tipo.descricao}
-                            </option>
-                        ))}
-                    </Select>
+                            value={evento.tipo_evento.descricao} // Define o valor selecionado com base na descrição do tipo de evento
+                            onChange={(e) => {
+                                // Aqui você atualiza o estado do evento com base na opção selecionada
+                                const descricaoSelecionada = e.target.value;
+                                const tipoEventoSelecionado = tipoEvento.find(tipo => tipo.descricao === descricaoSelecionada);
+                                if (tipoEventoSelecionado) {
+                                    setUpdateEvento({
+                                        ...updateEvento,
+                                        tipo_evento: tipoEventoSelecionado,
+                                    });
+                                }
+                            }}
+                        >
+                            {/* Mapeia as opções para o select */}
+                            {tipoEvento.map(tipo => (
+                                <option key={tipo.id} value={tipo.descricao}>
+                                    {tipo.descricao}
+                                </option>
+                            ))}
+                        </Select>
 
-                    <FormLabel>
-                        Data:
-                    </FormLabel>
-                    <Input type='datetime-local' defaultValue={imprimeDataInput(evento.data_hora!)} onChange={(e) => {
-                        const dataConvertida = formatarData(e.target.value)
-                        setUpdateEvento({
-                            ...updateEvento,
-                            data_hora: dataConvertida,
-                        })
-                    }} />
+                        <FormLabel>
+                            Data:
+                        </FormLabel>
+                        <Input type='datetime-local' defaultValue={imprimeDataInput(evento.data_hora!)} onChange={(e) => {
+                            const dataConvertida = formatarData(e.target.value)
+                            setUpdateEvento({
+                                ...updateEvento,
+                                data_hora: dataConvertida,
+                            })
+                        }} />
 
 
 
@@ -216,15 +232,15 @@ export default function DrawerCadastroEvento({
 
 
 
-                </DrawerBody>
-                <DrawerFooter>
-                    <Button onClick={atualizarEvento}></Button>
-                </DrawerFooter>
+                    </DrawerBody>
+                    <DrawerFooter>
+                        <Button onClick={atualizarEvento}></Button>
+                    </DrawerFooter>
 
-            </DrawerContent>
+                </DrawerContent>
 
 
-        </Drawer >
+            </Drawer >
 
         </>
     )
