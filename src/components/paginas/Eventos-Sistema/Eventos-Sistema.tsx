@@ -4,6 +4,7 @@ import Evento from "../../../interface/Evento";
 import { useEffect, useState } from "react";
 import { useEventoService } from "../../../services/hooks/useEventoService";
 import DrawerAtualizarEvento from "../../organismos/DrawerAtualizarEvento/DrawerAtualizarEvento";
+import DrawerCadastroEvento from "../../organismos/DrawerCadastroEvento/DrawerCadastroEvento";
 
 
 
@@ -56,6 +57,10 @@ export default function EventosSistema() {
         onOpen();
     };
 
+    const abrirCadastro = () => {
+        onOpen();
+    };
+
     return (
         <>
 
@@ -63,6 +68,7 @@ export default function EventosSistema() {
                 templateColumns='repeat(1, 1fr)'
                 gap='50px'
             >
+
                 <GridItem colSpan={4}>
                     <CaixaPadronizada alturaCaixa='25vh' justificarComponente='start' alinharItem='top'>
                         <>
@@ -72,6 +78,9 @@ export default function EventosSistema() {
                                 </Text>
                                 <Text textAlign="justify">Um CRUD de eventos é uma aplicação essencial para organizar e controlar eventos de forma eficiente. Consiste em quatro operações básicas: Criar (Create), Ler (Read), Atualizar (Update) e Deletar (Delete), permitindo aos usuários gerenciar eventos de maneira intuitiva e eficaz.</Text>
                             </Flex>
+
+
+
                         </>
                     </CaixaPadronizada>
                 </GridItem>
@@ -80,6 +89,7 @@ export default function EventosSistema() {
                         <>
                             <TableContainer>
                                 <Table variant='striped' colorScheme='teal'>
+                                    <Button className="preto-lilas" onClick={() => abrirCadastro()}> Cadastro </Button>
                                     <Thead>
                                         <Tr>
                                             <Th>ID</Th>
@@ -125,6 +135,20 @@ export default function EventosSistema() {
                                             eventoInterface={eventoSelecionado}
                                             onClose={onClose}
                                             onUpdate={atualizarEvento}
+                                        />
+                                    )}
+                                </Drawer>
+
+                                <Drawer
+                                    size="lg"
+                                    isOpen={isOpen}
+                                    placement="right"
+                                    onClose={onClose}
+                                >
+                                    {eventoSelecionado && (
+                                        <DrawerCadastroEvento
+                                            isOpen={isOpen}
+                                            onClose={onClose}
                                         />
                                     )}
                                 </Drawer>

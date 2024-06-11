@@ -33,6 +33,7 @@ export default function DrawerAtualizarEvento({
     const tipoEventoService = useTipoEventoService();
     const usuarioService = useUsuarioService();
 
+
     const [updateEvento, setUpdateEvento] = useState<Evento>({
         nome: evento ? evento.nome : "",
         data_hora: evento ? evento.data_hora : new Date().toISOString(),
