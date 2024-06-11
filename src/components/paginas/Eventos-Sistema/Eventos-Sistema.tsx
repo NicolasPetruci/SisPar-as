@@ -3,9 +3,7 @@ import CaixaPadronizada from "../../atomos/CaixaPadronizada/CaixaPadronizada";
 import Evento from "../../../interface/Evento";
 import { useEffect, useState } from "react";
 import { useEventoService } from "../../../services/hooks/useEventoService";
-import React from "react";
-import BotaoGradiente from "../../moleculas/BotaoGradiente/BotaoGradiente";
-import DrawerCadastroEvento from "../../organismos/DrawerCadastroEvento/DrawerCadastroEvento";
+import DrawerAtualizarEvento from "../../organismos/DrawerAtualizarEvento/DrawerAtualizarEvento";
 
 
 
@@ -15,7 +13,6 @@ export default function EventosSistema() {
     const { isOpen, onOpen, onClose } = useDisclosure();
     const [evento, setEvento] = useState<Evento[]>([]);
     const [eventoSelecionado, setEventoSelecionado] = useState<Evento | null>(null);
-    const btnRef = React.useRef()
     const eventoService = useEventoService();
 
     //busca
@@ -65,7 +62,6 @@ export default function EventosSistema() {
             <Grid w='100%' h='0px' templateRows='repeat(2, 1fr)'
                 templateColumns='repeat(1, 1fr)'
                 gap='50px'
-
             >
                 <GridItem colSpan={4}>
                     <CaixaPadronizada alturaCaixa='25vh' justificarComponente='start' alinharItem='top'>
@@ -78,23 +74,18 @@ export default function EventosSistema() {
                             </Flex>
                         </>
                     </CaixaPadronizada>
-
                 </GridItem>
-
                 <GridItem w='100%' h='100%' colSpan={4} p='10'>
                     <CaixaPadronizada larguraCaixa='100%' alturaCaixa='100%'>
                         <>
-
                             <TableContainer>
                                 <Table variant='striped' colorScheme='teal'>
-
                                     <Thead>
                                         <Tr>
                                             <Th>ID</Th>
                                             <Th>NOME</Th>
                                             <Th>LOCAL</Th>
                                             <Th>AÇÃO</Th>
-
                                         </Tr>
                                     </Thead>
                                     <Tbody  >
@@ -111,7 +102,6 @@ export default function EventosSistema() {
                                                 </Td>
                                             </Tr>
                                         ))}
-
                                     </Tbody>
                                     <Tfoot>
                                         <Tr>
@@ -123,7 +113,6 @@ export default function EventosSistema() {
                                         </Tr>
                                     </Tfoot>
                                 </Table>
-
                                 <Drawer
                                     size="lg"
                                     isOpen={isOpen}
@@ -131,7 +120,7 @@ export default function EventosSistema() {
                                     onClose={onClose}
                                 >
                                     {eventoSelecionado && (
-                                        <DrawerCadastroEvento
+                                        <DrawerAtualizarEvento
                                             isOpen={isOpen}
                                             eventoInterface={eventoSelecionado}
                                             onClose={onClose}
@@ -140,14 +129,9 @@ export default function EventosSistema() {
                                     )}
                                 </Drawer>
                             </TableContainer>
-
                         </>
                     </CaixaPadronizada>
-
                 </GridItem>
-
-
-
             </Grid >
 
         </>

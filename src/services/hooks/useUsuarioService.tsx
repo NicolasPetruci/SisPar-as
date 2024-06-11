@@ -45,6 +45,23 @@ export const useUsuarioService = () => {
         }
     };
 
+    const getUsuarioLogged = async () => {
+        try {
+            setLoading(true);
+            const response = await api.get('/usuario/login', {
+                headers: {
+                    Authorization: `Bearer ${authContext.token.token}`
+                }
+            });
+            setData(response.data);
+            return response.data;
+        } catch (error: any) {
+            setError(error);
+        } finally {
+            setLoading(false);
+        }
+    }
+
     const getAllUsuario = async () => {
         try {
             setLoading(true);
@@ -62,10 +79,10 @@ export const useUsuarioService = () => {
         }
     }
 
-    const getUsuario = async (usuarioId: number) => {
+    const getUsuario = async (Id: number) => {
         try {
             setLoading(false);
-            const response = await api.get(`/usuario/${usuarioId}`, {
+            const response = await api.get(`/usuario/${Id}`, {
                 headers: {
                     Authorization: `Bearer ${authContext.token.token}`
                 }
@@ -79,10 +96,10 @@ export const useUsuarioService = () => {
         }
     };
 
-    const updateUsuario = async (usuarioId: number, updatedData: Usuario) => {
+    const updateUsuario = async (Id: number, updatedData: Usuario) => {
         try {
             setLoading(false);
-            const response = await api.patch(`/usuario/${usuarioId}`, updatedData, {
+            const response = await api.patch(`/usuario/${Id}`, updatedData, {
                 headers: {
                     Authorization: `Bearer ${authContext.token.token}`
                 }
@@ -96,5 +113,5 @@ export const useUsuarioService = () => {
         }
     };
 
-    return { createUsuario, deleteUsuario, getAllUsuario, getUsuario, updateUsuario, data, loading, error }
+    return { createUsuario, getUsuarioLogged, deleteUsuario, getAllUsuario, getUsuario, updateUsuario, data, loading, error }
 }

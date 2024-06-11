@@ -3,10 +3,10 @@ import Cargo from "./Cargo.tsx";
 export default interface Usuario {
     id: number,
     nome: string,
-    email: string,
+    email?: string,
     telefone: string,
-    senha: string,
-    aniversario: string,
-    cargo: Cargo,
+    senha?: string,
+    aniversario?: string,
+    cargo?: Cargo,
 
 }

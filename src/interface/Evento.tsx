@@ -1,4 +1,5 @@
 import TipoEvento from "./TipoEvento";
+import Usuario from "./Usuario";
 
 
 export default interface Evento {
@@ -10,6 +11,7 @@ export default interface Evento {
     data_hora: string | undefined;
     tipo_evento: TipoEvento;
     id_tipo_evento: number;
+    participantes: Usuario[];
 
 
 }
