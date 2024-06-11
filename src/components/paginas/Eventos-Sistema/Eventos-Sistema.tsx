@@ -11,10 +11,13 @@ import DrawerCadastroEvento from "../../organismos/DrawerCadastroEvento/DrawerCa
 export default function EventosSistema() {
 
     //declarações
-    const { isOpen, onOpen, onClose } = useDisclosure();
+
     const [evento, setEvento] = useState<Evento[]>([]);
     const [eventoSelecionado, setEventoSelecionado] = useState<Evento | null>(null);
     const eventoService = useEventoService();
+
+    const { isOpen: isDrawerAtualizarOpen, onOpen: onDrawerAtualizarOpen, onClose: onDrawerAtualizarClose } = useDisclosure();
+    const { isOpen: isDrawerCadastroOpen, onOpen: onDrawerCadastroOpen, onClose: onDrawerCadastroClose } = useDisclosure();
 
     //busca
     const buscarEvento = () => {
@@ -51,14 +54,13 @@ export default function EventosSistema() {
         });
     };
 
-    //abrirDrawer
-    const abrirDrawer = (evento: Evento) => {
+    const abrirDrawerAtualizar = (evento: Evento) => {
         setEventoSelecionado(evento);
-        onOpen();
+        onDrawerAtualizarOpen();
     };
 
-    const abrirCadastro = () => {
-        onOpen();
+    const abrirDrawerCadastro = () => {
+        onDrawerCadastroOpen();
     };
 
     return (
@@ -70,7 +72,7 @@ export default function EventosSistema() {
             >
 
                 <GridItem colSpan={4}>
-                    <CaixaPadronizada alturaCaixa='25vh' justificarComponente='start' alinharItem='top'>
+                    <CaixaPadronizada alturaCaixa='25vh' justificarComponente='center' alinharItem='center'>
                         <>
                             <Flex h='100%' flexDir={'column'} justifyContent='start' alignItems='start'>
                                 <Text textAlign='left' fontSize={22} fontWeight={900}>
@@ -78,6 +80,8 @@ export default function EventosSistema() {
                                 </Text>
                                 <Text textAlign="justify">Um CRUD de eventos é uma aplicação essencial para organizar e controlar eventos de forma eficiente. Consiste em quatro operações básicas: Criar (Create), Ler (Read), Atualizar (Update) e Deletar (Delete), permitindo aos usuários gerenciar eventos de maneira intuitiva e eficaz.</Text>
                             </Flex>
+
+                            <Button className="preto-lilas" onClick={abrirDrawerCadastro}> Cadastro </Button>
 
 
 
@@ -88,8 +92,8 @@ export default function EventosSistema() {
                     <CaixaPadronizada larguraCaixa='100%' alturaCaixa='100%'>
                         <>
                             <TableContainer>
-                                <Table variant='striped' colorScheme='teal'>
-                                    <Button className="preto-lilas" onClick={() => abrirCadastro()}> Cadastro </Button>
+                                <Table variant='striped' colorScheme='purple'>
+
                                     <Thead>
                                         <Tr>
                                             <Th>ID</Th>
@@ -101,13 +105,13 @@ export default function EventosSistema() {
                                     <Tbody  >
                                         {evento.map((evento, index) => (
                                             <Tr key={index}>
-                                                <Td>{evento.id}</Td>
-                                                <Td>{evento.nome}</Td>
-                                                <Td>{evento.local}</Td>
+                                                <Td whiteSpace={'wrap'}>{evento.id}</Td>
+                                                <Td whiteSpace={'wrap'}>{evento.nome}</Td>
+                                                <Td whiteSpace={'wrap'}>{evento.local}</Td>
                                                 <Td>
                                                     <Flex>
                                                         <Button className="amarelo-rejeita" onClick={() => deletarEvento(evento.id!.toString())}> D</Button>
-                                                        <Button className="roxo-aceita" onClick={() => abrirDrawer(evento)}> V </Button>
+                                                        <Button className="roxo-aceita" onClick={() => abrirDrawerAtualizar(evento)}> V </Button>
                                                     </Flex>
                                                 </Td>
                                             </Tr>
@@ -125,15 +129,15 @@ export default function EventosSistema() {
                                 </Table>
                                 <Drawer
                                     size="lg"
-                                    isOpen={isOpen}
+                                    isOpen={isDrawerAtualizarOpen}
                                     placement="right"
-                                    onClose={onClose}
+                                    onClose={onDrawerAtualizarClose}
                                 >
                                     {eventoSelecionado && (
                                         <DrawerAtualizarEvento
-                                            isOpen={isOpen}
+                                            isOpen={isDrawerAtualizarOpen}
                                             eventoInterface={eventoSelecionado}
-                                            onClose={onClose}
+                                            onClose={onDrawerAtualizarClose}
                                             onUpdate={atualizarEvento}
                                         />
                                     )}
@@ -141,14 +145,14 @@ export default function EventosSistema() {
 
                                 <Drawer
                                     size="lg"
-                                    isOpen={isOpen}
+                                    isOpen={isDrawerCadastroOpen}
                                     placement="right"
-                                    onClose={onClose}
+                                    onClose={onDrawerCadastroClose}
                                 >
                                     {eventoSelecionado && (
                                         <DrawerCadastroEvento
-                                            isOpen={isOpen}
-                                            onClose={onClose}
+                                            isOpen={isDrawerCadastroOpen}
+                                            onClose={onDrawerCadastroClose}
                                         />
                                     )}
                                 </Drawer>

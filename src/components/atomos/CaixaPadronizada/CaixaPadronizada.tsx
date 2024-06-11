@@ -18,6 +18,7 @@ interface PropsCaixaPadronizada {
     margem?: string;
     borda?: string;
     direcao?: "row" | "column";
+    classe?: string;
 }
 
 /*
@@ -53,6 +54,7 @@ export default function CaixaPadronizada(props: PropsCaixaPadronizada) {
                 margin={props.margem || '0'}
                 border={props.borda || '0'}
                 flexDirection={props.direcao || "row"}
+                className={props.classe || undefined}
             >
                 {props.children}
             </Flex>

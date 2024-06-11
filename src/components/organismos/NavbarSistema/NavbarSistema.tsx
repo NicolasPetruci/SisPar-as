@@ -20,9 +20,8 @@ export default function NavbarSistema(props: propsNavbar) {
             <Grid templateRows='repeat(2, 1fr)'
                 templateColumns='repeat(5, 1fr)' flexDir="row">
                 <GridItem zIndex={1} rowSpan={2} colSpan={1} mr='10vw' position='fixed' >
-                    <CaixaPadronizada distancia={"25px"} direcao="column" justificarComponente="center" alinharItem={"center"} larguraCaixa="10vw" alturaCaixa="100vh" bg="gray" >
+                    <CaixaPadronizada bg='black' distancia={"25px"} direcao="column" justificarComponente="center" alinharItem={"center"} larguraCaixa="10vw" alturaCaixa="100vh" >
                         <>
-
                             <Botao href="/rpg" descricao={"RPG"} fonte="arial" />
 
                             <Botao href="/parcasAwards" descricao={"Parças Awards"} fonte="arial" whiteSpace="wrap" />
@@ -32,9 +31,9 @@ export default function NavbarSistema(props: propsNavbar) {
                             <Botao href="/eventos" descricao={"Eventos"} fonte="arial" whiteSpace="wrap" />
 
                             <Botao href="/forum" descricao={"Forum"} fonte="arial" whiteSpace="wrap" />
-
-                            <Botao href="/usuarios" descricao={"Usuarios"} fonte="arial" whiteSpace="wrap" />
-
+                            <ComponentePermissao cargo="DONO">
+                                <Botao href="/usuarios" descricao={"Usuarios"} fonte="arial" whiteSpace="wrap" />
+                            </ComponentePermissao>
                             <Botao aoClicar={logout} descricao={"Logout"} fonte="arial" whiteSpace="wrap" />
                         </>
                     </CaixaPadronizada>
