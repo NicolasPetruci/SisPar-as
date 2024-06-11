@@ -14,7 +14,7 @@ export const useUsuarioService = () => {
     const createUsuario = async (usuarioData: Usuario) => {
         try {
             setLoading(true);
-            const response = await api.post('/usuario', usuarioData, {
+            const response = await api.post('/usuario/cadastrar', usuarioData, {
                 headers: {
                     Authorization: `Bearer ${authContext.token.token}`
                 }
@@ -28,10 +28,10 @@ export const useUsuarioService = () => {
         }
     };
 
-    const deleteUsuario = async (usuarioId: number) => {
+    const deleteUsuario = async (id: number) => {
         try {
             setLoading(false);
-            const response = await api.delete(`/usuario/${usuarioId}`, {
+            const response = await api.delete(`/usuario/excluir?id=${id}`, {
                 headers: {
                     Authorization: `Bearer ${authContext.token.token}`
                 }
@@ -79,10 +79,10 @@ export const useUsuarioService = () => {
         }
     }
 
-    const getUsuario = async (Id: number) => {
+    const getUsuario = async (id: number) => {
         try {
             setLoading(false);
-            const response = await api.get(`/usuario/${Id}`, {
+            const response = await api.get(`/usuario/id=${id}`, {
                 headers: {
                     Authorization: `Bearer ${authContext.token.token}`
                 }
@@ -96,10 +96,10 @@ export const useUsuarioService = () => {
         }
     };
 
-    const updateUsuario = async (Id: number, updatedData: Usuario) => {
+    const updateUsuario = async (updatedData: Usuario) => {
         try {
             setLoading(false);
-            const response = await api.patch(`/usuario/${Id}`, updatedData, {
+            const response = await api.put(`/usuario/atualizar`, updatedData, {
                 headers: {
                     Authorization: `Bearer ${authContext.token.token}`
                 }
