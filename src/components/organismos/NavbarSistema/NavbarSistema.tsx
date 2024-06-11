@@ -5,8 +5,10 @@ import CaixaPadronizada from "../../atomos/CaixaPadronizada/CaixaPadronizada";
 import { useAuth } from "../../../context/AuthContext";
 import ComponentePermissao from "../../../routes/ComponentePermissao/ComponentePermissao";
 
+
 interface propsNavbar {
     children?: JSX.Element;
+
 }
 
 
@@ -15,16 +17,13 @@ export default function NavbarSistema(props: propsNavbar) {
     const { logout } = useAuth();
     return (
         <>
-            <Grid templateRows='repeat(1, 1fr)'
-                templateColumns='repeat(10, fr)' flexDir="row">
-                <GridItem >
+            <Grid templateRows='repeat(2, 1fr)'
+                templateColumns='repeat(5, 1fr)' flexDir="row">
+                <GridItem zIndex={1} rowSpan={2} colSpan={1} mr='10vw' position='fixed' >
                     <CaixaPadronizada distancia={"25px"} direcao="column" justificarComponente="center" alinharItem={"center"} larguraCaixa="10vw" alturaCaixa="100vh" bg="gray" >
                         <>
-                            <ComponentePermissao cargo="MESTRE,ADM">
-                                <>
-                                    <Botao href="/rpg" descricao={"RPG"} fonte="arial" />
-                                </>
-                            </ComponentePermissao>
+
+                            <Botao href="/rpg" descricao={"RPG"} fonte="arial" />
 
                             <Botao href="/parcasAwards" descricao={"Parças Awards"} fonte="arial" whiteSpace="wrap" />
 
@@ -40,8 +39,10 @@ export default function NavbarSistema(props: propsNavbar) {
                         </>
                     </CaixaPadronizada>
                 </GridItem>
-                <GridItem mt="10vh">
-                    {props.children}
+                <GridItem rowSpan={2} colSpan={6}>
+                    <Flex h='100%' w='80vw' marginY='10vh' marginX='15vw'>
+                        {props.children}
+                    </Flex>
                 </GridItem>
 
             </Grid>

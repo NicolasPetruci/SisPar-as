@@ -38,7 +38,7 @@ export default function CaixaPadronizada(props: PropsCaixaPadronizada) {
         <>
             <Flex
                 w={props.larguraCaixa || '100%'}
-                h={props.alturaCaixa || '100%'}
+                h={props.alturaCaixa || '80%'}
                 boxShadow={props.sombra || 'dark-lg'}
                 borderRadius={props.bordaRaio || '0px'}
                 mb={props.distanciaBaixo || '10px'}

@@ -14,7 +14,7 @@ export const useEventoService = () => {
     const createEvento = async (eventoData: Evento) => {
         try {
             setLoading(true);
-            const response = await api.post('/evento', eventoData, {
+            const response = await api.post('/evento/cadastrar', eventoData, {
                 headers: {
                     Authorization: `Bearer ${authContext.token}`
                 }
@@ -31,7 +31,7 @@ export const useEventoService = () => {
     const deleteEvento = async (eventoId: number) => {
         try {
             setLoading(false);
-            const response = await api.delete(`/evento/${eventoId}`, {
+            const response = await api.delete(`/evento/excluir/${eventoId}`, {
                 headers: {
                     Authorization: `Bearer ${authContext.token}`
                 }
@@ -82,7 +82,7 @@ export const useEventoService = () => {
     const updateEvento = async (eventoId: number, updatedData: Evento) => {
         try {
             setLoading(false);
-            const response = await api.patch(`/evento/${eventoId}`, updatedData, {
+            const response = await api.patch(`/evento/atualizar/${eventoId}`, updatedData, {
                 headers: {
                     Authorization: `Bearer ${authContext.token}`
                 }

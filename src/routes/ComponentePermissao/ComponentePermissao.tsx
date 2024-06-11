@@ -16,7 +16,7 @@ const ComponentePermissao: (React.FC<propsComponentePermissao>) = ({ cargo, chil
 
 
             const response = await api.get('/usuario/cargos');
-            console.log(response)
+
 
             const findRole = response.data.some((c: string) => {
                 cargo?.split(',').includes(c);

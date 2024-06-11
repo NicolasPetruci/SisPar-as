@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react"
-import { Navigate, PathRouteProps, Route } from "react-router-dom"
+import { Navigate, PathRouteProps } from "react-router-dom"
 import { useAuth } from "../../context/AuthContext";
 import { api } from "../../services/apiService";
+
 
 
 // type propsRotaData = RouteProps & {

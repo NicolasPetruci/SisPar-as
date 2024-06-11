@@ -1,9 +1,9 @@
-import { Flex } from "@chakra-ui/react";
+import { Flex, Text } from "@chakra-ui/react";
 
 export default function RPGSistema() {
     return (
         <>
-            <Flex w='1000vw' mr={100000}> oiaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa </Flex>
+            <Flex w='100vw' bg={'red'}><Text> oiaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</Text> </Flex>
         </>
     )
 }
