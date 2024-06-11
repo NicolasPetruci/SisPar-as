@@ -31,7 +31,7 @@ export default function NavbarSistema(props: propsNavbar) {
                             <Botao href="/eventos" descricao={"Eventos"} fonte="arial" whiteSpace="wrap" />
 
                             <Botao href="/forum" descricao={"Forum"} fonte="arial" whiteSpace="wrap" />
-                            <ComponentePermissao cargo="DONO">
+                            <ComponentePermissao cargo="DONO,">
                                 <Botao href="/usuarios" descricao={"Usuarios"} fonte="arial" whiteSpace="wrap" />
                             </ComponentePermissao>
                             <Botao aoClicar={logout} descricao={"Logout"} fonte="arial" whiteSpace="wrap" />
