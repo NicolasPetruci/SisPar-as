@@ -4,9 +4,9 @@ import Botao, { propsBotao } from "../../atomos/Botao/Botao";
 
 interface propsBotaoGradiente extends propsBotao {
     estilo?: "roxo-aceita" | "amarelo-rejeita" | "preto-lilas" | "lilas-branco" | "roxo-amarelo" | "roxo-lilas";
-    children?: string | JSX.Element;
-    
-    
+
+
+
 }
 
 /* 

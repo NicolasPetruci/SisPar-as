@@ -16,7 +16,7 @@ export const useJogadorService = () => {
             setLoading(true);
             const response = await api.post('/jogador', jogadorData, {
                 headers: {
-                    Authorization: `Bearer ${authContext.token}`
+                    Authorization: `Bearer ${authContext.token.token}`
                 }
             });
             setData(response.data);
@@ -33,7 +33,7 @@ export const useJogadorService = () => {
             setLoading(false);
             const response = await api.delete(`/jogador/${jogadorId}`, {
                 headers: {
-                    Authorization: `Bearer ${authContext.token}`
+                    Authorization: `Bearer ${authContext.token.token}`
                 }
             });
             setData(response.data);
@@ -50,7 +50,7 @@ export const useJogadorService = () => {
             setLoading(true);
             const response = await api.get('/jogador', {
                 headers: {
-                    Authorization: `Bearer ${authContext.token}`
+                    Authorization: `Bearer ${authContext.token.token}`
                 }
             });
             setData(response.data);
@@ -67,7 +67,7 @@ export const useJogadorService = () => {
             setLoading(false);
             const response = await api.get(`/jogador/${jogadorId}`, {
                 headers: {
-                    Authorization: `Bearer ${authContext.token}`
+                    Authorization: `Bearer ${authContext.token.token}`
                 }
             });
             setData(response.data);
@@ -84,7 +84,7 @@ export const useJogadorService = () => {
             setLoading(false);
             const response = await api.patch(`/jogador/${jogadorId}`, updatedData, {
                 headers: {
-                    Authorization: `Bearer ${authContext.token}`
+                    Authorization: `Bearer ${authContext.token.token}`
                 }
             });
             setData(response.data);

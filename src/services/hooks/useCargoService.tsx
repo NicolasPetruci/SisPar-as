@@ -16,7 +16,7 @@ export const useCargoService = () => {
             setLoading(true);
             const response = await api.post('/cargo', cargoData, {
                 headers: {
-                    Authorization: `Bearer ${authContext.token}`
+                    Authorization: `Bearer ${authContext.token.token}`
                 }
             });
             setData(response.data);
@@ -33,7 +33,7 @@ export const useCargoService = () => {
             setLoading(false);
             const response = await api.delete(`/cargo/${cargoId}`, {
                 headers: {
-                    Authorization: `Bearer ${authContext.token}`
+                    Authorization: `Bearer ${authContext.token.token}`
                 }
             });
             setData(response.data);
@@ -50,7 +50,7 @@ export const useCargoService = () => {
             setLoading(true);
             const response = await api.get('/cargo', {
                 headers: {
-                    Authorization: `Bearer ${authContext.token}`
+                    Authorization: `Bearer ${authContext.token.token}`
                 }
             });
             setData(response.data);
@@ -67,7 +67,7 @@ export const useCargoService = () => {
             setLoading(false);
             const response = await api.get(`/cargo/${cargoId}`, {
                 headers: {
-                    Authorization: `Bearer ${authContext.token}`
+                    Authorization: `Bearer ${authContext.token.token}`
                 }
             });
             setData(response.data);
@@ -84,7 +84,7 @@ export const useCargoService = () => {
             setLoading(false);
             const response = await api.patch(`/cargo/${cargoId}`, updatedData, {
                 headers: {
-                    Authorization: `Bearer ${authContext.token}`
+                    Authorization: `Bearer ${authContext.token.token}`
                 }
             });
             setData(response.data);

@@ -79,128 +79,128 @@ time,
 mark,
 audio,
 video {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  font-size: 100%;
-  font: inherit;
-  vertical-align: baseline;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+    box-sizing: border-box;
 }
 
 /* Estilos de Botões Gradientes */
 .roxo-aceita {
-    background-image: linear-gradient(to right, #2D1F3E 0%, #462271 51%, #2D1F3E 100%);
-    margin: 10px;
-    padding: 15px 45px;
-    text-align: center;
-    transition: 0.5s;
-    background-size: 200% auto;
-    color: white;
-    box-shadow: 0 0 20px #eee;
-    border-radius: 10px;
-    display: block;
+    background-image: linear-gradient(to right, #2D1F3E 0%, #462271 51%, #2D1F3E 100%) !important;
+    margin: 10px !important;
+    padding: 15px 45px !important;
+    text-align: center !important;
+    transition: 0.5s !important;
+    background-size: 200% auto !important;
+    color: white !important;
+    box-shadow: 0 0 20px #eee !important;
+    border-radius: 10px !important;
+    display: block !important;
 }
 
 .roxo-aceita:hover {
-    background-position: right center;
-    color: #fff;
-    text-decoration: none;
+    background-position: right center !important;
+    color: #fff !important;
+    text-decoration: none !important;
 }
 
 .roxo-amarelo {
-    background-image: linear-gradient(to right, #462271 0%, #F5CC22 51%, #462271 100%);
-    margin: 10px;
-    padding: 15px 45px;
-    text-align: center;
-    transition: 0.5s;
-    background-size: 200% auto;
-    color: white;
-    box-shadow: 0 0 20px #eee;
-    border-radius: 10px;
-    display: block;
+    background-image: linear-gradient(to right, #462271 0%, #F5CC22 51%, #462271 100%) !important;
+    margin: 10px !important;
+    padding: 15px 45px !important;
+    text-align: center !important;
+    transition: 0.5s !important;
+    background-size: 200% auto !important;
+    color: white !important;
+    box-shadow: 0 0 20px #eee !important;
+    border-radius: 10px !important;
+    display: block !important;
 }
 
 .roxo-amarelo:hover {
-    background-position: right center;
-    color: #fff;
-    text-decoration: none;
+    background-position: right center !important;
+    color: #fff !important;
+    text-decoration: none !important;
 }
 
 .roxo-lilas {
-    background-image: linear-gradient(to right, #462271 0%, #6D65A7 51%, #462271 100%);
-    margin: 10px;
-    padding: 15px 45px;
-    text-align: center;
+    background-image: linear-gradient(to right, #462271 0%, #6D65A7 51%, #462271 100%) !important;
+    margin: 10px !important;
+    padding: 15px 45px !important;
+    text-align: center !important;
     transition: 0.5s;
-    background-size: 200% auto;
-    color: white;
-    box-shadow: 0 0 20px #eee;
-    border-radius: 10px;
-    display: block;
+    background-size: 200% auto !important;
+    color: white !important;
+    box-shadow: 0 0 20px #eee !important;
+    border-radius: 10px !important;
+    display: block !important;
 }
 
 .roxo-lilas:hover {
-    background-position: right center;
-    color: #fff;
-    text-decoration: none;
+    background-position: right center !important;
+    color: #fff !important;
+    text-decoration: none !important;
 }
 
 .amarelo-rejeita {
-    background-image: linear-gradient(to right, #55470D 0%, #F5CC22 51%, #55470D 100%);
-    margin: 10px;
-    padding: 15px 45px;
-    text-align: center;
+    background-image: linear-gradient(to right, #55470D 0%, #F5CC22 51%, #55470D 100%) !important;
+    margin: 10px !important;
+    padding: 15px 45px !important;
+    text-align: center !important;
     transition: 0.5s;
-    background-size: 200% auto;
-    color: white;
-    box-shadow: 0 0 20px #eee;
-    border-radius: 10px;
-    display: block;
+    background-size: 200% auto !important;
+    color: white !important;
+    box-shadow: 0 0 20px #eee !important;
+    border-radius: 10px !important;
+    display: block !important;
 }
 
 .amarelo-rejeita:hover {
-    background-position: right center;
-    color: #fff;
-    text-decoration: none;
+    background-position: right center !important;
+    color: #fff !important;
+    text-decoration: none !important;
 }
 
 .preto-lilas {
-    background-image: linear-gradient(to right, #0E0E0E 0%, #6D65A7 51%, #0E0E0E 100%);
-    margin: 10px;
-    padding: 15px 45px;
-    text-align: center;
-    transition: 0.5s;
-    background-size: 200% auto;
-    color: white;
-    box-shadow: 0 0 20px #eee;
-    border-radius: 10px;
-    display: block;
+    background-image: linear-gradient(to right, #0E0E0E 0%, #6D65A7 51%, #0E0E0E 100%) !important;
+    margin: 10px !important;
+    padding: 15px 45px !important;
+    text-align: center !important;
+    transition: 0.5s !important;
+    background-size: 200% auto !important;
+    color: white !important;
+    box-shadow: 0 0 20px #eee !important;
+    border-radius: 10px !important;
+    display: block !important;
 }
 
 .preto-lilas:hover {
-    background-position: right center;
-    color: #fff;
-    text-decoration: none;
+    background-position: right center !important;
+    color: #fff !important;
+    text-decoration: none !important;
 }
 
 .lilas-branco {
-    background-image: linear-gradient(to right, #6D65A7 0%, #EFF7FA 51%, #6D65A7 100%);
-    margin: 10px;
-    padding: 15px 45px;
-    text-align: center;
-    transition: 0.5s;
-    background-size: 200% auto;
-    color: white;
-    box-shadow: 0 0 20px #eee;
-    border-radius: 10px;
-    display: block;
+    background-image: linear-gradient(to right, #6D65A7 0%, #EFF7FA 51%, #6D65A7 100%) !important;
+    margin: 10px !important;
+    padding: 15px 45px !important;
+    text-align: center !important;
+    transition: 0.5s !important;
+    background-size: 200% auto !important;
+    color: white !important;
+    box-shadow: 0 0 20px #eee !important;
+    border-radius: 10px !important;
+    display: block !important;
 }
 
 .lilas-branco:hover {
-    background-position: right center;
-    color: #fff;
-    text-decoration: none;
+    background-position: right center !important;
+    color: #fff !important;
+    text-decoration: none !important;
 }
 
 /* Fontes */

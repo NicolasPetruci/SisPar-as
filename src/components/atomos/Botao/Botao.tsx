@@ -20,7 +20,7 @@ export interface propsBotao {
     classe?: string;
     fonte?: string;
     whiteSpace?: string;
-    children?: JSX.Element;
+    children?: JSX.Element | string;
     aoClicar?: () => void;
 }
 

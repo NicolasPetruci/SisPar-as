@@ -16,7 +16,7 @@ export const useMestreService = () => {
             setLoading(true);
             const response = await api.post('/mestre', mestreData, {
                 headers: {
-                    Authorization: `Bearer ${authContext.token}`
+                    Authorization: `Bearer ${authContext.token.token}`
                 }
             });
             setData(response.data);
@@ -33,7 +33,7 @@ export const useMestreService = () => {
             setLoading(false);
             const response = await api.delete(`/mestre/${mestreId}`, {
                 headers: {
-                    Authorization: `Bearer ${authContext.token}`
+                    Authorization: `Bearer ${authContext.token.token}`
                 }
             });
             setData(response.data);
@@ -50,7 +50,7 @@ export const useMestreService = () => {
             setLoading(true);
             const response = await api.get('/mestre', {
                 headers: {
-                    Authorization: `Bearer ${authContext.token}`
+                    Authorization: `Bearer ${authContext.token.token}`
                 }
             });
             setData(response.data);
@@ -67,7 +67,7 @@ export const useMestreService = () => {
             setLoading(false);
             const response = await api.get(`/mestre/${mestreId}`, {
                 headers: {
-                    Authorization: `Bearer ${authContext.token}`
+                    Authorization: `Bearer ${authContext.token.token}`
                 }
             });
             setData(response.data);
@@ -84,7 +84,7 @@ export const useMestreService = () => {
             setLoading(false);
             const response = await api.patch(`/mestre/${mestreId}`, updatedData, {
                 headers: {
-                    Authorization: `Bearer ${authContext.token}`
+                    Authorization: `Bearer ${authContext.token.token}`
                 }
             });
             setData(response.data);

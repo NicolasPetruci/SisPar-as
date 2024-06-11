@@ -16,7 +16,7 @@ export const useRPGService = () => {
             setLoading(true);
             const response = await api.post('/rpg', rpgData, {
                 headers: {
-                    Authorization: `Bearer ${authContext.token}`
+                    Authorization: `Bearer ${authContext.token.token}`
                 }
             });
             setData(response.data);
@@ -33,7 +33,7 @@ export const useRPGService = () => {
             setLoading(false);
             const response = await api.delete(`/rpg/${rpgId}`, {
                 headers: {
-                    Authorization: `Bearer ${authContext.token}`
+                    Authorization: `Bearer ${authContext.token.token}`
                 }
             });
             setData(response.data);
@@ -50,7 +50,7 @@ export const useRPGService = () => {
             setLoading(true);
             const response = await api.get('/rpg', {
                 headers: {
-                    Authorization: `Bearer ${authContext.token}`
+                    Authorization: `Bearer ${authContext.token.token}`
                 }
             });
             setData(response.data);
@@ -67,7 +67,7 @@ export const useRPGService = () => {
             setLoading(false);
             const response = await api.get(`/rpg/${rpgId}`, {
                 headers: {
-                    Authorization: `Bearer ${authContext.token}`
+                    Authorization: `Bearer ${authContext.token.token}`
                 }
             });
             setData(response.data);
@@ -84,7 +84,7 @@ export const useRPGService = () => {
             setLoading(false);
             const response = await api.patch(`/rpg/${rpgId}`, updatedData, {
                 headers: {
-                    Authorization: `Bearer ${authContext.token}`
+                    Authorization: `Bearer ${authContext.token.token}`
                 }
             });
             setData(response.data);

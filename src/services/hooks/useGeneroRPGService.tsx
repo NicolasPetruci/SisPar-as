@@ -16,7 +16,7 @@ export const useGeneroRPGService = () => {
             setLoading(true);
             const response = await api.post('/genero', generorpgData, {
                 headers: {
-                    Authorization: `Bearer ${authContext.token}`
+                    Authorization: `Bearer ${authContext.token.token}`
                 }
             });
             setData(response.data);
@@ -33,7 +33,7 @@ export const useGeneroRPGService = () => {
             setLoading(false);
             const response = await api.delete(`/genero/${generorpgId}`, {
                 headers: {
-                    Authorization: `Bearer ${authContext.token}`
+                    Authorization: `Bearer ${authContext.token.token}`
                 }
             });
             setData(response.data);
@@ -50,7 +50,7 @@ export const useGeneroRPGService = () => {
             setLoading(true);
             const response = await api.get('/genero', {
                 headers: {
-                    Authorization: `Bearer ${authContext.token}`
+                    Authorization: `Bearer ${authContext.token.token}`
                 }
             });
             setData(response.data);
@@ -67,7 +67,7 @@ export const useGeneroRPGService = () => {
             setLoading(false);
             const response = await api.get(`/genero/${generorpgId}`, {
                 headers: {
-                    Authorization: `Bearer ${authContext.token}`
+                    Authorization: `Bearer ${authContext.token.token}`
                 }
             });
             setData(response.data);
@@ -84,7 +84,7 @@ export const useGeneroRPGService = () => {
             setLoading(false);
             const response = await api.patch(`/genero/${generorpgId}`, updatedData, {
                 headers: {
-                    Authorization: `Bearer ${authContext.token}`
+                    Authorization: `Bearer ${authContext.token.token}`
                 }
             });
             setData(response.data);

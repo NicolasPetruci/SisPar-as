@@ -16,7 +16,7 @@ export const useSessaoService = () => {
             setLoading(true);
             const response = await api.post('/sessao', sessaoData, {
                 headers: {
-                    Authorization: `Bearer ${authContext.token}`
+                    Authorization: `Bearer ${authContext.token.token}`
                 }
             });
             setData(response.data);
@@ -33,7 +33,7 @@ export const useSessaoService = () => {
             setLoading(false);
             const response = await api.delete(`/sessao/${sessaoId}`, {
                 headers: {
-                    Authorization: `Bearer ${authContext.token}`
+                    Authorization: `Bearer ${authContext.token.token}`
                 }
             });
             setData(response.data);
@@ -50,7 +50,7 @@ export const useSessaoService = () => {
             setLoading(true);
             const response = await api.get('/sessao', {
                 headers: {
-                    Authorization: `Bearer ${authContext.token}`
+                    Authorization: `Bearer ${authContext.token.token}`
                 }
             });
             setData(response.data);
@@ -67,7 +67,7 @@ export const useSessaoService = () => {
             setLoading(false);
             const response = await api.get(`/sessao/${sessaoId}`, {
                 headers: {
-                    Authorization: `Bearer ${authContext.token}`
+                    Authorization: `Bearer ${authContext.token.token}`
                 }
             });
             setData(response.data);
@@ -84,7 +84,7 @@ export const useSessaoService = () => {
             setLoading(false);
             const response = await api.patch(`/sessao/${sessaoId}`, updatedData, {
                 headers: {
-                    Authorization: `Bearer ${authContext.token}`
+                    Authorization: `Bearer ${authContext.token.token}`
                 }
             });
             setData(response.data);

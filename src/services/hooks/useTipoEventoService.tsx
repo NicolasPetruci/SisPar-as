@@ -14,9 +14,9 @@ export const useTipoEventoService = () => {
     const createTipoEvento = async (tipoeventoData: TipoEvento) => {
         try {
             setLoading(true);
-            const response = await api.post('/tipoevento', tipoeventoData, {
+            const response = await api.post('/evento/tipo/cadastrar', tipoeventoData, {
                 headers: {
-                    Authorization: `Bearer ${authContext.token}`
+                    Authorization: `Bearer ${authContext.token.token}`
                 }
             });
             setData(response.data);
@@ -28,12 +28,12 @@ export const useTipoEventoService = () => {
         }
     };
 
-    const deleteTipoEvento = async (tipoeventoId: number) => {
+    const deleteTipoEvento = async (id: number) => {
         try {
             setLoading(false);
-            const response = await api.delete(`/tipoevento/${tipoeventoId}`, {
+            const response = await api.delete(`/evento/tipo/excluir?id=${id}`, {
                 headers: {
-                    Authorization: `Bearer ${authContext.token}`
+                    Authorization: `Bearer ${authContext.token.token}`
                 }
             });
             setData(response.data);
@@ -48,9 +48,9 @@ export const useTipoEventoService = () => {
     const getAllTipoEvento = async () => {
         try {
             setLoading(true);
-            const response = await api.get('/tipoevento', {
+            const response = await api.get('/evento/tipo', {
                 headers: {
-                    Authorization: `Bearer ${authContext.token}`
+                    Authorization: `Bearer ${authContext.token.token}`
                 }
             });
             setData(response.data);
@@ -62,12 +62,12 @@ export const useTipoEventoService = () => {
         }
     }
 
-    const getTipoEvento = async (tipoeventoId: number) => {
+    const getTipoEvento = async (id: number) => {
         try {
             setLoading(false);
-            const response = await api.get(`/tipoevento/${tipoeventoId}`, {
+            const response = await api.get(`/evento/tipo?id=${id}`, {
                 headers: {
-                    Authorization: `Bearer ${authContext.token}`
+                    Authorization: `Bearer ${authContext.token.token}`
                 }
             });
             setData(response.data);
@@ -79,12 +79,12 @@ export const useTipoEventoService = () => {
         }
     };
 
-    const updateTipoEvento = async (tipoeventoId: number, updatedData: TipoEvento) => {
+    const updateTipoEvento = async (id: number, updatedData: TipoEvento) => {
         try {
             setLoading(false);
-            const response = await api.patch(`/tipoevento/${tipoeventoId}`, updatedData, {
+            const response = await api.patch(`/evento/tipo/atualizar?id=${id}`, updatedData, {
                 headers: {
-                    Authorization: `Bearer ${authContext.token}`
+                    Authorization: `Bearer ${authContext.token.token}`
                 }
             });
             setData(response.data);

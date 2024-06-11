@@ -1,52 +1,74 @@
-import { Text, Grid, GridItem, Flex, Table, TableContainer, Tbody, Td, Tfoot, Th, Thead, Tr } from "@chakra-ui/react";
+import { Text, Grid, GridItem, Flex, Table, TableContainer, Tbody, Td, Tfoot, Th, Thead, Tr, Button, useDisclosure, Drawer } from "@chakra-ui/react";
 import CaixaPadronizada from "../../atomos/CaixaPadronizada/CaixaPadronizada";
 import Evento from "../../../interface/Evento";
 import { useEffect, useState } from "react";
 import { useEventoService } from "../../../services/hooks/useEventoService";
 import React from "react";
+import BotaoGradiente from "../../moleculas/BotaoGradiente/BotaoGradiente";
+import DrawerCadastroEvento from "../../organismos/DrawerCadastroEvento/DrawerCadastroEvento";
 
 
 
 export default function EventosSistema() {
 
+    //declarações
+    const { isOpen, onOpen, onClose } = useDisclosure();
     const [evento, setEvento] = useState<Evento[]>([]);
     const [eventoSelecionado, setEventoSelecionado] = useState<Evento | null>(null);
-
-    const [busca, setBusca] = React.useState("");
-
-
+    const btnRef = React.useRef()
     const eventoService = useEventoService();
 
     //busca
+    const buscarEvento = () => {
+        try {
+            eventoService.getAllEvento().then((evento) => setEvento(evento));
+        } catch (error) {
+            alert("Erro ao obter eventos");
 
-    useEffect(() => {
-        async function buscarEvento() {
-            try {
-                await eventoService.getAllEvento().then((evento) => setEvento(evento));
-            } catch (error) {
-                alert("Erro ao obter eventos");
-                toast({
-                    title: `Erro ao obter eventos ${error}`,
-                    status: "error",
-                    duration: 2000,
-                    isClosable: true,
-                });
-            }
         }
+    }
+    useEffect(() => {
         buscarEvento();
-    }, [eventoService, toast])
+    }, [])
+
+    //deleta
+    const deletarEvento = async (idEvento: string) => {
+        eventoService.deleteEvento(idEvento);
+        buscarEvento();
+
+    };
+
+    //atualiza
+    const atualizarEvento = (eventoAtualizado: Evento) => {
+        setEvento((eventoPrevias) => {
+            const eventosAtualizados = eventoPrevias.map((evento) => {
+                if (evento.id === eventoAtualizado.id) {
+                    return eventoAtualizado;
+                }
+                return evento;
+            });
+            return eventosAtualizados;
+        });
+    };
+
+    //abrirDrawer
+    const abrirDrawer = (evento: Evento) => {
+        setEventoSelecionado(evento);
+        onOpen();
+    };
 
     return (
         <>
 
-            <Grid w='100%' templateRows='repeat(2, 1fr)'
+            <Grid w='100%' h='0px' templateRows='repeat(2, 1fr)'
                 templateColumns='repeat(1, 1fr)'
+                gap='50px'
 
             >
                 <GridItem colSpan={4}>
-                    <CaixaPadronizada justificarComponente='start' alinharItem='top'>
+                    <CaixaPadronizada alturaCaixa='25vh' justificarComponente='start' alinharItem='top'>
                         <>
-                            <Flex h='100%' flexDir={'column'} gap='10px' justifyContent='start' alignItems='start'>
+                            <Flex h='100%' flexDir={'column'} justifyContent='start' alignItems='start'>
                                 <Text textAlign='left' fontSize={22} fontWeight={900}>
                                     EVENTOS
                                 </Text>
@@ -57,36 +79,66 @@ export default function EventosSistema() {
 
                 </GridItem>
 
-                <GridItem colSpan={4}>
-                    <CaixaPadronizada>
+                <GridItem w='100%' h='100%' colSpan={4} p='10'>
+                    <CaixaPadronizada larguraCaixa='100%' alturaCaixa='100%'>
                         <>
+
                             <TableContainer>
-                                <TableContainer>
-                                    <Table variant='striped' colorScheme='teal'>
+                                <Table variant='striped' colorScheme='teal'>
 
-                                        <Thead>
-                                            <Tr>
-                                                <Th>Nome</Th>
+                                    <Thead>
+                                        <Tr>
+                                            <Th>ID</Th>
+                                            <Th>NOME</Th>
+                                            <Th>LOCAL</Th>
+                                            <Th>AÇÃO</Th>
 
+                                        </Tr>
+                                    </Thead>
+                                    <Tbody  >
+                                        {evento.map((evento, index) => (
+                                            <Tr key={index}>
+                                                <Td>{evento.id}</Td>
+                                                <Td>{evento.nome}</Td>
+                                                <Td>{evento.local}</Td>
+                                                <Td>
+                                                    <Flex>
+                                                        <Button className="amarelo-rejeita" onClick={() => deletarEvento(evento.id!.toString())}> D</Button>
+                                                        <Button className="roxo-aceita" onClick={() => abrirDrawer(evento)}> V </Button>
+                                                    </Flex>
+                                                </Td>
                                             </Tr>
-                                        </Thead>
-                                        <Tbody>
-                                            {evento.map((evento, index) => (
-                                                <Tr key={index}>
-                                                    <Td>{evento.id}</Td>
-                                                    <Td>{evento.nome}</Td>
-                                                </Tr>
-                                            ))}
+                                        ))}
 
-                                        </Tbody>
-                                        <Tfoot>
-                                            <Tr>
-                                                <Th>Nome</Th>
-                                            </Tr>
-                                        </Tfoot>
-                                    </Table>
-                                </TableContainer>
+                                    </Tbody>
+                                    <Tfoot>
+                                        <Tr>
+                                            <Th>ID</Th>
+                                            <Th>NOME</Th>
+                                            <Th>LOCAL</Th>
+                                            <Th>AÇÃO</Th>
+
+                                        </Tr>
+                                    </Tfoot>
+                                </Table>
+
+                                <Drawer
+                                    size="lg"
+                                    isOpen={isOpen}
+                                    placement="right"
+                                    onClose={onClose}
+                                >
+                                    {eventoSelecionado && (
+                                        <DrawerCadastroEvento
+                                            isOpen={isOpen}
+                                            eventoInterface={eventoSelecionado}
+                                            onClose={onClose}
+                                            onUpdate={atualizarEvento}
+                                        />
+                                    )}
+                                </Drawer>
                             </TableContainer>
+
                         </>
                     </CaixaPadronizada>
 
@@ -100,6 +152,4 @@ export default function EventosSistema() {
     )
 }
 
-function toast(arg0: { title: string; status: string; duration: number; isClosable: boolean; }) {
-    throw new Error("Function not implemented.");
-}
+
