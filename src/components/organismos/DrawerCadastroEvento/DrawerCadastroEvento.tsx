@@ -3,10 +3,9 @@ import Evento from "../../../interface/Evento";
 import TipoEvento from "../../../interface/TipoEvento";
 import { useEventoService } from "../../../services/hooks/useEventoService";
 import { useTipoEventoService } from "../../../services/hooks/useTipoEventoService";
-import { Button, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerFooter, DrawerHeader, FormControl, FormLabel, Input, Radio, RadioGroup } from "@chakra-ui/react";
+import { Button, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerFooter, DrawerHeader, FormControl, FormLabel, Input, Radio, RadioGroup, Select } from "@chakra-ui/react";
 import { formatarData, imprimeDataInput } from "../../../services/data";
 
-import Select from 'react-select'
 
 interface propsEvento {
     isOpen: boolean;
@@ -35,18 +34,18 @@ export default function DrawerCadastroEvento({
         descricao: evento ? evento.descricao : "",
         local: evento ? evento.local : "",
         online: evento ? evento.online : "Não",
-        id_tipo_evento: evento ? evento.id_tipo_evento : [],
+        id_tipo_evento: evento ? evento.id_tipo_evento : 0,
 
     })
 
     //data
-    const nomeTipo = tipoEvento.map((tipo) => {
+    const nomeTipo = (tipo: TipoEvento) => {
         return {
             label: tipo.descricao,
             value: tipo.id,
             data: tipo,
         };
-    })
+    }
 
 
 
@@ -71,41 +70,41 @@ export default function DrawerCadastroEvento({
 
     useEffect(() => {
         buscarTipo();
-
+        // criarListaTipo(evento.id_tipo_evento)
     }, []);
 
     //criarlista
 
-    const criarListaTipo = (
-        tipoSelecionado: TipoEvento[] | TipoEvento
-    ) => {
-        let novoTipo: TipoEvento[];
+    // const criarListaTipo = (
+    //     tipoSelecionado: TipoEvento[] | TipoEvento
+    // ) => {
+    //     let novoTipo: TipoEvento[];
 
-        if (tipoSelecionado instanceof Array) {
-            novoTipo = tipoSelecionado.map(
-                (tipo: TipoEvento) => {
-                    return {
-                        id: tipo.id,
-                        descricao: tipo.descricao,
-                    };
-                }
-            );
-        } else {
-            novoTipo = [
-                {
-                    id: tipoSelecionado.id,
-                    descricao: tipoSelecionado.descricao,
+    //     if (tipoSelecionado instanceof Array) {
+    //         novoTipo = tipoSelecionado.map(
+    //             (tipo: TipoEvento) => {
+    //                 return {
+    //                     id: tipo.id,
+    //                     descricao: tipo.descricao,
+    //                 };
+    //             }
+    //         );
+    //     } else {
+    //         novoTipo = [
+    //             {
+    //                 id: tipoSelecionado.id,
+    //                 descricao: tipoSelecionado.descricao,
 
-                },
-            ];
-        }
-        setEvento({
-            ...evento,
-            id_tipo_evento: novoTipo.map((tipo) => {
-                return tipo;
-            }),
-        });
-    };
+    //             },
+    //         ];
+    //     }
+    //     setEvento({
+    //         ...evento,
+    //         id_tipo_evento: novoTipo.map((tipo) => {
+    //             return tipo;
+    //         }),
+    //     });
+    // };
 
 
 
@@ -190,40 +189,42 @@ export default function DrawerCadastroEvento({
                         </form>
 
                         <FormLabel>Tipo Evento:</FormLabel>
-                        <Select options={nomeTipo} defaultValue={evento.id_tipo_evento.map((tipo) => ({
-                            label: tipo.descricao,
-                            value: tipo.id,
-                            data: tipo,
-                        }))}>
+                        <Select
+                            value={evento.id_tipo_evento}
+                            defaultValue={tipoEvento{}}>
+                        {tipoEvento.map(tipo => (
+                            <option key={tipo.id} value={tipo.descricao}>
+                                {tipo.descricao}
+                            </option>
+                        ))}
+                    </Select>
 
-                        </Select>
-
-                        <FormLabel>
-                            Data:
-                        </FormLabel>
-                        <Input type='datetime-local' defaultValue={imprimeDataInput(evento.data_hora!)} onChange={(e) => {
-                            const dataConvertida = formatarData(e.target.value)
-                            setUpdateEvento({
-                                ...updateEvento,
-                                data_hora: dataConvertida,
-                            })
-                        }} />
-
-
-
-
+                    <FormLabel>
+                        Data:
+                    </FormLabel>
+                    <Input type='datetime-local' defaultValue={imprimeDataInput(evento.data_hora!)} onChange={(e) => {
+                        const dataConvertida = formatarData(e.target.value)
+                        setUpdateEvento({
+                            ...updateEvento,
+                            data_hora: dataConvertida,
+                        })
+                    }} />
 
 
 
-                    </DrawerBody>
-                    <DrawerFooter>
-                        <Button onClick={atualizarEvento}></Button>
-                    </DrawerFooter>
-
-                </DrawerContent>
 
 
-            </Drawer>
+
+
+                </DrawerBody>
+                <DrawerFooter>
+                    <Button onClick={atualizarEvento}></Button>
+                </DrawerFooter>
+
+            </DrawerContent>
+
+
+        </Drawer >
 
         </>
     )

@@ -8,7 +8,7 @@ export default interface Evento {
     local: string;
     online: string;
     data_hora: string | undefined;
-    id_tipo_evento: TipoEvento[];
+    id_tipo_evento: number;
 
 
 }
