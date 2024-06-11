@@ -123,10 +123,15 @@ export default function DrawerCadastroEvento({
                             <RadioGroup
                                 display="flex"
                                 gap='10'
-                                
+                                onChange={(value) => {
+                                    setEvento({
+                                        ...evento,
+                                        online: value === "Sim" ? "Sim" : "Não",
+                                    });
+                                }}
                             >
-                                <Radio border='1px solid black' value="Sim" onChange={cadastroDadosEvento} colorScheme="teal">Sim</Radio>
-                                <Radio border='1px solid black' value="Não" onChange={cadastroDadosEvento} colorScheme="red">Não</Radio>
+                                <Radio border='1px solid black' value="Sim" colorScheme="teal">Sim</Radio>
+                                <Radio border='1px solid black' value="Não" colorScheme="red">Não</Radio>
                             </RadioGroup>
                         </form>
 
