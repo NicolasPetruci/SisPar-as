@@ -1,5 +1,5 @@
 export default interface TipoEvento {
-    id?: number;
+    id: number;
     descricao: string;
 
 }

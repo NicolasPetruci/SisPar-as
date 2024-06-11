@@ -29,12 +29,14 @@ export default function EventosSistema() {
     }
     useEffect(() => {
         buscarEvento();
+
     }, [])
 
     //deleta
     const deletarEvento = async (idEvento: string) => {
         eventoService.deleteEvento(idEvento);
         buscarEvento();
+
 
     };
 
