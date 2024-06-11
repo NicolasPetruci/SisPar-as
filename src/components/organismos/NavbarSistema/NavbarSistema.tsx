@@ -2,6 +2,8 @@
 import { Flex, Grid, GridItem } from "@chakra-ui/react";
 import Botao from "../../atomos/Botao/Botao";
 import CaixaPadronizada from "../../atomos/CaixaPadronizada/CaixaPadronizada";
+import { useAuth } from "../../../context/AuthContext";
+import ComponentePermissao from "../../../routes/ComponentePermissao/ComponentePermissao";
 
 interface propsNavbar {
     children?: JSX.Element;
@@ -9,14 +11,20 @@ interface propsNavbar {
 
 
 export default function NavbarSistema(props: propsNavbar) {
+
+    const { logout } = useAuth();
     return (
         <>
             <Grid templateRows='repeat(1, 1fr)'
-                templateColumns='repeat(10, 1fr)' flexDir="row">
+                templateColumns='repeat(10, fr)' flexDir="row">
                 <GridItem >
-                    <CaixaPadronizada distancia={"50px"} direcao="column" justificarComponente="center" alinharItem={"center"} larguraCaixa="5vw" alturaCaixa="100vh" bg="gray" >
+                    <CaixaPadronizada distancia={"25px"} direcao="column" justificarComponente="center" alinharItem={"center"} larguraCaixa="10vw" alturaCaixa="100vh" bg="gray" >
                         <>
-                            <Botao href="/rpg" descricao={"RPG"} fonte="arial" />
+                            <ComponentePermissao cargo="MESTRE,ADM">
+                                <>
+                                    <Botao href="/rpg" descricao={"RPG"} fonte="arial" />
+                                </>
+                            </ComponentePermissao>
 
                             <Botao href="/parcasAwards" descricao={"Parças Awards"} fonte="arial" whiteSpace="wrap" />
 
@@ -27,6 +35,8 @@ export default function NavbarSistema(props: propsNavbar) {
                             <Botao href="/forum" descricao={"Forum"} fonte="arial" whiteSpace="wrap" />
 
                             <Botao href="/usuarios" descricao={"Usuarios"} fonte="arial" whiteSpace="wrap" />
+
+                            <Botao aoClicar={logout} descricao={"Logout"} fonte="arial" whiteSpace="wrap" />
                         </>
                     </CaixaPadronizada>
                 </GridItem>

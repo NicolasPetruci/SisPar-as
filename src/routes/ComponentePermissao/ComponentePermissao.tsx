@@ -3,7 +3,7 @@ import { api } from "../../services/apiService";
 import React from "react";
 
 interface propsComponentePermissao {
-    cargo?: string;
+    cargo: string;
     children: JSX.Element;
 }
 
@@ -13,10 +13,21 @@ const ComponentePermissao: (React.FC<propsComponentePermissao>) = ({ cargo, chil
 
     useEffect(() => {
         async function loadRoles() {
-            const response = api.get('/cargo');
-            const findRole = (await response).data.some((c: string) => cargo?.split(',').includes(c))
-            setPermission(findRole);
+
+
+            const response = await api.get('/usuario/cargos');
+            console.log(response)
+
+            const findRole = response.data.some((c: string) => {
+                cargo?.split(',').includes(c);
+                return cargo.includes(c);
+            });
+
+
+            return setPermission(findRole)
+
         }
+
 
         loadRoles()
     }, [])

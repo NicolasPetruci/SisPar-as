@@ -19,12 +19,12 @@ export default function Rota() {
                     <Route path="/menu" element={<PrivateRoute cargo="DEFAULT"><NavbarRoute /></PrivateRoute>} />
 
                     {/* Sistema */}
-                    <Route path="/rpg" element={<PrivateRoute cargo="DONO"><NavbarRoute /></PrivateRoute>} />
-                    <Route path="/usuarios/*" element={<PrivateRoute cargo="DEFAULT"><NavbarRoute /></PrivateRoute>} />
-                    <Route path="/forum" element={<PrivateRoute cargo="DEFAULT"><NavbarRoute /></PrivateRoute>} />
-                    <Route path="/hallDaFama" element={<PrivateRoute cargo="DEFAULT"><NavbarRoute /></PrivateRoute>} />
-                    <Route path="/parcasAwards" element={<PrivateRoute cargo="DEFAULT"><NavbarRoute /></PrivateRoute>} />
-                    <Route path="/eventos" element={<PrivateRoute cargo="DEFAULT"><NavbarRoute /></PrivateRoute>} />
+                    <Route path="/rpg" element={<PrivateRoute cargo="DEFAULT,ADM,DONO,MESTRE"><NavbarRoute /></PrivateRoute>} />
+                    <Route path="/usuarios" element={<PrivateRoute cargo="DEFAULT,ADM,DONO,MESTRE"><NavbarRoute /></PrivateRoute>} />
+                    <Route path="/forum" element={<PrivateRoute cargo="DEFAULT,ADM,DONO,MESTRE"><NavbarRoute /></PrivateRoute>} />
+                    <Route path="/hallDaFama" element={<PrivateRoute cargo="DEFAULT,ADM,DONO,MESTRE"><NavbarRoute /></PrivateRoute>} />
+                    <Route path="/parcasAwards" element={<PrivateRoute cargo="DEFAULT,ADM,DONO,MESTRE"><NavbarRoute /></PrivateRoute>} />
+                    <Route path="/eventos" element={<PrivateRoute cargo="DEFAULT,ADM,DONO,MESTRE"><NavbarRoute /></PrivateRoute>} />
                 </>
 
                 {/* Site */}

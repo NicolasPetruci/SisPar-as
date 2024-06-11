@@ -5,6 +5,7 @@ interface AuthContextState {
     token: TokenState;
     signIn({ email, senha }: UsuarioData): Promise<void>
     userLogged(): boolean;
+    logout(): void;
 }
 
 interface Props {
@@ -14,6 +15,7 @@ interface Props {
 interface UsuarioData {
     email: string;
     senha: string;
+
 }
 
 interface TokenState {
@@ -47,6 +49,12 @@ const AuthProvider: React.FC<Props> = ({ children }) => {
         localStorage.setItem("@PermissionYT:token", token);
     }, [])
 
+    const logout = useCallback(() => {
+        localStorage.removeItem("@PermissionYT:token");
+        setToken({} as TokenState);
+        delete api.defaults.headers.authorization;
+    }, []);
+
     const userLogged = useCallback(() => {
         const token = localStorage.getItem("@PermissionYT:token")
         if (token) {
@@ -56,7 +64,7 @@ const AuthProvider: React.FC<Props> = ({ children }) => {
     }, [])
 
     return (
-        <AuthContext.Provider value={{ token, signIn, userLogged }}>
+        <AuthContext.Provider value={{ token, signIn, userLogged, logout }}>
             {children}
         </AuthContext.Provider>
     )
