@@ -26,7 +26,7 @@ export default function DrawerInscreverRPG({
 
     //declaração
     const [rpg, setRPG] = useState<RPG>(rpgInterface);
-    
+
     const [generoRPG, setGeneroRPG] = useState<GeneroRPG[]>([]);
     const [isInscrito, setIsInscrito] = useState(Boolean)
     const [usuario, setUsuario] = useState<Usuario>()
@@ -171,7 +171,7 @@ export default function DrawerInscreverRPG({
 
     return (
         <>
-            <Drawer isOpen={isOpen} onClose={onClose} size='xl'>
+            <Drawer isOpen={isOpen} onClose={onClose} size='sm'>
                 <DrawerContent>
                     <DrawerCloseButton />
                     <DrawerHeader>

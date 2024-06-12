@@ -62,6 +62,10 @@ export default function RPGsSistema() {
         onDrawerAtualizarOpen();
     };
 
+
+
+
+
     const abrirDrawerCadastro = () => {
         onDrawerCadastroOpen();
     };
@@ -115,11 +119,29 @@ export default function RPGsSistema() {
                                                     <Flex>
                                                         <Button className="amarelo-rejeita" onClick={() => deletarMeusRPG(rpg.id ? rpg.id : 0)}> D</Button>
                                                         <Button className="roxo-aceita" onClick={() => abrirDrawerAtualizar(rpg)}> V </Button>
+
                                                     </Flex>
                                                 </Td>
                                             </Tr>
                                         ))}
                                     </Tbody>
+                                    <Drawer
+                                        size="lg"
+                                        isOpen={isDrawerAtualizarOpen}
+                                        placement="right"
+                                        onClose={onDrawerAtualizarClose}
+                                    >
+                                        {rpgSelecionado && (
+                                            <DrawerAtualizarRPG
+                                                isOpen={isDrawerAtualizarOpen}
+                                                rpgInterface={rpgSelecionado}
+                                                onClose={onDrawerAtualizarClose}
+                                                onUpdate={atualizarMeusRPG}
+                                            />
+                                        )}
+                                    </Drawer>
+
+
                                     <Tfoot>
                                         <Tr>
                                             <Th>ID</Th>
@@ -130,39 +152,26 @@ export default function RPGsSistema() {
                                         </Tr>
                                     </Tfoot>
                                 </Table>
-                                <Drawer
-                                    size="lg"
-                                    isOpen={isDrawerAtualizarOpen}
-                                    placement="right"
-                                    onClose={onDrawerAtualizarClose}
-                                >
-                                    {rpgSelecionado && (
-                                        <DrawerAtualizarRPG
-                                            isOpen={isDrawerAtualizarOpen}
-                                            rpgInterface={rpgSelecionado}
-                                            onClose={onDrawerAtualizarClose}
-                                            onUpdate={atualizarMeusRPG}
-                                        />
-                                    )}
-                                </Drawer>
 
-                                <Drawer
-                                    size="lg"
-                                    isOpen={isDrawerCadastroOpen}
-                                    placement="right"
-                                    onClose={onDrawerCadastroClose}
-                                >
-                                    {(
-                                        <DrawerCadastroRPG
-                                            isOpen={isDrawerCadastroOpen}
-                                            onClose={onDrawerCadastroClose}
 
-                                        />
-                                    )}
-                                </Drawer>
+
                             </TableContainer>
                         </>
                     </CaixaPadronizada>
+                    <Drawer
+                        size="lg"
+                        isOpen={isDrawerCadastroOpen}
+                        placement="right"
+                        onClose={onDrawerCadastroClose}
+                    >
+                        {(
+                            <DrawerCadastroRPG
+                                isOpen={isDrawerCadastroOpen}
+                                onClose={onDrawerCadastroClose}
+
+                            />
+                        )}
+                    </Drawer>
                 </GridItem>
             </Grid >
 

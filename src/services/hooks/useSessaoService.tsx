@@ -14,7 +14,7 @@ export const useSessaoService = () => {
     const createSessao = async (sessaoData: Sessao) => {
         try {
             setLoading(true);
-            const response = await api.post('/sessao', sessaoData, {
+            const response = await api.post('/rpg/sessao/cadastrar', sessaoData, {
                 headers: {
                     Authorization: `Bearer ${authContext.token.token}`
                 }
@@ -28,10 +28,10 @@ export const useSessaoService = () => {
         }
     };
 
-    const deleteSessao = async (sessaoId: number) => {
+    const deleteSessao = async (id: number) => {
         try {
             setLoading(false);
-            const response = await api.delete(`/sessao/${sessaoId}`, {
+            const response = await api.delete(`/rpg/sessao/excluir?id=${id}`, {
                 headers: {
                     Authorization: `Bearer ${authContext.token.token}`
                 }
@@ -48,7 +48,7 @@ export const useSessaoService = () => {
     const getAllSessao = async () => {
         try {
             setLoading(true);
-            const response = await api.get('/sessao', {
+            const response = await api.get('/rpg/sessao', {
                 headers: {
                     Authorization: `Bearer ${authContext.token.token}`
                 }
@@ -62,10 +62,10 @@ export const useSessaoService = () => {
         }
     }
 
-    const getSessao = async (sessaoId: number) => {
+    const getSessao = async (id: number) => {
         try {
             setLoading(false);
-            const response = await api.get(`/sessao/${sessaoId}`, {
+            const response = await api.get(`/rpg/sessao/buscar?id_rpg=${id}`, {
                 headers: {
                     Authorization: `Bearer ${authContext.token.token}`
                 }
@@ -79,10 +79,10 @@ export const useSessaoService = () => {
         }
     };
 
-    const updateSessao = async (sessaoId: number, updatedData: Sessao) => {
+    const updateSessao = async (updatedData: Sessao) => {
         try {
             setLoading(false);
-            const response = await api.patch(`/sessao/${sessaoId}`, updatedData, {
+            const response = await api.put(`/rpg/sessao/atualizar`, updatedData, {
                 headers: {
                     Authorization: `Bearer ${authContext.token.token}`
                 }

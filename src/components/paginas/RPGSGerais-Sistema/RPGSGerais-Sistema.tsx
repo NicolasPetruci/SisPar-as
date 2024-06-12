@@ -7,6 +7,7 @@ import DrawerAtualizarRPG from "../../organismos/DrawerAtualizarRPG/DrawerAtuali
 import DrawerCadastroRPG from "../../organismos/DrawerCadastroRPG/DrawerCadastroRPG";
 import { useMestreService } from "../../../services/hooks/useMestreService";
 import DrawerInscreverRPG from "../../organismos/DrawerInscreverRPG/DrawerInscreverRPG";
+import DrawerVerSessaoRPG from "../../organismos/DrawerVerSessaoRPG/DrawerVerSessaoRPG";
 
 
 
@@ -20,7 +21,7 @@ export default function RPGSGeraisSistema() {
     const rpgService = useRPGService()
 
     const { isOpen: isDrawerAtualizarOpen, onOpen: onDrawerAtualizarOpen, onClose: onDrawerAtualizarClose } = useDisclosure();
-
+    const { isOpen: isDrawerVerSessaoOpen, onOpen: onDrawerVerSessaoOpen, onClose: onDrawerVerSessaoClose } = useDisclosure();
 
     //busca
     const buscarRPG = () => {
@@ -39,6 +40,11 @@ export default function RPGSGeraisSistema() {
     const abrirDrawerAtualizar = (rpg: RPG) => {
         setRPGSelecionado(rpg);
         onDrawerAtualizarOpen();
+    };
+
+    const abrirDrawerVisualizar = (rpg: RPG) => {
+        setRPGSelecionado(rpg);
+        onDrawerVerSessaoOpen();
     };
 
 
@@ -90,6 +96,7 @@ export default function RPGSGeraisSistema() {
                                                 <Td>
                                                     <Flex>
 
+                                                        <Button className="lilas-branco" onClick={() => abrirDrawerVisualizar(rpg)}> S </Button>
                                                         <Button className="roxo-aceita" onClick={() => abrirDrawerAtualizar(rpg)}> V </Button>
                                                     </Flex>
                                                 </Td>
@@ -123,10 +130,26 @@ export default function RPGSGeraisSistema() {
                                 </Drawer>
 
                             </TableContainer>
+
                         </>
                     </CaixaPadronizada>
                 </GridItem>
             </Grid >
+            <Drawer
+                size="lg"
+                isOpen={isDrawerVerSessaoOpen}
+                placement="right"
+                onClose={onDrawerVerSessaoClose}
+            >
+                {rpgSelecionado && (
+                    <DrawerVerSessaoRPG
+                        isOpen={isDrawerVerSessaoOpen}
+                        rpgInterface={rpgSelecionado}
+                        onClose={onDrawerVerSessaoClose}
+
+                    />
+                )}
+            </Drawer>
 
         </>
     )
