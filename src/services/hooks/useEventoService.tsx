@@ -132,5 +132,34 @@ export const useEventoService = () => {
 
     }
 
-    return { createEvento, deleteEvento, getAllEvento, getEvento, updateEvento, desinscreverEvento, inscreverEvento, data, loading, error }
+    const visualizarEventos = async () => {
+        try {
+            setLoading(true);
+            const response = await api.get('/evento/visualizar-eventos', {
+                headers: {
+                    Authorization: `Bearer ${authContext.token.token}`
+                }
+            });
+            setData(response.data);
+            return response.data;
+        } catch (error: any) {
+            setError(error);
+        } finally {
+            setLoading(false);
+        }
+    }
+
+    return {
+            data,
+            loading,
+            error,
+            createEvento,
+            deleteEvento,
+            getAllEvento,
+            getEvento,
+            updateEvento,
+            desinscreverEvento,
+            inscreverEvento,
+            visualizarEventos,
+            }
 }
