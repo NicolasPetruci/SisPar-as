@@ -14,14 +14,14 @@ interface propsRPG {
     isOpen: boolean;
     onClose: () => void;
     rpgInterface: RPG;
-    onUpdate: (rpgAtualizado: RPG) => void;
+
 }
 
-export default function DrawerAtualizarRPG({
+export default function DrawerInscreverRPG({
     isOpen,
     onClose,
     rpgInterface,
-    onUpdate,
+
 }: propsRPG) {
 
     //declaração
@@ -40,14 +40,6 @@ export default function DrawerAtualizarRPG({
         descricao: rpg ? rpg.descricao : "",
         generos: rpg ? rpg.generos : []
     })
-
-    const nomeGeneros = generoRPG.map((genero => {
-        return {
-            label: genero.descricao,
-            value: genero.id,
-            data: genero
-        }
-    }))
 
     // buscar
 
@@ -74,65 +66,110 @@ export default function DrawerAtualizarRPG({
     useEffect(() => {
         buscarGeneros();
         buscarUsuario();
-        criarListaGeneros(generoRPG);
 
     }, []);
 
-    const criarListaGeneros = (generosSelecionados: GeneroRPG[] | GeneroRPG) => {
+    useEffect(() => {
+        async function criarListaGeneros(
+            generoSelecionado: GeneroRPG[] | GeneroRPG
+        ) {
+            let novoGenero: GeneroRPG[];
 
-        let novoGenero: GeneroRPG[];
-
-        if (generosSelecionados instanceof Array) {
-            novoGenero = generosSelecionados.map(
-                (genero: GeneroRPG) => {
+            novoGenero = generoRPGSelecionado.map(
+                (generoRPG: GeneroRPG) => {
                     return {
-                        id: genero.id,
-                        descricao: genero.descricao
-                    }
+                        id: generoRPG.id,
+                        descricao: generoRPG.descricao,
+                    };
                 }
-            )
-        } else {
-            novoGenero = [
-                {
-                    id: generosSelecionados.id,
-                    descricao: generosSelecionados.descricao,
-                }
-            ]
+            );
+            setRPG({
+                ...rpg,
+                generos: novoGenero.map((generoRPG) => {
+                    return generoRPG;
+                }),
+            });
         }
-        setRPG({
-            ...rpg,
-            generos: novoGenero.map((genero) => {
-                return genero;
-            })
-        })
-
-    }
-
-
+    });
 
 
 
 
     //Atualizar
 
-    const atualizarRPG = async () => {
+    useEffect(() => {
+        if (usuario) {
+            verificarInscricao();
+        }
+    }, [usuario, rpg.id]);
+
+    const verificarInscricao = () => {
+        if (rpg.id === undefined) return;  // Verificação de segurança
+        const inscricoes = JSON.parse(localStorage.getItem('inscricoes') || '{}');
+        if (usuario && inscricoes[rpg.id] && inscricoes[rpg.id].includes(usuario.id)) {
+            setIsInscrito(true);
+        }
+    };
+
+    const salvarInscricao = () => {
+        if (rpg.id === undefined) return;  // Verificação de segurança
+        const inscricoes = JSON.parse(localStorage.getItem('inscricoes') || '{}');
+        if (!inscricoes[rpg.id]) {
+            inscricoes[rpg.id] = [];
+        }
+        if (usuario) {
+            inscricoes[rpg.id].push(usuario.id);
+        }
+        localStorage.setItem('inscricoes', JSON.stringify(inscricoes));
+    };
+
+    const removerInscricao = () => {
+        if (rpg.id === undefined) return;  // Verificação de segurança
+        const inscricoes = JSON.parse(localStorage.getItem('inscricoes') || '{}');
+        if (inscricoes[rpg.id]) {
+            if (usuario) {
+                inscricoes[rpg.id] = inscricoes[rpg.id].filter((id: number) => id !== usuario.id);
+            }
+        }
+        localStorage.setItem('inscricoes', JSON.stringify(inscricoes));
+    };
+
+    const inscreverRPG = async (idRPG: string) => {
         try {
-            if (updateRPG) {
-                updateRPG.id = rpg.id;
-                updateRPG.generos = generoRPGSelecionado;
-                await rpgService.updateRPG(updateRPG).then(() => {
-                    console.log('deu bom manp, ta atualizado')
-                })
-                onUpdate(updateRPG);
+            await rpgService.inscreverRPG(idRPG);
+            setIsInscrito(true);
+            const novoJogador = usuario;
+            if (novoJogador) {
+                setRPG({
+                    ...rpg,
+                    jogadores: [...(rpg.jogadores ? rpg.jogadores : []), novoJogador],
+                });
+
+                salvarInscricao();
+
+
             }
         } catch (error) {
-            console.log('deu ruim', error)
+            console.log('Erro ao inscrever no rpg', error);
         }
-    }
+    };
+
+    const desinscreverRPG = async (idRPG: string) => {
+        try {
+            await rpgService.desinscreverRPG(idRPG);
+            setIsInscrito(false);
+            removerInscricao();
+
+
+        } catch (error) {
+            console.log('Erro ao cancelar inscrição', error);
+        }
+    };
+
 
     return (
         <>
-            <Drawer isOpen={isOpen} onClose={onClose} size='sm'>
+            <Drawer isOpen={isOpen} onClose={onClose} size='xl'>
                 <DrawerContent>
                     <DrawerCloseButton />
                     <DrawerHeader>
@@ -175,24 +212,18 @@ export default function DrawerAtualizarRPG({
                                 isMulti
                                 closeMenuOnSelect={false}
                                 name='generoRPG'
-                                defaultValue={rpg.generos?.map((generos) => ({
-                                    label: generos.descricao,
-                                    value: generos.id,
-                                    data: generos,
-                                }))}
-                                options={nomeGeneros}
+                                defaultValue={generoRPGSelecionado.map(g => { return { label: g.descricao, value: g } })}
+                                options={generoRPG.map(g => { return { label: g.descricao, value: g } })}
                                 onChange={(event) => {
                                     setGeneroRPGSelecionado(
-                                        event.map((generoRPG) => generoRPG.data)
+                                        event.map((generoRPG) => generoRPG.value)
                                     );
                                 }}
                             />
                         </FormControl>
                     </DrawerBody>
                     <DrawerFooter>
-                        <ComponentePermissao cargo="MESTRE">
-                            <Button className="lilas-branco" onClick={atualizarRPG}> Atualizar</Button>
-                        </ComponentePermissao>
+                        {isInscrito === true ? <Button className="lilas-branco" onClick={() => desinscreverRPG(rpg.id!.toString())}>Cancelar Inscrição</Button> : <Button className="roxo-amarelo" onClick={() => inscreverRPG(rpg.id!.toString())}>Inscrever</Button>}
 
 
 
@@ -203,8 +234,8 @@ export default function DrawerAtualizarRPG({
         </>
     )
 
-
-
-
-
 }
+
+
+
+

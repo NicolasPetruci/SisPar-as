@@ -11,44 +11,11 @@ export const useMestreService = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState();
 
-    const createMestre = async (mestreData: Mestre) => {
-        try {
-            setLoading(true);
-            const response = await api.post('/mestre', mestreData, {
-                headers: {
-                    Authorization: `Bearer ${authContext.token.token}`
-                }
-            });
-            setData(response.data);
-            return response.data;
-        } catch (error: any) {
-            setError(error);
-        } finally {
-            setLoading(false);
-        }
-    };
-
-    const deleteMestre = async (mestreId: number) => {
-        try {
-            setLoading(false);
-            const response = await api.delete(`/mestre/${mestreId}`, {
-                headers: {
-                    Authorization: `Bearer ${authContext.token.token}`
-                }
-            });
-            setData(response.data);
-            return response.data;
-        } catch (error: any) {
-            setError(error);
-        } finally {
-            setLoading(false);
-        }
-    };
 
     const getAllMestre = async () => {
         try {
             setLoading(true);
-            const response = await api.get('/mestre', {
+            const response = await api.get('/rpg/mestre', {
                 headers: {
                     Authorization: `Bearer ${authContext.token.token}`
                 }
@@ -62,10 +29,10 @@ export const useMestreService = () => {
         }
     }
 
-    const getMestre = async (mestreId: number) => {
+    const getMestre = async (id: number) => {
         try {
             setLoading(false);
-            const response = await api.get(`/mestre/${mestreId}`, {
+            const response = await api.get(`/rpg/mestre/?id=${id}`, {
                 headers: {
                     Authorization: `Bearer ${authContext.token.token}`
                 }
@@ -79,10 +46,10 @@ export const useMestreService = () => {
         }
     };
 
-    const updateMestre = async (mestreId: number, updatedData: Mestre) => {
+    const getMestreLoggado = async () => {
         try {
             setLoading(false);
-            const response = await api.patch(`/mestre/${mestreId}`, updatedData, {
+            const response = await api.get(`/rpg/mestre-logado`, {
                 headers: {
                     Authorization: `Bearer ${authContext.token.token}`
                 }
@@ -96,5 +63,8 @@ export const useMestreService = () => {
         }
     };
 
-    return { createMestre, deleteMestre, getAllMestre, getMestre, updateMestre, data, loading, error }
+
+
+
+    return { getAllMestre, getMestreLoggado, getMestre, data, loading, error }
 }

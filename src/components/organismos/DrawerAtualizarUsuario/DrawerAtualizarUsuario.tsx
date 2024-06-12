@@ -35,11 +35,11 @@ export default function DrawerAtualizarUsuario({
 
     const nomeCargos = cargos.map((cargos) => {
         return {
-          label: cargos.descricao,
-          value: cargos.id,
-          data: cargos,
+            label: cargos.descricao,
+            value: cargos.id,
+            data: cargos,
         };
-      });
+    });
 
 
 
@@ -183,24 +183,24 @@ export default function DrawerAtualizarUsuario({
                         }} />
 
                         <FormLabel>Cargos Usuario:</FormLabel>
-                        
-                            <Select
-                                placeholder="Selecionar Generos"
-                                isMulti
-                                closeMenuOnSelect={false}
-                                defaultValue={usuario.cargos?.map((cargos) => ({
-                                    label: cargos.descricao,
-                                    value: cargos.id,
-                                    data: cargos,
-                                  }))}
-                                name='cargos'
-                                options={nomeCargos}
-                                onChange={(event) => {
+
+                        <Select
+                            placeholder="Selecionar Generos"
+                            isMulti
+                            closeMenuOnSelect={false}
+                            defaultValue={usuario.cargos?.map((cargos) => ({
+                                label: cargos.descricao,
+                                value: cargos.id,
+                                data: cargos,
+                            }))}
+                            name='cargos'
+                            options={nomeCargos}
+                            onChange={(event) => {
                                 setCargosSelecionado(
                                     event.map((cargos) => cargos.data)
                                 );
-                                }}
-                            />
+                            }}
+                        />
                         <FormLabel>
                             Aniversario
                         </FormLabel>

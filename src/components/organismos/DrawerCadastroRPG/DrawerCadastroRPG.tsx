@@ -7,16 +7,18 @@ import { useGeneroRPGService } from "../../../services/hooks/useGeneroRPGService
 import { Button, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerFooter, DrawerHeader, FormControl, FormLabel, Input, Radio, RadioGroup, Textarea } from "@chakra-ui/react";
 import Select from 'react-select';
 import ComponentePermissao from "../../../routes/ComponentePermissao/ComponentePermissao";
-import { imprimeDataInput, formatarData } from "../../../services/data";
+import { formatarData } from "../../../services/data";
 import { useUsuarioService } from "../../../services/hooks/useUsuarioService";
 interface propsRPGCadastro {
     isOpen: boolean;
     onClose: () => void;
+
 }
 
 export default function DrawerCadastroRPG({
     isOpen,
     onClose,
+
 
 }: propsRPGCadastro) {
     const [rpg, setRPG] = useState<RPG>({
@@ -49,42 +51,56 @@ export default function DrawerCadastroRPG({
         }
     }
 
+    const buscarRPG = () => {
+        try {
+            rpgService.getAllRPG().then((rpg) => setRPG(rpg));
+        } catch (error) {
+            alert("Erro ao obter rpgs");
+
+        }
+    }
+
+
     //useEffect
 
     useEffect(() => {
         buscarGeneros();
         buscarUsuario();
+        buscarRPG();
 
     }, []);
 
     useEffect(() => {
-    async function criarListaGeneros(
-      generoSelecionado: GeneroRPG[] | GeneroRPG
-    ) {
-      let novoGenero: GeneroRPG[];
+        async function criarListaGeneros(
+            generoSelecionado: GeneroRPG[] | GeneroRPG
+        ) {
+            let novoGenero: GeneroRPG[];
 
-        novoGenero = generoRPGSelecionado.map(
-            (generoRPG: GeneroRPG) => {
-            return {
-                id: generoRPG.id,
-                descricao: generoRPG.descricao,
-            };
-            }
-        );
-      setRPG({
-        ...rpg,
-        generos: novoGenero.map((generoRPG) => {
-        return generoRPG;
-        }),
-      });
-    }});
+            novoGenero = generoRPGSelecionado.map(
+                (generoRPG: GeneroRPG) => {
+                    return {
+                        id: generoRPG.id,
+                        descricao: generoRPG.descricao,
+                    };
+                }
+            );
+            setRPG({
+                ...rpg,
+                generos: novoGenero.map((generoRPG) => {
+                    return generoRPG;
+                }),
+            });
+        }
+    });
     //criarRPG
 
     const cadastrarRPG = () => {
         try {
-            rpgService.createRPG({...rpg, generos: generoRPGSelecionado }).then((rpgCadastrado) => {
+            rpgService.createRPG({ ...rpg, generos: generoRPGSelecionado }).then((rpgCadastrado) => {
                 console.log('RPG cadastrado')
             })
+            buscarRPG();
+
         } catch (error) {
             console.log('erro ao cadastrar rpg', error)
         }
@@ -133,11 +149,11 @@ export default function DrawerCadastroRPG({
                                 isMulti
                                 closeMenuOnSelect={false}
                                 name='generoRPG'
-                                options={generoRPG.map(g=>{return {label:g.descricao, value: g}})}
+                                options={generoRPG.map(g => { return { label: g.descricao, value: g } })}
                                 onChange={(event) => {
-                                setGeneroRPGSelecionado(
-                                    event.map((generoRPG) => generoRPG.value)
-                                );
+                                    setGeneroRPGSelecionado(
+                                        event.map((generoRPG) => generoRPG.value)
+                                    );
                                 }}
                             />
                         </FormControl>

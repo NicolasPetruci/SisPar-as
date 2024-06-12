@@ -54,7 +54,7 @@ const PrivateRoute: (React.FC<propsRotaData>) = ({ cargo, children }) => {
     }
 
     return (
-        permission ? children : <Navigate to='/' />
+        permission ? children : <Navigate to='/menu' />
     )
 
 }

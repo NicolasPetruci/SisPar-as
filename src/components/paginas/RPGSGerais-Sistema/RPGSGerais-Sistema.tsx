@@ -6,26 +6,26 @@ import { useRPGService } from "../../../services/hooks/useRPGService";
 import DrawerAtualizarRPG from "../../organismos/DrawerAtualizarRPG/DrawerAtualizarRPG";
 import DrawerCadastroRPG from "../../organismos/DrawerCadastroRPG/DrawerCadastroRPG";
 import { useMestreService } from "../../../services/hooks/useMestreService";
+import DrawerInscreverRPG from "../../organismos/DrawerInscreverRPG/DrawerInscreverRPG";
 
 
 
 
-export default function RPGsSistema() {
+export default function RPGSGeraisSistema() {
 
     //declarações
 
     const [rpg, setRPG] = useState<RPG[]>([]);
     const [rpgSelecionado, setRPGSelecionado] = useState<RPG | null>(null);
-    const mestreService = useMestreService();
     const rpgService = useRPGService()
 
     const { isOpen: isDrawerAtualizarOpen, onOpen: onDrawerAtualizarOpen, onClose: onDrawerAtualizarClose } = useDisclosure();
-    const { isOpen: isDrawerCadastroOpen, onOpen: onDrawerCadastroOpen, onClose: onDrawerCadastroClose } = useDisclosure();
+
 
     //busca
     const buscarRPG = () => {
         try {
-            mestreService.getMestreLoggado().then((mestre) => setRPG(mestre.rpgs));
+            rpgService.getAllRPG().then((rpg) => setRPG(rpg));
         } catch (error) {
             alert("Erro ao obter rpgs");
 
@@ -62,9 +62,6 @@ export default function RPGsSistema() {
         onDrawerAtualizarOpen();
     };
 
-    const abrirDrawerCadastro = () => {
-        onDrawerCadastroOpen();
-    };
 
     return (
         <>
@@ -84,7 +81,7 @@ export default function RPGsSistema() {
                                 <Text textAlign="justify">Um CRUD de rpgs é uma aplicação essencial para organizar e controlar rpgs de forma eficiente. Consiste em quatro operações básicas: Criar (Create), Ler (Read), Atualizar (Update) e Deletar (Delete), permitindo aos usuários gerenciar rpgs de maneira intuitiva e eficaz.</Text>
                             </Flex>
 
-                            <Button className="preto-lilas" color={'white'} _hover={{ color: "white" }} onClick={abrirDrawerCadastro}> Cadastro </Button>
+
 
 
 
@@ -113,7 +110,7 @@ export default function RPGsSistema() {
                                                 <Td whiteSpace={'wrap'}>{rpg.mestre?.usuario.nome}</Td>
                                                 <Td>
                                                     <Flex>
-                                                        <Button className="amarelo-rejeita" onClick={() => deletarRPG(rpg.id ? rpg.id : 0)}> D</Button>
+
                                                         <Button className="roxo-aceita" onClick={() => abrirDrawerAtualizar(rpg)}> V </Button>
                                                     </Flex>
                                                 </Td>
@@ -137,29 +134,15 @@ export default function RPGsSistema() {
                                     onClose={onDrawerAtualizarClose}
                                 >
                                     {rpgSelecionado && (
-                                        <DrawerAtualizarRPG
+                                        <DrawerInscreverRPG
                                             isOpen={isDrawerAtualizarOpen}
                                             rpgInterface={rpgSelecionado}
                                             onClose={onDrawerAtualizarClose}
-                                            onUpdate={atualizarRPG}
-                                        />
-                                    )}
-                                </Drawer>
-
-                                <Drawer
-                                    size="lg"
-                                    isOpen={isDrawerCadastroOpen}
-                                    placement="right"
-                                    onClose={onDrawerCadastroClose}
-                                >
-                                    {(
-                                        <DrawerCadastroRPG
-                                            isOpen={isDrawerCadastroOpen}
-                                            onClose={onDrawerCadastroClose}
 
                                         />
                                     )}
                                 </Drawer>
+
                             </TableContainer>
                         </>
                     </CaixaPadronizada>

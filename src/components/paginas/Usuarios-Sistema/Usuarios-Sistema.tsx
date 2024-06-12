@@ -17,7 +17,8 @@ export default function UsuarioSistema() {
     const usuarioService = useUsuarioService();
 
     const { isOpen: isDrawerAtualizarOpen, onOpen: onDrawerAtualizarOpen, onClose: onDrawerAtualizarClose } = useDisclosure();
-    const { isOpen: isDrawerCadastroOpen, onOpen: onDrawerCadastroOpen, onClose: onDrawerCadastroClose } = useDisclosure();
+
+    const { isOpen: isDrawerCadastroUserOpen, onOpen: onDrawerCadastroUserOpen, onClose: onDrawerCadastroUserClose } = useDisclosure();
 
     //busca
     const buscarUsuario = () => {
@@ -59,7 +60,7 @@ export default function UsuarioSistema() {
 
 
     const abrirDrawerCadastro = () => {
-        onDrawerCadastroOpen();
+        onDrawerCadastroUserOpen();
     };
 
     return (
@@ -144,14 +145,14 @@ export default function UsuarioSistema() {
 
                                 <Drawer
                                     size="lg"
-                                    isOpen={isDrawerCadastroOpen}
+                                    isOpen={isDrawerCadastroUserOpen}
                                     placement="right"
-                                    onClose={onDrawerCadastroClose}
+                                    onClose={onDrawerCadastroUserClose}
                                 >
                                     {usuarioSelecionado && (
                                         <DrawerCadastroUsuario
-                                            isOpen={isDrawerCadastroOpen}
-                                            onClose={onDrawerCadastroClose}
+                                            isOpen={isDrawerCadastroUserOpen}
+                                            onClose={onDrawerCadastroUserClose}
                                         />
                                     )}
                                 </Drawer>

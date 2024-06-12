@@ -1,4 +1,15 @@
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+
+}
+
 html,
+#root,
 body,
 div,
 span,
@@ -85,8 +96,9 @@ video {
     font-size: 100%;
     font: inherit;
     vertical-align: baseline;
-    box-sizing: border-box;
 }
+
+/*Estilos de Fundo*/
 
 /* Estilos de Botões Gradientes */
 .roxo-aceita {
@@ -172,7 +184,7 @@ video {
     text-align: center !important;
     transition: 0.5s !important;
     background-size: 200% auto !important;
-    color: black !important;
+    color: black;
     box-shadow: 0 0 0 #eee !important;
     border-radius: 10px !important;
     display: flexbox !important;
@@ -184,7 +196,7 @@ video {
 
 .preto-lilas:hover {
     background-position: center center !important;
-    color: black !important;
+    color: black;
     text-decoration: none !important;
 }
 

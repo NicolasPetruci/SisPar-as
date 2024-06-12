@@ -4,7 +4,7 @@ import { ChangeEvent, useEffect, useState } from "react";
 
 import { useUsuarioService } from "../../../services/hooks/useUsuarioService";
 // import { useCargosService } from "../../../services/hooks/useCargosService";
-import { Button, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerFooter, DrawerHeader, FormLabel, Input, Radio, RadioGroup,  } from "@chakra-ui/react";
+import { Button, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerFooter, DrawerHeader, FormLabel, Input, Radio, RadioGroup, } from "@chakra-ui/react";
 import ComponentePermissao from "../../../routes/ComponentePermissao/ComponentePermissao";
 import { imprimeDataInput, formatarData } from "../../../services/data";
 import Cargos from "../../../interface/Cargo";
@@ -43,48 +43,48 @@ export default function DrawerCadastroUsuario({
             descricao: "",
         },
     ]);
-    
+
     const nomeCargos = cargos.map((cargos) => {
         return {
-          label: cargos.descricao,
-          value: cargos.id,
-          data: cargos,
+            label: cargos.descricao,
+            value: cargos.id,
+            data: cargos,
         };
-      });
+    });
 
-      const criarListaCargos = (
-            cargosSelecionado: Cargo[] | Cargo
-        ) => {
-            let novoCargos: Cargo[];
+    const criarListaCargos = (
+        cargosSelecionado: Cargo[] | Cargo
+    ) => {
+        let novoCargos: Cargo[];
 
-            if (cargosSelecionado instanceof Array) {
-                novoCargos = cargosSelecionado.map(
-                    (cargos: Cargo) => {
-                        return {
-                            id: cargos.id,
-                            descricao: cargos.descricao,
+        if (cargosSelecionado instanceof Array) {
+            novoCargos = cargosSelecionado.map(
+                (cargos: Cargo) => {
+                    return {
+                        id: cargos.id,
+                        descricao: cargos.descricao,
 
-                        };
-                    }
-                );
-            } else {
-                novoCargos = [
-                    {
-                        id: cargosSelecionado.id,
-                        descricao: cargosSelecionado.descricao,
+                    };
+                }
+            );
+        } else {
+            novoCargos = [
+                {
+                    id: cargosSelecionado.id,
+                    descricao: cargosSelecionado.descricao,
 
-                    },
-                ];
-            }
-            setUsuario({
-                ...usuario,
-                cargos: novoCargos.map((cargos) => {
-                    return cargos;
-                }),
-            });
+                },
+            ];
         }
+        setUsuario({
+            ...usuario,
+            cargos: novoCargos.map((cargos) => {
+                return cargos;
+            }),
+        });
+    }
 
-        
+
 
     const buscarCargos = () => {
         try {
@@ -95,10 +95,22 @@ export default function DrawerCadastroUsuario({
         }
     }
 
+    const buscarUsuario = () => {
+        try {
+            usuarioService.getAllUsuario().then((usuario) => setUsuario(usuario));
+        } catch (error) {
+            alert("Erro ao obter usuarios");
+
+        }
+    }
+
+
+
     //useEffect
 
     useEffect(() => {
         buscarCargos();
+        buscarUsuario();
         criarListaCargos(cargos)
     }, []);
 
@@ -106,16 +118,18 @@ export default function DrawerCadastroUsuario({
 
     const cadastrarUsuario = () => {
         try {
-            usuarioService.createUsuario(usuario).then((usuarioCadastrado) => {
+            usuario.cargos = cargosSelecionado;
+            usuarioService.createUsuario(usuario).then(() => {
                 console.log('Usuario cadastrado')
+                buscarUsuario();
             })
-            window.location.reload()
-            buscarCargos();
+
+
         } catch (error) {
             console.log('erro ao cadastrar usuario', error)
         }
     }
-    
+
 
     //arrowfunctions
 
@@ -132,7 +146,9 @@ export default function DrawerCadastroUsuario({
             ...usuario,
             [e.target.name]: dataConvertida,
         });
+        console.log(dataConvertida)
     };
+
 
     return (
         <>
@@ -152,32 +168,32 @@ export default function DrawerCadastroUsuario({
                         <FormLabel>
                             Telefone:
                         </FormLabel>
-                        <Input name='telefone' type='text'  onChange={cadastroDadosUsuario} />
+                        <Input name='telefone' type='text' onChange={cadastroDadosUsuario} />
 
                         <FormLabel>
                             Email:
                         </FormLabel>
-                        <Input name='email' type='text'  onChange={cadastroDadosUsuario} />
+                        <Input name='email' type='text' onChange={cadastroDadosUsuario} />
 
                         <FormLabel>
                             Senha:
                         </FormLabel>
-                        <Input name='senha' type='text'  onChange={cadastroDadosUsuario} />
+                        <Input name='senha' type='text' onChange={cadastroDadosUsuario} />
 
 
                         <FormLabel>Cargos Usuario:</FormLabel>
-                        <Select 
-                                placeholder="Selecionar Cargos"
-                                isMulti
-                                closeMenuOnSelect={false}
-                                options={nomeCargos}
-                                onChange={(event) => {
+                        <Select
+                            placeholder="Selecionar Cargos"
+                            isMulti
+                            closeMenuOnSelect={false}
+                            options={nomeCargos}
+                            onChange={(event) => {
                                 setCargosSelecionado(
                                     event.map((cargos) => cargos.data)
                                 );
-                                }}
-                            />
-                        
+                            }}
+                        />
+
                         <FormLabel>
                             Aniversario
                         </FormLabel>
