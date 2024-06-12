@@ -6,6 +6,7 @@ import { useRPGService } from "../../../services/hooks/useRPGService";
 import DrawerAtualizarRPG from "../../organismos/DrawerAtualizarRPG/DrawerAtualizarRPG";
 import DrawerCadastroRPG from "../../organismos/DrawerCadastroRPG/DrawerCadastroRPG";
 import { useMestreService } from "../../../services/hooks/useMestreService";
+import DrawerCadastroSessao from "../../organismos/DrawerCadastroSessao/DrawerCadastroSessao";
 
 
 
@@ -21,7 +22,7 @@ export default function RPGsSistema() {
 
     const { isOpen: isDrawerAtualizarOpen, onOpen: onDrawerAtualizarOpen, onClose: onDrawerAtualizarClose } = useDisclosure();
     const { isOpen: isDrawerCadastroOpen, onOpen: onDrawerCadastroOpen, onClose: onDrawerCadastroClose } = useDisclosure();
-
+    const { isOpen: isDrawerCadastroSessaoOpen, onOpen: onDrawerCadastroSessaoOpen, onClose: onDrawerCadastroSessaoClose } = useDisclosure();
     //busca
     const buscarMeusRPGS = () => {
         try {
@@ -62,12 +63,12 @@ export default function RPGsSistema() {
         onDrawerAtualizarOpen();
     };
 
-
-
-
-
     const abrirDrawerCadastro = () => {
         onDrawerCadastroOpen();
+    };
+
+    const abrirDrawerCadastroSessao = () => {
+        onDrawerCadastroSessaoOpen();
     };
 
     return (
@@ -88,8 +89,8 @@ export default function RPGsSistema() {
                                 <Text textAlign="justify">Um CRUD de rpgs é uma aplicação essencial para organizar e controlar rpgs de forma eficiente. Consiste em quatro operações básicas: Criar (Create), Ler (Read), Atualizar (Update) e Deletar (Delete), permitindo aos usuários gerenciar rpgs de maneira intuitiva e eficaz.</Text>
                             </Flex>
 
-                            <Button className="preto-lilas" color={'white'} _hover={{ color: "white" }} onClick={abrirDrawerCadastro}> Cadastro </Button>
-
+                            <Button className="preto-lilas" color={'white'} _hover={{ color: "white" }} onClick={abrirDrawerCadastro}> Cadastro RPG </Button>
+                            <Button className="preto-lilas" color={'white'} _hover={{ color: "white" }} onClick={abrirDrawerCadastroSessao}> Cadastro Sessao </Button>
 
 
                         </>
@@ -173,6 +174,21 @@ export default function RPGsSistema() {
                         )}
                     </Drawer>
                 </GridItem>
+                <Drawer
+                    size="lg"
+                    isOpen={isDrawerCadastroSessaoOpen}
+                    placement="right"
+                    onClose={onDrawerCadastroSessaoClose}
+                >
+                    {rpgSelecionado && (
+                        <DrawerCadastroSessao
+                            isOpen={isDrawerCadastroSessaoOpen}
+
+                            onClose={onDrawerCadastroSessaoClose}
+
+                        />
+                    )}
+                </Drawer>
             </Grid >
 
         </>
