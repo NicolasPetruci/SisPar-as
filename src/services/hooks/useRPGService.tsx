@@ -14,7 +14,7 @@ export const useRPGService = () => {
     const createRPG = async (rpgData: RPG) => {
         try {
             setLoading(true);
-            const response = await api.post('/rpg', rpgData, {
+            const response = await api.post('/rpg/cadastrar', rpgData, {
                 headers: {
                     Authorization: `Bearer ${authContext.token.token}`
                 }
@@ -31,7 +31,7 @@ export const useRPGService = () => {
     const deleteRPG = async (rpgId: number) => {
         try {
             setLoading(false);
-            const response = await api.delete(`/rpg/${rpgId}`, {
+            const response = await api.delete(`/rpg/excluir?id=${rpgId}`, {
                 headers: {
                     Authorization: `Bearer ${authContext.token.token}`
                 }
@@ -65,7 +65,7 @@ export const useRPGService = () => {
     const getRPG = async (rpgId: number) => {
         try {
             setLoading(false);
-            const response = await api.get(`/rpg/${rpgId}`, {
+            const response = await api.get(`/rpg?id=${rpgId}`, {
                 headers: {
                     Authorization: `Bearer ${authContext.token.token}`
                 }
@@ -79,10 +79,10 @@ export const useRPGService = () => {
         }
     };
 
-    const updateRPG = async (rpgId: number, updatedData: RPG) => {
+    const updateRPG = async (updatedData: RPG) => {
         try {
             setLoading(false);
-            const response = await api.patch(`/rpg/${rpgId}`, updatedData, {
+            const response = await api.put(`/rpg/atualizar`, updatedData, {
                 headers: {
                     Authorization: `Bearer ${authContext.token.token}`
                 }
@@ -95,6 +95,41 @@ export const useRPGService = () => {
             setLoading(false);
         }
     };
+    const inscreverRPG = async (id: string) => {
+        try {
+            setLoading(false);
+            const response = await api.put(`/rpg/inscrever?id_rpg=${id}`, {
+                headers: {
+                    Authorization: `Bearer ${authContext.token.token}`
+                }
+            });
+            setData(response.data);
+            return response.data;
+        } catch (error: any) {
+            setError(error);
+        } finally {
+            setLoading(false);
+        }
 
-    return { createRPG, deleteRPG, getAllRPG, getRPG, updateRPG, data, loading, error }
+    }
+
+    const desinscreverRPG = async (id: string) => {
+        try {
+            setLoading(false);
+            const response = await api.put(`/rpg/desinscrever?id_rpg=${id}`, {
+                headers: {
+                    Authorization: `Bearer ${authContext.token.token}`
+                }
+            });
+            setData(response.data);
+            return response.data;
+        } catch (error: any) {
+            setError(error);
+        } finally {
+            setLoading(false);
+        }
+
+    }
+
+    return { createRPG, deleteRPG, getAllRPG, getRPG, updateRPG, inscreverRPG, desinscreverRPG, data, loading, error }
 }

@@ -14,7 +14,7 @@ export const useGeneroRPGService = () => {
     const createGeneroRPG = async (generorpgData: GeneroRPG) => {
         try {
             setLoading(true);
-            const response = await api.post('/genero', generorpgData, {
+            const response = await api.post('/rpg/genero/cadastrar', generorpgData, {
                 headers: {
                     Authorization: `Bearer ${authContext.token.token}`
                 }
@@ -31,7 +31,7 @@ export const useGeneroRPGService = () => {
     const deleteGeneroRPG = async (generorpgId: number) => {
         try {
             setLoading(false);
-            const response = await api.delete(`/genero/${generorpgId}`, {
+            const response = await api.delete(`/rpg/genero?id=${generorpgId}`, {
                 headers: {
                     Authorization: `Bearer ${authContext.token.token}`
                 }
@@ -48,7 +48,7 @@ export const useGeneroRPGService = () => {
     const getAllGeneroRPG = async () => {
         try {
             setLoading(true);
-            const response = await api.get('/genero', {
+            const response = await api.get('/rpg/genero', {
                 headers: {
                     Authorization: `Bearer ${authContext.token.token}`
                 }
@@ -65,7 +65,7 @@ export const useGeneroRPGService = () => {
     const getGeneroRPG = async (generorpgId: number) => {
         try {
             setLoading(false);
-            const response = await api.get(`/genero/${generorpgId}`, {
+            const response = await api.get(`/rpg/genero?id=${generorpgId}`, {
                 headers: {
                     Authorization: `Bearer ${authContext.token.token}`
                 }
@@ -79,10 +79,10 @@ export const useGeneroRPGService = () => {
         }
     };
 
-    const updateGeneroRPG = async (generorpgId: number, updatedData: GeneroRPG) => {
+    const updateGeneroRPG = async (updatedData: GeneroRPG) => {
         try {
             setLoading(false);
-            const response = await api.patch(`/genero/${generorpgId}`, updatedData, {
+            const response = await api.put(`/rpg/genero/atualizar`, updatedData, {
                 headers: {
                     Authorization: `Bearer ${authContext.token.token}`
                 }
