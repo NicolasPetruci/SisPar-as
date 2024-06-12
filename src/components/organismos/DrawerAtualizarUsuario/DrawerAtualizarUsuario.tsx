@@ -124,7 +124,7 @@ export default function DrawerAtualizarUsuario({
                 updateUsuario.cargos = cargosSelecionado;
 
                 await usuarioService.updateUsuario(updateUsuario).then(() => {
-                    console.log('deu bom viado, ta atualizado')
+                    console.log('deu bom manp, ta atualizado')
                 })
                 onUpdate(updateUsuario);
             }

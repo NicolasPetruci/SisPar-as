@@ -155,7 +155,7 @@ export default function DrawerAtualizarEvento({
                 updateEvento.id = evento.id;
 
                 await eventoService.updateEvento(updateEvento).then(() => {
-                    console.log('deu bom viado, ta atualizado')
+                    console.log('deu bom manp, ta atualizado')
                 })
                 onUpdate(updateEvento);
             }

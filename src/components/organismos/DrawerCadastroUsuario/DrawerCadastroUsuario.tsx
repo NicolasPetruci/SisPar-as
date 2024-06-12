@@ -109,6 +109,7 @@ export default function DrawerCadastroUsuario({
             usuarioService.createUsuario(usuario).then((usuarioCadastrado) => {
                 console.log('Usuario cadastrado')
             })
+            window.location.reload()
             buscarCargos();
         } catch (error) {
             console.log('erro ao cadastrar usuario', error)

@@ -168,7 +168,7 @@ export default function DrawerAtualizarRPG({
                 updateRPG.id = rpg.id;
                 updateRPG.generos = generoRPGSelecionado;
                 await rpgService.updateRPG(updateRPG).then(() => {
-                    console.log('deu bom viado, ta atualizado')
+                    console.log('deu bom manp, ta atualizado')
                 })
                 onUpdate(updateRPG);
             }
