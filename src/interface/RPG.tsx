@@ -5,7 +5,7 @@ import Usuario from './Usuario.tsx'
 
 export default interface RPG {
     id?: number;
-    nome?: string;
+    nome: string;
     descricao?: string;
     mestre?: Mestre;
     jogadores?: Usuario[];

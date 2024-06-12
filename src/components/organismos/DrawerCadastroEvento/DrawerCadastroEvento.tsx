@@ -68,7 +68,7 @@ export default function DrawerCadastroEvento({
 
     const cadastrarEvento = () => {
         try {
-            eventoService.createEvento(evento).then((eventoCadastrado) => {
+            eventoService.createEvento(evento).then(() => {
                 console.log('Evento cadastrado')
             })
         } catch (error) {
