@@ -23,7 +23,7 @@ export default function RPGsSistema() {
     const { isOpen: isDrawerCadastroOpen, onOpen: onDrawerCadastroOpen, onClose: onDrawerCadastroClose } = useDisclosure();
 
     //busca
-    const buscarRPG = () => {
+    const buscarMeusRPGS = () => {
         try {
             mestreService.getMestreLoggado().then((mestre) => setRPG(mestre.rpgs));
         } catch (error) {
@@ -32,20 +32,20 @@ export default function RPGsSistema() {
         }
     }
     useEffect(() => {
-        buscarRPG();
+        buscarMeusRPGS();
 
     }, [])
 
     //deleta
-    const deletarRPG = async (idRPG: number) => {
+    const deletarMeusRPG = async (idRPG: number) => {
         rpgService.deleteRPG(idRPG);
-        buscarRPG();
+        buscarMeusRPGS();
 
 
     };
 
     //atualiza
-    const atualizarRPG = (rpgAtualizado: RPG) => {
+    const atualizarMeusRPG = (rpgAtualizado: RPG) => {
         setRPG((rpgPrevias) => {
             const rpgsAtualizados = rpgPrevias.map((rpg) => {
                 if (rpg.id === rpgAtualizado.id) {
@@ -113,7 +113,7 @@ export default function RPGsSistema() {
                                                 <Td whiteSpace={'wrap'}>{rpg.mestre?.usuario.nome}</Td>
                                                 <Td>
                                                     <Flex>
-                                                        <Button className="amarelo-rejeita" onClick={() => deletarRPG(rpg.id ? rpg.id : 0)}> D</Button>
+                                                        <Button className="amarelo-rejeita" onClick={() => deletarMeusRPG(rpg.id ? rpg.id : 0)}> D</Button>
                                                         <Button className="roxo-aceita" onClick={() => abrirDrawerAtualizar(rpg)}> V </Button>
                                                     </Flex>
                                                 </Td>
@@ -141,7 +141,7 @@ export default function RPGsSistema() {
                                             isOpen={isDrawerAtualizarOpen}
                                             rpgInterface={rpgSelecionado}
                                             onClose={onDrawerAtualizarClose}
-                                            onUpdate={atualizarRPG}
+                                            onUpdate={atualizarMeusRPG}
                                         />
                                     )}
                                 </Drawer>

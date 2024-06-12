@@ -36,27 +36,6 @@ export default function RPGSGeraisSistema() {
 
     }, [])
 
-    //deleta
-    const deletarRPG = async (idRPG: number) => {
-        rpgService.deleteRPG(idRPG);
-        buscarRPG();
-
-
-    };
-
-    //atualiza
-    const atualizarRPG = (rpgAtualizado: RPG) => {
-        setRPG((rpgPrevias) => {
-            const rpgsAtualizados = rpgPrevias.map((rpg) => {
-                if (rpg.id === rpgAtualizado.id) {
-                    return rpgAtualizado;
-                }
-                return rpg;
-            });
-            return rpgsAtualizados;
-        });
-    };
-
     const abrirDrawerAtualizar = (rpg: RPG) => {
         setRPGSelecionado(rpg);
         onDrawerAtualizarOpen();

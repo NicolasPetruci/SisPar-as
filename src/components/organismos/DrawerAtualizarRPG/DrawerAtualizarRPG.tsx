@@ -26,9 +26,15 @@ export default function DrawerAtualizarRPG({
 
     //declaração
     const [rpg, setRPG] = useState<RPG>(rpgInterface);
-    const [generoRPGSelecionado, setGeneroRPGSelecionado] = useState<GeneroRPG[]>(rpg.generos ? rpg.generos : []);
+    const [generoRPGSelecionado, setGeneroRPGSelecionado] = useState<
+        GeneroRPG[]
+    >([
+        {
+            id: 0,
+            descricao: "",
+        },
+    ]);
     const [generoRPG, setGeneroRPG] = useState<GeneroRPG[]>([]);
-    const [isInscrito, setIsInscrito] = useState(Boolean)
     const [usuario, setUsuario] = useState<Usuario>()
     const rpgService = useRPGService();
     const generoRPGService = useGeneroRPGService();
@@ -75,7 +81,7 @@ export default function DrawerAtualizarRPG({
         buscarGeneros();
         buscarUsuario();
         criarListaGeneros(generoRPG);
-
+        console.log(rpg.generos)
     }, []);
 
     const criarListaGeneros = (generosSelecionados: GeneroRPG[] | GeneroRPG) => {
@@ -130,6 +136,8 @@ export default function DrawerAtualizarRPG({
         }
     }
 
+
+
     return (
         <>
             <Drawer isOpen={isOpen} onClose={onClose} size='sm'>
@@ -168,29 +176,29 @@ export default function DrawerAtualizarRPG({
                                 descricao: e.target.value,
                             })
                         }} />
-                        <FormControl>
-                            <FormLabel>Gêneros</FormLabel>
-                            <Select
-                                placeholder="Selecionar Gêneros"
-                                isMulti
-                                closeMenuOnSelect={false}
-                                name='generoRPG'
-                                defaultValue={rpg.generos?.map((generos) => ({
-                                    label: generos.descricao,
-                                    value: generos.id,
-                                    data: generos,
-                                }))}
-                                options={nomeGeneros}
-                                onChange={(event) => {
-                                    setGeneroRPGSelecionado(
-                                        event.map((generoRPG) => generoRPG.data)
-                                    );
-                                }}
-                            />
-                        </FormControl>
+
+                        <FormLabel>Gêneros</FormLabel>
+                        <Select
+                            placeholder="Selecionar Gêneros"
+                            isMulti
+                            closeMenuOnSelect={false}
+                            defaultValue={generoRPG?.map((generos) => ({
+                                label: generos.descricao,
+                                value: generos.id,
+                                data: generos,
+                            }))}
+                            options={nomeGeneros}
+                            onChange={(event) => {
+                                setGeneroRPGSelecionado(
+                                    event.map((genero) => genero.data)
+                                );
+                                console.log(generoRPG)
+                            }}
+                        />
+
                     </DrawerBody>
                     <DrawerFooter>
-                        <ComponentePermissao cargo="MESTRE">
+                        <ComponentePermissao cargo="MESTRE,">
                             <Button className="lilas-branco" onClick={atualizarRPG}> Atualizar</Button>
                         </ComponentePermissao>
 
