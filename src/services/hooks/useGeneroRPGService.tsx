@@ -28,10 +28,10 @@ export const useGeneroRPGService = () => {
         }
     };
 
-    const deleteGeneroRPG = async (generorpgId: number) => {
+    const deleteGeneroRPG = async (id: number) => {
         try {
             setLoading(false);
-            const response = await api.delete(`/rpg/genero?id=${generorpgId}`, {
+            const response = await api.delete(`/rpg/genero?id=${id}`, {
                 headers: {
                     Authorization: `Bearer ${authContext.token.token}`
                 }
@@ -62,10 +62,10 @@ export const useGeneroRPGService = () => {
         }
     }
 
-    const getGeneroRPG = async (generorpgId: number) => {
+    const getGeneroRPG = async (id: number) => {
         try {
             setLoading(false);
-            const response = await api.get(`/rpg/genero?id=${generorpgId}`, {
+            const response = await api.get(`/rpg/genero?id=${id}`, {
                 headers: {
                     Authorization: `Bearer ${authContext.token.token}`
                 }

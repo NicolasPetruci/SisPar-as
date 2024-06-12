@@ -28,10 +28,10 @@ export const useRPGService = () => {
         }
     };
 
-    const deleteRPG = async (rpgId: number) => {
+    const deleteRPG = async (id: number) => {
         try {
             setLoading(false);
-            const response = await api.delete(`/rpg/excluir?id=${rpgId}`, {
+            const response = await api.delete(`/rpg/excluir?id=${id}`, {
                 headers: {
                     Authorization: `Bearer ${authContext.token.token}`
                 }

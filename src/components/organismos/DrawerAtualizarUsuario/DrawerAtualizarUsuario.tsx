@@ -183,9 +183,8 @@ export default function DrawerAtualizarUsuario({
                         }} />
 
                         <FormLabel>Cargos Usuario:</FormLabel>
-
                         <Select
-                            placeholder="Selecionar Generos"
+                            placeholder="Selecionar Cargos"
                             isMulti
                             closeMenuOnSelect={false}
                             defaultValue={usuario.cargos?.map((cargos) => ({

@@ -26,13 +26,15 @@ export default function DrawerInscreverRPG({
 
     //declaração
     const [rpg, setRPG] = useState<RPG>(rpgInterface);
-    const [generoRPGSelecionado, setGeneroRPGSelecionado] = useState<GeneroRPG[]>(rpg.generos ? rpg.generos : []);
+    
     const [generoRPG, setGeneroRPG] = useState<GeneroRPG[]>([]);
     const [isInscrito, setIsInscrito] = useState(Boolean)
     const [usuario, setUsuario] = useState<Usuario>()
     const rpgService = useRPGService();
     const generoRPGService = useGeneroRPGService();
     const usuarioService = useUsuarioService();
+
+    const [generoRPGSelecionado, setGeneroRPGSelecionado] = useState<GeneroRPG[]>(rpg.generos ? rpg.generos : []);
 
 
     const [updateRPG, setUpdateRPG] = useState<RPG>({
