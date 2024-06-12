@@ -132,10 +132,10 @@ export const useEventoService = () => {
 
     }
 
-    const visualizarEventos = async () => {
+    const visualizarEventos = async (dataInicial: string, dataFinal:string) => {
         try {
             setLoading(true);
-            const response = await api.get('/evento/visualizar-eventos', {
+            const response = await api.get(`/evento/visualizar-eventos?data_inicial=${dataInicial}&data_final=${dataFinal}`, {
                 headers: {
                     Authorization: `Bearer ${authContext.token.token}`
                 }

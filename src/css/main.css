@@ -7,7 +7,11 @@
     vertical-align: baseline;
 
 }
-
+@media print {
+    @page {
+        size: A3 landscape; /* auto is default portrait; */
+    }
+}
 html,
 #root,
 body,

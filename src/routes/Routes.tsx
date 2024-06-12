@@ -13,6 +13,7 @@ import ParcasAwardsSistema from "../components/paginas/ParcasAwards-Sistema/Parc
 import EventosSistema from "../components/paginas/Eventos-Sistema/Eventos-Sistema";
 import RPGSGeraisSistema from "../components/paginas/RPGSGerais-Sistema/RPGSGerais-Sistema";
 import SessoesRPGSistema from "../components/paginas/SessoesRPG-Sistema/SessoesRPG-Sistema";
+import VisualizarEventos from "../components/paginas/Visualizar-Eventos/Visualizar-Eventos";
 
 
 export default function Rota() {
@@ -37,6 +38,7 @@ export default function Rota() {
                     <Route path="/hallDaFama" element={<PrivateRoute cargo="DEFAULT,ADM,DONO,MESTRE"><NavbarSistema><HallDaFamaSistema /></NavbarSistema></PrivateRoute>} />
                     <Route path="/parcasAwards" element={<PrivateRoute cargo="DEFAULT,ADM,DONO,MESTRE"><NavbarSistema><ParcasAwardsSistema /></NavbarSistema></PrivateRoute>} />
                     <Route path="/eventos" element={<PrivateRoute cargo="DEFAULT,ADM,DONO,MESTRE"><NavbarSistema><EventosSistema /></NavbarSistema></PrivateRoute>} />
+                    <Route path="/eventos/visualizar" element={<PrivateRoute cargo="DEFAULT,ADM,DONO,MESTRE"><VisualizarEventos /></PrivateRoute>} />
 
                 </>
 
