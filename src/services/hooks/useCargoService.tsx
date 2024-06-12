@@ -28,10 +28,10 @@ export const useCargoService = () => {
         }
     };
 
-    const deleteCargo = async (cargoId: number) => {
+    const deleteCargo = async (id: number) => {
         try {
             setLoading(false);
-            const response = await api.delete(`/cargo/${cargoId}`, {
+            const response = await api.delete(`/cargo/excluir?id=${id}`, {
                 headers: {
                     Authorization: `Bearer ${authContext.token.token}`
                 }
@@ -62,10 +62,10 @@ export const useCargoService = () => {
         }
     }
 
-    const getCargo = async (cargoId: number) => {
+    const getCargo = async (id: number) => {
         try {
             setLoading(false);
-            const response = await api.get(`/cargo/${cargoId}`, {
+            const response = await api.get(`/cargo/id=${id}`, {
                 headers: {
                     Authorization: `Bearer ${authContext.token.token}`
                 }
@@ -79,10 +79,10 @@ export const useCargoService = () => {
         }
     };
 
-    const updateCargo = async (cargoId: number, updatedData: Cargo) => {
+    const updateCargo = async (updatedData: Cargo) => {
         try {
             setLoading(false);
-            const response = await api.patch(`/cargo/${cargoId}`, updatedData, {
+            const response = await api.patch(`/cargo/atualizar`, updatedData, {
                 headers: {
                     Authorization: `Bearer ${authContext.token.token}`
                 }

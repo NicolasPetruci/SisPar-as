@@ -34,12 +34,10 @@ export default function UsuarioSistema() {
     }, [])
 
     //deleta
-    const deletarUsuario = async (idUsuario: string) => {
-        usuarioService.deleteUsuario(idUsuario);
-        buscarUsuario();
-
-
-    };
+    // const deletarUsuario = async (idUsuario: string) => {
+    //     usuarioService.deleteUsuario(idUsuario);
+    //     buscarUsuario();
+    // };
 
     //atualiza
     const atualizarUsuario = (usuarioAtualizado: Usuario) => {
@@ -58,6 +56,7 @@ export default function UsuarioSistema() {
         setUsuarioSelecionado(usuario);
         onDrawerAtualizarOpen();
     };
+
 
     const abrirDrawerCadastro = () => {
         onDrawerCadastroOpen();
@@ -98,7 +97,7 @@ export default function UsuarioSistema() {
                                         <Tr>
                                             <Th>ID</Th>
                                             <Th>NOME</Th>
-                                            <Th>LOCAL</Th>
+                                            <Th>TELEFONE</Th>
                                             <Th>AÇÃO</Th>
                                         </Tr>
                                     </Thead>
@@ -107,10 +106,10 @@ export default function UsuarioSistema() {
                                             <Tr key={index}>
                                                 <Td whiteSpace={'wrap'}>{usuario.id}</Td>
                                                 <Td whiteSpace={'wrap'}>{usuario.nome}</Td>
-                                                <Td whiteSpace={'wrap'}>{usuario.local}</Td>
+                                                <Td whiteSpace={'wrap'}>{usuario.telefone}</Td>
                                                 <Td>
                                                     <Flex>
-                                                        <Button className="amarelo-rejeita" onClick={() => deletarUsuario(usuario.id!.toString())}> D</Button>
+                                                        {/* <Button className="amarelo-rejeita" onClick={() => deletarUsuario(usuario.id!.toString())}> D</Button> */}
                                                         <Button className="roxo-aceita" onClick={() => abrirDrawerAtualizar(usuario)}> V </Button>
                                                     </Flex>
                                                 </Td>
@@ -121,7 +120,7 @@ export default function UsuarioSistema() {
                                         <Tr>
                                             <Th>ID</Th>
                                             <Th>NOME</Th>
-                                            <Th>LOCAL</Th>
+                                            <Th>TELEFONE</Th>
                                             <Th>AÇÃO</Th>
 
                                         </Tr>

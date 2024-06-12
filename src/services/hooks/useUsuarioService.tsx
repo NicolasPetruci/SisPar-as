@@ -28,7 +28,7 @@ export const useUsuarioService = () => {
         }
     };
 
-    const deleteUsuario = async (id: number) => {
+    const deleteUsuario = async (id: string) => {
         try {
             setLoading(false);
             const response = await api.delete(`/usuario/excluir?id=${id}`, {
@@ -79,7 +79,7 @@ export const useUsuarioService = () => {
         }
     }
 
-    const getUsuario = async (id: number) => {
+    const getUsuario = async (id: string) => {
         try {
             setLoading(false);
             const response = await api.get(`/usuario/id=${id}`, {

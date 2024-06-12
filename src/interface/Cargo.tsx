@@ -1,7 +1,8 @@
 import Usuario from "./Usuario.tsx"
 
 export default interface Cargo {
-    id: number,
+    id?: number,
     descricao: string,
-    usuario: Usuario,
+    usuario?: Usuario,
+    
 }

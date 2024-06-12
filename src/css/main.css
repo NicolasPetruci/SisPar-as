@@ -167,20 +167,24 @@ video {
 
 .preto-lilas {
     background-image: linear-gradient(to right, #0E0E0E 0%, #6D65A7 51%, #0E0E0E 100%) !important;
-    margin: 10px !important;
-    padding: 15px 45px !important;
+    margin: 20px !important;
+    padding: 0 !important;
     text-align: center !important;
     transition: 0.5s !important;
     background-size: 200% auto !important;
-    color: white !important;
-    box-shadow: 0 0 20px #eee !important;
+    color: black !important;
+    box-shadow: 0 0 0 #eee !important;
     border-radius: 10px !important;
-    display: block !important;
+    display: flexbox !important;
+    justify-content: center;
+    align-items: center;
+    width: 25%;
 }
 
+
 .preto-lilas:hover {
-    background-position: right center !important;
-    color: #fff !important;
+    background-position: center center !important;
+    color: black !important;
     text-decoration: none !important;
 }
 
