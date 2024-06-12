@@ -149,6 +149,22 @@ export const useEventoService = () => {
         }
     }
 
+    const listarParticipantesEvento = async (idEvento: number) =>{
+        try {
+            setLoading(true);
+            const response = await api.get(`/evento/listar-participantes?id_evento=${idEvento}`, {
+                headers: {
+                    Authorization: `Bearer ${authContext.token.token}`
+                }
+            });
+            setData(response.data);
+            return response.data;
+        } catch (error: any) {
+            setError(error);
+        } finally {
+            setLoading(false);
+        }
+    }
     return {
             data,
             loading,
@@ -160,6 +176,7 @@ export const useEventoService = () => {
             updateEvento,
             desinscreverEvento,
             inscreverEvento,
+            listarParticipantesEvento,
             visualizarEventos,
             }
 }

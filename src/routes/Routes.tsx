@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import Teste from "../components/paginas/Teste/Teste";
 import LoginSistema from "../components/paginas/Login-Sistema/Login-Sistema";
 
@@ -13,13 +13,15 @@ import ParcasAwardsSistema from "../components/paginas/ParcasAwards-Sistema/Parc
 import EventosSistema from "../components/paginas/Eventos-Sistema/Eventos-Sistema";
 import RPGSGeraisSistema from "../components/paginas/RPGSGerais-Sistema/RPGSGerais-Sistema";
 import SessoesRPGSistema from "../components/paginas/SessoesRPG-Sistema/SessoesRPG-Sistema";
-import VisualizarEventos from "../components/paginas/Visualizar-Eventos/Visualizar-Eventos";
+import VisualizarEventos from "../components/paginas/Relatorios/Visualizar-Eventos/Visualizar-Eventos";
+import ListarParticipantesEvento from "../components/paginas/Relatorios/Listar-Participantes-Evento/Listar-Participantes-Evento";
 
 
 export default function Rota() {
+    const location = useLocation()
     return (
         <>
-            <Routes>
+            <Routes location={location} key={location.key}>
                 {/* Telas Iniciais */}
                 <Route path="/teste" element={<Teste />} />
                 <Route path="/" element={<LoginSistema />} />
@@ -39,6 +41,7 @@ export default function Rota() {
                     <Route path="/parcasAwards" element={<PrivateRoute cargo="DEFAULT,ADM,DONO,MESTRE"><NavbarSistema><ParcasAwardsSistema /></NavbarSistema></PrivateRoute>} />
                     <Route path="/eventos" element={<PrivateRoute cargo="DEFAULT,ADM,DONO,MESTRE"><NavbarSistema><EventosSistema /></NavbarSistema></PrivateRoute>} />
                     <Route path="/eventos/visualizar" element={<PrivateRoute cargo="DEFAULT,ADM,DONO,MESTRE"><VisualizarEventos /></PrivateRoute>} />
+                    <Route path="/eventos/listar_participantes" element={<PrivateRoute cargo="DEFAULT,ADM,DONO,MESTRE"><ListarParticipantesEvento /></PrivateRoute>} />
 
                 </>
 

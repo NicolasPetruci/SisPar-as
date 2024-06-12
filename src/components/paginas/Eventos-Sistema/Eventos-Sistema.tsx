@@ -1,10 +1,12 @@
-import { Text, Grid, GridItem, Flex, Table, TableContainer, Tbody, Td, Tfoot, Th, Thead, Tr, Button, useDisclosure, Drawer } from "@chakra-ui/react";
+import { Text, Grid, GridItem, Flex, Table, TableContainer, Tbody, Td, Tfoot, Th, Thead, Tr, Button, useDisclosure, Drawer, Link } from "@chakra-ui/react";
 import CaixaPadronizada from "../../atomos/CaixaPadronizada/CaixaPadronizada";
 import Evento from "../../../interface/Evento";
 import { useEffect, useState } from "react";
 import { useEventoService } from "../../../services/hooks/useEventoService";
 import DrawerAtualizarEvento from "../../organismos/DrawerAtualizarEvento/DrawerAtualizarEvento";
 import DrawerCadastroEvento from "../../organismos/DrawerCadastroEvento/DrawerCadastroEvento";
+import Botao from "../../atomos/Botao/Botao";
+import {Link as LinkRouter} from 'react-router-dom';
 
 
 
@@ -80,9 +82,11 @@ export default function EventosSistema() {
                                 </Text>
                                 <Text textAlign="justify">Um CRUD de eventos é uma aplicação essencial para organizar e controlar eventos de forma eficiente. Consiste em quatro operações básicas: Criar (Create), Ler (Read), Atualizar (Update) e Deletar (Delete), permitindo aos usuários gerenciar eventos de maneira intuitiva e eficaz.</Text>
                             </Flex>
+                            <Flex>
+                                <Botao classe="preto-lilas" aoClicar={abrirDrawerCadastro}> Cadastro </Botao>
 
-                            <Button className="preto-lilas" onClick={abrirDrawerCadastro}> Cadastro </Button>
-
+                                <Botao classe="preto-lilas" href="/eventos/visualizar" target="_blank"> Relatório Eventos </Botao>
+                            </Flex>
 
 
                         </>
@@ -112,6 +116,14 @@ export default function EventosSistema() {
                                                     <Flex>
                                                         <Button className="amarelo-rejeita" onClick={() => deletarEvento(evento.id!.toString())}> D</Button>
                                                         <Button className="roxo-aceita" onClick={() => abrirDrawerAtualizar(evento)}> V </Button>
+                                                        <Link 
+                                                        as={LinkRouter} 
+                                                        to={'listar_participantes'}
+                                                        _hover={{ textDecoration: 'none' }} 
+                                                        target="_blank"
+                                                        state={{idEvento: evento.id}}>
+                                                            <Button className="roxo-aceita"> Presença </Button>
+                                                        </Link>
                                                     </Flex>
                                                 </Td>
                                             </Tr>
@@ -149,7 +161,7 @@ export default function EventosSistema() {
                                     placement="right"
                                     onClose={onDrawerCadastroClose}
                                 >
-                                    {eventoSelecionado && (
+                                    {(
                                         <DrawerCadastroEvento
                                             isOpen={isDrawerCadastroOpen}
                                             onClose={onDrawerCadastroClose}
