@@ -14,22 +14,23 @@ export const formatarData = (data: string) => {
 };
 
 export function imprimeDataInput(data: string): string {
-	let dataConvertida;
-	if (data) {
-		dataConvertida = new Date(data);
+	const [datePart, timePart] = data.split(", ");
+
+	if (!datePart || !timePart) {
+		return ""; // Retorna vazio se a data estiver no formato incorreto
 	}
 
-	const ten = function (i: number) {
-		return (i < 10 ? "0" : "") + i;
-	};
+	const [day, month, year] = datePart.split("/").map(Number);
+	const [hour, minute] = timePart.split(":").map(Number);
 
-	if (dataConvertida != undefined) {
-		const YYYY = dataConvertida.getFullYear();
-		const MM = ten(dataConvertida.getMonth() + 1);
-		const DD = ten(dataConvertida.getDate());
-		const HH = ten(dataConvertida.getHours());
-		const II = ten(dataConvertida.getMinutes());
-		return YYYY + "-" + MM + "-" + DD + "T" + HH + ":" + II;
-	}
-	return "";
+	const dataConvertida = new Date(year, month - 1, day, hour, minute);
+
+	// Converte para o formato ISO
+	const YYYY = dataConvertida.getFullYear();
+	const MM = (dataConvertida.getMonth() + 1).toString().padStart(2, '0');
+	const DD = dataConvertida.getDate().toString().padStart(2, '0');
+	const HH = dataConvertida.getHours().toString().padStart(2, '0');
+	const II = dataConvertida.getMinutes().toString().padStart(2, '0');
+
+	return `${YYYY}-${MM}-${DD}T${HH}:${II}`;
 }
