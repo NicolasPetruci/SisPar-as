@@ -83,7 +83,7 @@ export default function EventosSistema() {
                                 <Text textAlign="justify">Um CRUD de eventos é uma aplicação essencial para organizar e controlar eventos de forma eficiente. Consiste em quatro operações básicas: Criar (Create), Ler (Read), Atualizar (Update) e Deletar (Delete), permitindo aos usuários gerenciar eventos de maneira intuitiva e eficaz.</Text>
                             </Flex>
                             <Flex>
-                                <Botao corTexto="white" classe="preto-lilas" aoClicar={abrirDrawerCadastro}> Cadastro </Botao>
+                                <Botao  corTexto="white" classe="preto-lilas" aoClicar={abrirDrawerCadastro}> Cadastro </Botao>
 
                                 <Botao classe="preto-lilas" href="/eventos/visualizar" target="_blank"> Relatório Eventos </Botao>
                             </Flex>
@@ -116,7 +116,14 @@ export default function EventosSistema() {
                                                     <Flex>
                                                         <Button className="amarelo-rejeita" onClick={() => deletarEvento(evento.id!.toString())}> D</Button>
                                                         <Button className="roxo-aceita" onClick={() => abrirDrawerAtualizar(evento)}> V </Button>
-
+                                                        <Link
+                                                            as={LinkRouter}
+                                                            to={'listar_participantes'}
+                                                            _hover={{ textDecoration: 'none' }}
+                                                            target="_blank"
+                                                            state={{ idEvento: evento.id }}>
+                                                            <Button className="roxo-aceita"> Presença </Button>
+                                                        </Link>
                                                     </Flex>
                                                 </Td>
                                             </Tr>

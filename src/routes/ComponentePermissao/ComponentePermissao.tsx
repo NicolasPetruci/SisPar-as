@@ -15,7 +15,7 @@ const ComponentePermissao: (React.FC<propsComponentePermissao>) = ({ cargo, chil
         async function loadRoles() {
 
 
-            const response = await api.get('/usuario/cargos');
+            const response = await api.get('/auth/cargos');
 
 
             const findRole = response.data.some((c: string) => {

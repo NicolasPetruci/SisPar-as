@@ -8,6 +8,7 @@ import { useAuth } from "../../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import CaixaPadronizada from "../../atomos/CaixaPadronizada/CaixaPadronizada";
 
+
 export default function LoginSistema() {
     const navigate = useNavigate();
 
@@ -26,16 +27,16 @@ export default function LoginSistema() {
     return (
         <>
             <form onSubmit={handleSubmit}>
-                <Flex className="preto-lilas" w='100vw' h='100vh' alignItems='center' justifyContent='center'>
+                <Flex margin='0px' borderRadius='0px' className="preto-lilas" w='100vw' h='100vh' alignItems='center' justifyContent='center'>
 
                     <CaixaPadronizada bg='white' larguraCaixa='50%' alturaCaixa='50%' direcao="column" distancia='0px'>
                         <>
 
-                            <FormLabel> Input Email </FormLabel>
+                            <FormLabel> Email </FormLabel>
                             <Input color='black' w='50%' type="email" onChange={e => setEmail(e.target.value)} />
-                            <FormLabel> Input senha</FormLabel>
+                            <FormLabel> Senha </FormLabel>
                             <Input color='black' w='50%' type="password" onChange={e => setSenha(e.target.value)} />
-                            <Button className="preto-lilas" type="submit"> Login</Button>
+                            <Button className="preto-lilas" color='white' type="submit"> Login </Button>
 
 
                         </>

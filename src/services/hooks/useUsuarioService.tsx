@@ -48,7 +48,7 @@ export const useUsuarioService = () => {
     const getUsuarioLogged = async () => {
         try {
             setLoading(true);
-            const response = await api.get('/usuario/login', {
+            const response = await api.get('/auth/login', {
                 headers: {
                     Authorization: `Bearer ${authContext.token.token}`
                 }

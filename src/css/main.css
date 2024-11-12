@@ -7,11 +7,14 @@
     vertical-align: baseline;
 
 }
+
 @media print {
     @page {
-        size: A3 landscape; /* auto is default portrait; */
+        size: A3 landscape;
+        /* auto is default portrait; */
     }
 }
+
 html,
 #root,
 body,
@@ -183,14 +186,14 @@ video {
 
 .preto-lilas {
     background-image: linear-gradient(to right, #0E0E0E 0%, #6D65A7 51%, #0E0E0E 100%) !important;
-    margin: 20px !important;
+    margin: 20px;
     padding: 0 !important;
     text-align: center !important;
     transition: 0.5s !important;
     background-size: 200% auto !important;
-    color: black;
+    color: white;
     box-shadow: 0 0 0 #eee !important;
-    border-radius: 10px !important;
+    border-radius: 10px;
     display: flexbox !important;
     justify-content: center;
     align-items: center;

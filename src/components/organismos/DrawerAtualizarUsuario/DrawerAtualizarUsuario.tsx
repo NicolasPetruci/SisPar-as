@@ -133,6 +133,8 @@ export default function DrawerAtualizarUsuario({
         }
     }
 
+    
+
     return (
         <>
             <Drawer isOpen={isOpen} onClose={onClose} size='sm'>

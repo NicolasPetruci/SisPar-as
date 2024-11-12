@@ -27,7 +27,7 @@ export function imprimeDataInput(data: string): string {
 		const YYYY = dataConvertida.getFullYear();
 		const MM = ten(dataConvertida.getMonth() + 1);
 		const DD = ten(dataConvertida.getDate());
-		const HH = ten(dataConvertida.getHours() + 3);
+		const HH = ten(dataConvertida.getHours());
 		const II = ten(dataConvertida.getMinutes());
 		return YYYY + "-" + MM + "-" + DD + "T" + HH + ":" + II;
 	}

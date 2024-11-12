@@ -36,12 +36,12 @@ export default function DrawerAtualizarEvento({
 
     const [updateEvento, setUpdateEvento] = useState<Evento>({
         nome: evento ? evento.nome : "",
-        data_hora: evento ? evento.data_hora : new Date().toISOString(),
+        dataHora: evento ? evento.dataHora : new Date().toISOString(),
         descricao: evento ? evento.descricao : "",
         local: evento ? evento.local : "",
-        online: evento ? evento.online : "Não",
-        id_tipo_evento: evento ? evento.id_tipo_evento : 0,
-        tipo_evento: evento ? evento.tipo_evento : {
+        online: evento ? evento.online : false,
+        idTipoEvento: evento ? evento.idTipoEvento : 0,
+        tipo: evento ? evento.tipo : {
             descricao: "",
             id: 0,
         },
@@ -55,7 +55,7 @@ export default function DrawerAtualizarEvento({
         try {
             tipoEventoService.getAllTipoEvento().then((tipoEvento) => setTipoEvento(tipoEvento))
         } catch (error) {
-            console.log('não obtive participantes', error)
+            console.log('False obtive participantes', error)
 
         }
     }
@@ -65,7 +65,7 @@ export default function DrawerAtualizarEvento({
             usuarioService.getUsuarioLogged().then((usuario) => setUsuario(usuario))
 
         } catch (error) {
-            console.log('não tem usuarios', error)
+            console.log('False tem usuarios', error)
         }
     }
 
@@ -74,6 +74,7 @@ export default function DrawerAtualizarEvento({
     useEffect(() => {
         buscarTipo();
         buscarUsuario();
+
 
     }, []);
 
@@ -164,6 +165,8 @@ export default function DrawerAtualizarEvento({
         }
     }
 
+    console.log(evento)
+
     return (
         <>
             <Drawer isOpen={isOpen} onClose={onClose} size='sm'>
@@ -218,30 +221,30 @@ export default function DrawerAtualizarEvento({
                             <RadioGroup
                                 display="flex"
                                 gap='10'
-                                defaultValue={evento.online}
+                                defaultValue={evento.online ? "true" : "false"}
                                 onChange={(value) => {
 
                                     setUpdateEvento({
                                         ...updateEvento,
-                                        online: value === "Sim" ? "Sim" : "Não",
+                                        online: value === "true" ? true : false,
                                     });
                                 }}
                             >
-                                <Radio border='1px solid black' value="Sim" colorScheme="teal">Sim</Radio>
-                                <Radio border='1px solid black' value="Não" colorScheme="red">Não</Radio>
+                                <Radio border='1px solid black' value="true" colorScheme="teal">Sim</Radio>
+                                <Radio border='1px solid black' value="false" colorScheme="red">Não</Radio>
                             </RadioGroup>
                         </form>
 
                         <FormLabel>Tipo Evento:</FormLabel>
                         <Select
-                            value={evento.tipo_evento.descricao}
+                            value={evento.tipo.descricao}
                             onChange={(e) => {
                                 const descricaoSelecionada = e.target.value;
                                 const tipoEventoSelecionado = tipoEvento.find(tipo => tipo.descricao === descricaoSelecionada);
                                 if (tipoEventoSelecionado) {
                                     setUpdateEvento({
                                         ...updateEvento,
-                                        tipo_evento: tipoEventoSelecionado,
+                                        tipo: tipoEventoSelecionado,
                                     });
                                 }
                             }}
@@ -255,11 +258,11 @@ export default function DrawerAtualizarEvento({
                         <FormLabel>
                             Data:
                         </FormLabel>
-                        <Input type='datetime-local' defaultValue={imprimeDataInput(evento.data_hora!)} onChange={(e) => {
+                        <Input type='datetime-local' defaultValue={imprimeDataInput(evento.dataHora!)} onChange={(e) => {
                             const dataConvertida = formatarData(e.target.value)
                             setUpdateEvento({
                                 ...updateEvento,
-                                data_hora: dataConvertida,
+                                dataHora: dataConvertida,
                             })
                         }} />
                     </DrawerBody>

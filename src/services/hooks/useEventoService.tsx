@@ -14,7 +14,7 @@ export const useEventoService = () => {
     const createEvento = async (eventoData: Evento) => {
         try {
             setLoading(true);
-            const response = await api.post('/evento/cadastrar', eventoData, {
+            const response = await api.post('/evento', eventoData, {
                 headers: {
                     Authorization: `Bearer ${authContext.token.token}`
                 }
@@ -31,7 +31,7 @@ export const useEventoService = () => {
     const deleteEvento = async (id: string) => {
         try {
             setLoading(false);
-            const response = await api.delete(`/evento/excluir?id=${id}`, {
+            const response = await api.delete(`/evento/${id}`, {
                 headers: {
                     Authorization: `Bearer ${authContext.token.token}`
                 }
@@ -65,7 +65,7 @@ export const useEventoService = () => {
     const getEvento = async (id: string) => {
         try {
             setLoading(false);
-            const response = await api.get(`/evento?id=${id}`, {
+            const response = await api.get(`/evento/${id}`, {
                 headers: {
                     Authorization: `Bearer ${authContext.token.token}`
                 }
@@ -82,7 +82,7 @@ export const useEventoService = () => {
     const updateEvento = async (updatedData: Evento) => {
         try {
             setLoading(false);
-            const response = await api.put(`/evento/atualizar`, updatedData, {
+            const response = await api.put(`/evento`, updatedData, {
                 headers: {
                     Authorization: `Bearer ${authContext.token.token}`
                 }
@@ -99,7 +99,7 @@ export const useEventoService = () => {
     const inscreverEvento = async (id: string) => {
         try {
             setLoading(false);
-            const response = await api.put(`/evento/inscrever?id_evento=${id}`, {
+            const response = await api.put(`/inscrever/${id}`, {
                 headers: {
                     Authorization: `Bearer ${authContext.token.token}`
                 }
@@ -117,7 +117,7 @@ export const useEventoService = () => {
     const desinscreverEvento = async (id: string) => {
         try {
             setLoading(false);
-            const response = await api.put(`/evento/desinscrever?id_evento=${id}`, {
+            const response = await api.put(`/desinscrever/${id}`, {
                 headers: {
                     Authorization: `Bearer ${authContext.token.token}`
                 }
@@ -132,7 +132,7 @@ export const useEventoService = () => {
 
     }
 
-    const visualizarEventos = async (dataInicial: string, dataFinal:string) => {
+    const visualizarEventos = async (dataInicial: string, dataFinal: string) => {
         try {
             setLoading(true);
             const response = await api.get(`/evento/visualizar-eventos?data_inicial=${dataInicial}&data_final=${dataFinal}`, {
@@ -149,7 +149,7 @@ export const useEventoService = () => {
         }
     }
 
-    const listarParticipantesEvento = async (idEvento: number) =>{
+    const listarParticipantesEvento = async (idEvento: number) => {
         try {
             setLoading(true);
             const response = await api.get(`/evento/listar-participantes?id_evento=${idEvento}`, {
@@ -166,17 +166,17 @@ export const useEventoService = () => {
         }
     }
     return {
-            data,
-            loading,
-            error,
-            createEvento,
-            deleteEvento,
-            getAllEvento,
-            getEvento,
-            updateEvento,
-            desinscreverEvento,
-            inscreverEvento,
-            listarParticipantesEvento,
-            visualizarEventos,
-            }
+        data,
+        loading,
+        error,
+        createEvento,
+        deleteEvento,
+        getAllEvento,
+        getEvento,
+        updateEvento,
+        desinscreverEvento,
+        inscreverEvento,
+        listarParticipantesEvento,
+        visualizarEventos,
+    }
 }

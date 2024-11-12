@@ -23,7 +23,7 @@ const PrivateRoute: (React.FC<propsRotaData>) = ({ cargo, children }) => {
         async function loadRoles() {
 
 
-            const response = await api.get('/usuario/cargos');
+            const response = await api.get('/auth/cargos');
 
             const findRole = response.data.some((c: string) => {
                 cargo?.split(',').includes(c);

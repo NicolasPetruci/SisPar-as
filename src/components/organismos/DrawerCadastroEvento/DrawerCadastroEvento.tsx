@@ -23,13 +23,13 @@ export default function DrawerCadastroEvento({
         nome: "",
         descricao: "",
         local: "",
-        online: "",
-        data_hora: "",
-        tipo_evento: {
+        online: false,
+        dataHora: "",
+        tipo: {
             id: 0,
             descricao: "",
         },
-        id_tipo_evento: 0,
+        idTipoEvento: 0,
         participantes: [],
     });
     const [tipoEvento, setTipoEvento] = useState<TipoEvento[]>([]);
@@ -42,7 +42,7 @@ export default function DrawerCadastroEvento({
         try {
             tipoEventoService.getAllTipoEvento().then((tipoEvento) => setTipoEvento(tipoEvento))
         } catch (error) {
-            console.log('não obtive participantes', error)
+            console.log('False obtive participantes', error)
 
         }
     }
@@ -52,7 +52,7 @@ export default function DrawerCadastroEvento({
             usuarioService.getUsuarioLogged().then((usuario) => setUsuario(usuario))
 
         } catch (error) {
-            console.log('não tem usuarios', error)
+            console.log('False tem usuarios', error)
         }
     }
 
@@ -126,12 +126,12 @@ export default function DrawerCadastroEvento({
                                 onChange={(value) => {
                                     setEvento({
                                         ...evento,
-                                        online: value === "Sim" ? "Sim" : "Não",
+                                        online: value === "true" ? true : false,
                                     });
                                 }}
                             >
-                                <Radio border='1px solid black' value="Sim" colorScheme="teal">Sim</Radio>
-                                <Radio border='1px solid black' value="Não" colorScheme="red">Não</Radio>
+                                <Radio border='1px solid black' value="true" colorScheme="teal">Sim</Radio>
+                                <Radio border='1px solid black' value="false" colorScheme="red">Não</Radio>
                             </RadioGroup>
                         </form>
 
@@ -143,7 +143,7 @@ export default function DrawerCadastroEvento({
                                 if (tipoEventoSelecionado) {
                                     setEvento({
                                         ...evento,
-                                        tipo_evento: tipoEventoSelecionado,
+                                        tipo: tipoEventoSelecionado,
                                     });
                                 }
                             }}
@@ -157,12 +157,12 @@ export default function DrawerCadastroEvento({
                         <FormLabel>
                             Data:
                         </FormLabel>
-                        <Input name="data" type='datetime-local' defaultValue={imprimeDataInput(evento.data_hora!)} onChange={cadastroTempoEvento} />
+                        <Input name="dataHora" type='datetime-local' defaultValue={imprimeDataInput(evento.dataHora!)} onChange={cadastroTempoEvento} />
                     </DrawerBody>
                     <DrawerFooter>
-                        <ComponentePermissao cargo="ADM,DONO">
-                            <Button className="lilas-branco" onClick={cadastrarEvento}> Cadastrar</Button>
-                        </ComponentePermissao>
+
+                        <Button className="lilas-branco" onClick={cadastrarEvento}> Cadastrar</Button>
+
                     </DrawerFooter>
                 </DrawerContent>
             </Drawer >

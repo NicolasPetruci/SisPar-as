@@ -23,7 +23,7 @@ export default function NavbarSistema(props: propsNavbar) {
                     <CaixaPadronizada bg='black' distancia={"25px"} direcao="column" justificarComponente="center" alinharItem={"center"} larguraCaixa="10vw" alturaCaixa="100vh" >
                         <>
 
-                            <Menu>
+                            {/* <Menu>
                                 <MenuButton as={Button} >
                                     RPG
                                 </MenuButton>
@@ -36,7 +36,7 @@ export default function NavbarSistema(props: propsNavbar) {
                                         <MenuItem as='a' href='/rpgsgerais'>Todos os RPGS</MenuItem>
                                     </MenuGroup>
                                 </MenuList>
-                            </Menu>
+                            </Menu> */}
 
                             {/* <Botao href="/parcasAwards" descricao={"Parças Awards"} fonte="arial" whiteSpace="wrap" />
 
