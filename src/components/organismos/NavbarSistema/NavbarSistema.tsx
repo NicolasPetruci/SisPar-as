@@ -23,6 +23,22 @@ export default function NavbarSistema(props: propsNavbar) {
                     <CaixaPadronizada bg='black' distancia={"25px"} direcao="column" justificarComponente="center" alinharItem={"center"} larguraCaixa="10vw" alturaCaixa="100vh" >
                         <>
 
+                            <Menu>
+                                <MenuButton as={Button}>
+                                    Cinema
+                                </MenuButton>
+
+                                <MenuList>
+                                    <MenuGroup title='Sessões'>
+                                        <MenuItem as='a' href='/sessoesCinema'>Sessões de Cinema</MenuItem>
+                                    </MenuGroup>
+                                    <MenuDivider />
+                                    <MenuGroup title='Filmes'>
+                                        <MenuItem as='a' href='/filmes'>Filmes</MenuItem>
+                                    </MenuGroup>
+                                </MenuList>
+                            </Menu>
+
                             {/* <Menu>
                                 <MenuButton as={Button} >
                                     RPG

@@ -10,13 +10,13 @@ import { Link as LinkRouter } from 'react-router-dom';
 
 
 
-export default function EventosSistema() {
+export default function CinemaSistema() {
 
     //declarações
 
-    const [evento, setEvento] = useState<Evento[]>([]);
-    const [eventoSelecionado, setEventoSelecionado] = useState<Evento | null>(null);
-    const eventoService = useEventoService();
+    const [cinema, setEvento] = useState<Evento[]>([]);
+    const [cinemaSelecionado, setEventoSelecionado] = useState<Evento | null>(null);
+    const cinemaService = useEventoService();
 
     const { isOpen: isDrawerAtualizarOpen, onOpen: onDrawerAtualizarOpen, onClose: onDrawerAtualizarClose } = useDisclosure();
     const { isOpen: isDrawerCadastroOpen, onOpen: onDrawerCadastroOpen, onClose: onDrawerCadastroClose } = useDisclosure();
@@ -24,9 +24,9 @@ export default function EventosSistema() {
     //busca
     const buscarEvento = () => {
         try {
-            eventoService.getAllEvento().then((evento) => setEvento(evento));
+            cinemaService.getAllEvento().then((cinema) => setEvento(cinema));
         } catch (error) {
-            alert("Erro ao obter eventos");
+            alert("Erro ao obter cinemas");
 
         }
     }
@@ -37,27 +37,27 @@ export default function EventosSistema() {
 
     //deleta
     const deletarEvento = async (idEvento: string) => {
-        eventoService.deleteEvento(idEvento);
+        cinemaService.deleteEvento(idEvento);
         buscarEvento();
 
 
     };
 
     //atualiza
-    const atualizarEvento = (eventoAtualizado: Evento) => {
-        setEvento((eventoPrevias) => {
-            const eventosAtualizados = eventoPrevias.map((evento) => {
-                if (evento.id === eventoAtualizado.id) {
-                    return eventoAtualizado;
+    const atualizarEvento = (cinemaAtualizado: Evento) => {
+        setEvento((cinemaPrevias) => {
+            const cinemasAtualizados = cinemaPrevias.map((cinema) => {
+                if (cinema.id === cinemaAtualizado.id) {
+                    return cinemaAtualizado;
                 }
-                return evento;
+                return cinema;
             });
-            return eventosAtualizados;
+            return cinemasAtualizados;
         });
     };
 
-    const abrirDrawerAtualizar = (evento: Evento) => {
-        setEventoSelecionado(evento);
+    const abrirDrawerAtualizar = (cinema: Evento) => {
+        setEventoSelecionado(cinema);
         onDrawerAtualizarOpen();
     };
 
@@ -80,12 +80,12 @@ export default function EventosSistema() {
                                 <Text textAlign='left' fontSize={22} fontWeight={900}>
                                     EVENTOS
                                 </Text>
-                                <Text textAlign="justify">Um CRUD de eventos é uma aplicação essencial para organizar e controlar eventos de forma eficiente. Consiste em quatro operações básicas: Criar (Create), Ler (Read), Atualizar (Update) e Deletar (Delete), permitindo aos usuários gerenciar eventos de maneira intuitiva e eficaz.</Text>
+                                <Text textAlign="justify">Um CRUD de cinemas é uma aplicação essencial para organizar e controlar cinemas de forma eficiente. Consiste em quatro operações básicas: Criar (Create), Ler (Read), Atualizar (Update) e Deletar (Delete), permitindo aos usuários gerenciar cinemas de maneira intuitiva e eficaz.</Text>
                             </Flex>
                             <Flex>
-                                <Botao  corTexto="white" classe="preto-lilas" aoClicar={abrirDrawerCadastro}> Cadastro </Botao>
+                                <Botao corTexto="white" classe="preto-lilas" aoClicar={abrirDrawerCadastro}> Cadastro </Botao>
 
-                                <Botao classe="preto-lilas" href="/eventos/visualizar" target="_blank"> Relatório Eventos </Botao>
+                                <Botao classe="preto-lilas" href="/cinemas/visualizar" target="_blank"> Relatório Cinema </Botao>
                             </Flex>
 
 
@@ -107,21 +107,21 @@ export default function EventosSistema() {
                                         </Tr>
                                     </Thead>
                                     <Tbody  >
-                                        {evento.map((evento, index) => (
+                                        {cinema.map((cinema, index) => (
                                             <Tr key={index}>
-                                                <Td whiteSpace={'wrap'}>{evento.id}</Td>
-                                                <Td whiteSpace={'wrap'}>{evento.nome}</Td>
-                                                <Td whiteSpace={'wrap'}>{evento.local}</Td>
+                                                <Td whiteSpace={'wrap'}>{cinema.id}</Td>
+                                                <Td whiteSpace={'wrap'}>{cinema.nome}</Td>
+                                                <Td whiteSpace={'wrap'}>{cinema.local}</Td>
                                                 <Td>
                                                     <Flex>
-                                                        <Button className="amarelo-rejeita" onClick={() => deletarEvento(evento.id!.toString())}> D</Button>
-                                                        <Button className="roxo-aceita" onClick={() => abrirDrawerAtualizar(evento)}> V </Button>
+                                                        <Button className="amarelo-rejeita" onClick={() => deletarEvento(cinema.id!.toString())}> D</Button>
+                                                        <Button className="roxo-aceita" onClick={() => abrirDrawerAtualizar(cinema)}> V </Button>
                                                         <Link
                                                             as={LinkRouter}
                                                             to={'listar_participantes'}
                                                             _hover={{ textDecoration: 'none' }}
                                                             target="_blank"
-                                                            state={{ idEvento: evento.id }}>
+                                                            state={{ idEvento: cinema.id }}>
                                                             <Button className="roxo-aceita"> Presença </Button>
                                                         </Link>
                                                     </Flex>
@@ -145,10 +145,10 @@ export default function EventosSistema() {
                                     placement="right"
                                     onClose={onDrawerAtualizarClose}
                                 >
-                                    {eventoSelecionado && (
-                                        <DrawerAtualizarEvento
+                                    {cinemaSelecionado && (
+                                        <DrawerAtualizarCinema
                                             isOpen={isDrawerAtualizarOpen}
-                                            eventoInterface={eventoSelecionado}
+                                            cinemaInterface={cinemaSelecionado}
                                             onClose={onDrawerAtualizarClose}
                                             onUpdate={atualizarEvento}
                                         />
@@ -162,7 +162,7 @@ export default function EventosSistema() {
                                     onClose={onDrawerCadastroClose}
                                 >
                                     {(
-                                        <DrawerCadastroEvento
+                                        <DrawerCadastroCinema
                                             isOpen={isDrawerCadastroOpen}
                                             onClose={onDrawerCadastroClose}
                                         />
