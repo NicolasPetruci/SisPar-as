@@ -44,7 +44,7 @@ export default function Rota() {
                     <Route path="/eventos" element={<PrivateRoute cargo="DEFAULT,ADM,DONO,MESTRE"><NavbarSistema><EventosSistema /></NavbarSistema></PrivateRoute>} />
                     <Route path="/eventos/visualizar" element={<PrivateRoute cargo="DEFAULT,ADM,DONO,MESTRE"><VisualizarEventos /></PrivateRoute>} />
                     <Route path="/eventos/listar_participantes" element={<PrivateRoute cargo="DEFAULT,ADM,DONO,MESTRE"><ListarParticipantesEvento /></PrivateRoute>} />
-                    <Route path="/filmes" element={<PrivateRoute cargo="DEFAULT,ADM,DONO,MESTRE"><NavbarSistema><FilmeSistema /></NavbarSistema></PrivateRoute>} />
+                    {/* <Route path="/filmes" element={<PrivateRoute cargo="DEFAULT,ADM,DONO,MESTRE"><NavbarSistema><FilmeSistema /></NavbarSistema></PrivateRoute>} /> */}
                     <Route path="/sessoesCinema" element={<PrivateRoute cargo="DEFAULT,ADM,DONO,MESTRE"><NavbarSistema><CinemaSistema /></NavbarSistema></PrivateRoute>} />
                 </>
 

@@ -1,86 +1,86 @@
 
-import Filme from "../../../interface/Filme"
-import { ChangeEvent, useEffect, useState } from "react";
-import { useFilmeService } from "../../../services/hooks/useFilmeService";
-import { Button, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerFooter, DrawerHeader, FormLabel, Input, Radio, RadioGroup, Select } from "@chakra-ui/react";
-import { imprimeDataInput, formatarData } from "../../../services/data";
+// import Filme from "../../../interface/Filme"
+// import { ChangeEvent, useEffect, useState } from "react";
+// import { useFilmeService } from "../../../services/hooks/useFilmeService";
+// import { Button, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerFooter, DrawerHeader, FormLabel, Input, Radio, RadioGroup, Select } from "@chakra-ui/react";
+// import { imprimeDataInput, formatarData } from "../../../services/data";
 
 
-interface propsFilmeCadastro {
-    isOpen: boolean;
-    onClose: () => void;
-}
+// interface propsFilmeCadastro {
+//     isOpen: boolean;
+//     onClose: () => void;
+// }
 
-export default function DrawerCadastroFilme({
-    isOpen,
-    onClose,
+// export default function DrawerCadastroFilme({
+//     isOpen,
+//     onClose,
 
-}: propsFilmeCadastro) {
-    // const [filme, setFilme] = useState<Filme>({
+// }: propsFilmeCadastro) {
+//     // const [filme, setFilme] = useState<Filme>({
         
         
-    // });
+//     // });
 
-    const filmeService = useFilmeService();
+//     const filmeService = useFilmeService();
    
 
 
-    //criarFilme
+//     //criarFilme
 
-    const cadastrarFilme = () => {
-        try {
-            filmeService.createFilme(filme).then(() => {
-                console.log('Filme cadastrado')
-            })
-        } catch (error) {
-            console.log('erro ao cadastrar filme', error)
-        }
-    }
+//     const cadastrarFilme = () => {
+//         try {
+//             filmeService.createFilme(filme).then(() => {
+//                 console.log('Filme cadastrado')
+//             })
+//         } catch (error) {
+//             console.log('erro ao cadastrar filme', error)
+//         }
+//     }
 
-    //arrowfunctions
+//     //arrowfunctions
 
-    const cadastroDadosFilme = (e: ChangeEvent<HTMLInputElement>) => {
-        setFilme({
-            ...filme,
-            [e.target.name]: e.target.value,
-        });
-    };
+//     const cadastroDadosFilme = (e: ChangeEvent<HTMLInputElement>) => {
+//         setFilme({
+//             ...filme,
+//             [e.target.name]: e.target.value,
+//         });
+//     };
 
-    const cadastroTempoFilme = (e: any) => {
-        const dataConvertida = formatarData(e.target.value);
-        setFilme({
-            ...filme,
-            [e.target.name]: dataConvertida,
-        });
-    };
+//     const cadastroTempoFilme = (e: any) => {
+//         const dataConvertida = formatarData(e.target.value);
+//         setFilme({
+//             ...filme,
+//             [e.target.name]: dataConvertida,
+//         });
+//     };
 
-    return (
-        <>
-            <Drawer isOpen={isOpen} onClose={onClose} size='sm'>
-                <DrawerContent>
-                    <DrawerCloseButton />
-                    <DrawerHeader>
-                        Atualizar Informações - {filme.nome}
-                    </DrawerHeader>
-                    <DrawerBody>
+//     return (
+//         <>
+//             <Drawer isOpen={isOpen} onClose={onClose} size='sm'>
+//                 <DrawerContent>
+//                     <DrawerCloseButton />
+//                     <DrawerHeader>
+//                         Atualizar Informações - {filme.nome}
+//                     </DrawerHeader>
+//                     <DrawerBody>
 
-                        <FormLabel>
-                            Nome:
-                        </FormLabel>
-                        <Input name='nome' type='text' defaultValue={filme.nome} onChange={cadastroDadosFilme} />
+//                         <FormLabel>
+//                             Nome:
+//                         </FormLabel>
+//                         <Input name='nome' type='text' defaultValue={filme.nome} onChange={cadastroDadosFilme} />
 
                         
-                    </DrawerBody>
-                    <DrawerFooter>
+//                     </DrawerBody>
+//                     <DrawerFooter>
 
-                        <Button className="lilas-branco" onClick={cadastrarFilme}> Cadastrar</Button>
+//                         <Button className="lilas-branco" onClick={cadastrarFilme}> Cadastrar</Button>
 
-                    </DrawerFooter>
-                </DrawerContent>
-            </Drawer >
+//                     </DrawerFooter>
+//                 </DrawerContent>
+//             </Drawer >
 
 
-        </>
-    )
+//         </>
+//     )
 
-}
+// }
