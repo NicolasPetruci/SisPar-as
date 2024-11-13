@@ -32,6 +32,7 @@ export default function DrawerCadastroCinema({
         try {
             cinemaService.createCinema(cinema).then(() => {
                 console.log('Cinema cadastrado')
+                window.location.reload()
             })
         } catch (error) {
             console.log('erro ao cadastrar cinema', error)
