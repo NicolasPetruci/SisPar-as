@@ -16,7 +16,8 @@ import SessoesRPGSistema from "../components/paginas/SessoesRPG-Sistema/SessoesR
 import VisualizarEventos from "../components/paginas/Relatorios/Visualizar-Eventos/Visualizar-Eventos";
 import ListarParticipantesEvento from "../components/paginas/Relatorios/Listar-Participantes-Evento/Listar-Participantes-Evento";
 import CinemaSistema from "../components/paginas/Cinema-Sistema/Cinema-Sistema";
-import FilmeSistema from "../components/paginas/Filme-Sistema/Filme-Sistestema";
+import MemesSistema from "../components/paginas/Meme-Sistema/Meme-Sistema";
+
 
 
 export default function Rota() {
@@ -45,6 +46,7 @@ export default function Rota() {
                     <Route path="/eventos/visualizar" element={<PrivateRoute cargo="DEFAULT,ADM,DONO,MESTRE"><VisualizarEventos /></PrivateRoute>} />
                     <Route path="/eventos/listar_participantes" element={<PrivateRoute cargo="DEFAULT,ADM,DONO,MESTRE"><ListarParticipantesEvento /></PrivateRoute>} />
                     {/* <Route path="/filmes" element={<PrivateRoute cargo="DEFAULT,ADM,DONO,MESTRE"><NavbarSistema><FilmeSistema /></NavbarSistema></PrivateRoute>} /> */}
+                    <Route path="/memes" element={<PrivateRoute cargo="DEFAULT,ADM,DONO,MESTRE"><NavbarSistema><MemesSistema /></NavbarSistema></PrivateRoute>} />
                     <Route path="/sessoesCinema" element={<PrivateRoute cargo="DEFAULT,ADM,DONO,MESTRE"><NavbarSistema><CinemaSistema /></NavbarSistema></PrivateRoute>} />
                 </>
 

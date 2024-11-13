@@ -33,9 +33,7 @@ export default function NavbarSistema(props: propsNavbar) {
                                         <MenuItem as='a' href='/sessoesCinema'>Sessões de Cinema</MenuItem>
                                     </MenuGroup>
                                     <MenuDivider />
-                                    <MenuGroup title='Filmes'>
-                                        <MenuItem as='a' href='/filmes'>Filmes</MenuItem>
-                                    </MenuGroup>
+                                  
                                 </MenuList>
                             </Menu>
 
@@ -60,6 +58,7 @@ export default function NavbarSistema(props: propsNavbar) {
 
                             <Botao href="/eventos" descricao={"Eventos"} fonte="arial" whiteSpace="wrap" />
 
+                            <Botao href="/memes" descricao={"Memes"} fonte="arial" whiteSpace="wrap" />
                             {/* <Botao href="/forum" descricao={"Forum"} fonte="arial" whiteSpace="wrap" /> */}
                             <ComponentePermissao cargo="DONO">
                                 <Botao href="/usuarios" descricao={"Usuarios"} fonte="arial" whiteSpace="wrap" />
