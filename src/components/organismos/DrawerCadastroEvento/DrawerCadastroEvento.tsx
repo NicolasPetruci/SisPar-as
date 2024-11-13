@@ -33,7 +33,7 @@ export default function DrawerCadastroEvento({
         participantes: [],
     });
     const [tipoEvento, setTipoEvento] = useState<TipoEvento[]>([]);
-    const [usuario, setUsuario] = useState<Usuario>()
+    const [usuario, setUsuario] = useState<Usuario>();
     const eventoService = useEventoService();
     const tipoEventoService = useTipoEventoService();
     const usuarioService = useUsuarioService();

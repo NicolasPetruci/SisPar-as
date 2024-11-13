@@ -2,7 +2,8 @@ import Filme from "./Filme";
 
 export default interface Cinema {
     id?: number;
-    filmeSorteio: Filme[];
-    data_hora: string | undefined;
-    filmeSelecionado: Filme;
+    nome: string;
+    filmeSorteio?: Filme[];
+    dataHora: string | undefined;
+    filmeSelecionado?: Filme;
 }

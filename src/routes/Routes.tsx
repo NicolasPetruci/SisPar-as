@@ -15,6 +15,8 @@ import RPGSGeraisSistema from "../components/paginas/RPGSGerais-Sistema/RPGSGera
 import SessoesRPGSistema from "../components/paginas/SessoesRPG-Sistema/SessoesRPG-Sistema";
 import VisualizarEventos from "../components/paginas/Relatorios/Visualizar-Eventos/Visualizar-Eventos";
 import ListarParticipantesEvento from "../components/paginas/Relatorios/Listar-Participantes-Evento/Listar-Participantes-Evento";
+import CinemaSistema from "../components/paginas/Cinema-Sistema/Cinema-Sistema";
+import FilmeSistema from "../components/paginas/Filme-Sistema/Filme-Sistestema";
 
 
 export default function Rota() {
@@ -42,7 +44,8 @@ export default function Rota() {
                     <Route path="/eventos" element={<PrivateRoute cargo="DEFAULT,ADM,DONO,MESTRE"><NavbarSistema><EventosSistema /></NavbarSistema></PrivateRoute>} />
                     <Route path="/eventos/visualizar" element={<PrivateRoute cargo="DEFAULT,ADM,DONO,MESTRE"><VisualizarEventos /></PrivateRoute>} />
                     <Route path="/eventos/listar_participantes" element={<PrivateRoute cargo="DEFAULT,ADM,DONO,MESTRE"><ListarParticipantesEvento /></PrivateRoute>} />
-                    <Route path="/eventos" element={<PrivateRoute cargo="DEFAULT,ADM,DONO,MESTRE"><NavbarSistema><EventosSistema /></NavbarSistema></PrivateRoute>} />
+                    <Route path="/filmes" element={<PrivateRoute cargo="DEFAULT,ADM,DONO,MESTRE"><NavbarSistema><FilmeSistema /></NavbarSistema></PrivateRoute>} />
+                    <Route path="/sessoesCinema" element={<PrivateRoute cargo="DEFAULT,ADM,DONO,MESTRE"><NavbarSistema><CinemaSistema /></NavbarSistema></PrivateRoute>} />
                 </>
 
                 {/* Site */}

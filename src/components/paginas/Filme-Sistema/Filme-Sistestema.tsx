@@ -1,63 +1,63 @@
 import { Text, Grid, GridItem, Flex, Table, TableContainer, Tbody, Td, Tfoot, Th, Thead, Tr, Button, useDisclosure, Drawer, Link } from "@chakra-ui/react";
 import CaixaPadronizada from "../../atomos/CaixaPadronizada/CaixaPadronizada";
-import Cinema from "../../../interface/Cinema";
+import Filme from "../../../interface/Filme";
 import { useEffect, useState } from "react";
-import { useCinemaService } from "../../../services/hooks/useCinemaService";
-import DrawerAtualizarCinema from "../../organismos/DrawerAtualizarCinema/DrawerAtualizarCinema";
-import DrawerCadastroCinema from "../../organismos/DrawerCadastroCinema/DrawerCadastroCinema";
+import { useFilmeService } from "../../../services/hooks/useFilmeService";
+import DrawerCadastroFilme from "../../organismos/DrawerCadastroFilme/DrawerCadastroFilme";
+import DrawerCadastroFilme from "../../organismos/DrawerCadastroFilme/DrawerCadastroFilme";
 import Botao from "../../atomos/Botao/Botao";
-import { Link as LinkRouter } from 'react-router-dom';
 
 
 
-export default function CinemaSistema() {
+
+export default function FilmeSistema() {
 
     //declarações
 
-    const [cinema, setCinema] = useState<Cinema[]>([]);
-    const [cinemaSelecionado, setCinemaSelecionado] = useState<Cinema | null>(null);
-    const cinemaService = useCinemaService();
+    const [filme, setFilme] = useState<Filme[]>([]);
+    const [filmeSelecionado, setFilmeSelecionado] = useState<Filme | null>(null);
+    const filmeService = useFilmeService();
 
     const { isOpen: isDrawerAtualizarOpen, onOpen: onDrawerAtualizarOpen, onClose: onDrawerAtualizarClose } = useDisclosure();
     const { isOpen: isDrawerCadastroOpen, onOpen: onDrawerCadastroOpen, onClose: onDrawerCadastroClose } = useDisclosure();
 
     //busca
-    const buscarCinema = () => {
+    const buscarFilme = () => {
         try {
-            cinemaService.getAllCinema().then((cinema) => setCinema(cinema));
+            filmeService.getAllFilme().then((filme) => setFilme(filme));
         } catch (error) {
-            alert("Erro ao obter cinemas");
+            alert("Erro ao obter filmes");
 
         }
     }
     useEffect(() => {
-        buscarCinema();
+        buscarFilme();
 
     }, [])
 
     //deleta
-    const deletarCinema = async (idCinema: string) => {
-        cinemaService.deleteCinema(idCinema);
-        buscarCinema();
+    const deletarFilme = async (idFilme: string) => {
+        filmeService.deleteFilme(idFilme);
+        buscarFilme();
 
 
     };
 
     //atualiza
-    const atualizarCinema = (cinemaAtualizado: Cinema) => {
-        setCinema((cinemaPrevias) => {
-            const cinemasAtualizados = cinemaPrevias.map((cinema) => {
-                if (cinema.id === cinemaAtualizado.id) {
-                    return cinemaAtualizado;
+    const atualizarFilme = (filmeAtualizado: Filme) => {
+        setFilme((filmePrevias) => {
+            const filmesAtualizados = filmePrevias.map((filme) => {
+                if (filme.id === filmeAtualizado.id) {
+                    return filmeAtualizado;
                 }
-                return cinema;
+                return filme;
             });
-            return cinemasAtualizados;
+            return filmesAtualizados;
         });
     };
 
-    const abrirDrawerAtualizar = (cinema: Cinema) => {
-        setCinemaSelecionado(cinema);
+    const abrirDrawerAtualizar = (filme: Filme) => {
+        setFilmeSelecionado(filme);
         onDrawerAtualizarOpen();
     };
 
@@ -78,14 +78,14 @@ export default function CinemaSistema() {
                         <>
                             <Flex h='100%' flexDir={'column'} justifyContent='start' alignItems='start'>
                                 <Text textAlign='left' fontSize={22} fontWeight={900}>
-                                    CINEMA
+                                    EVENTOS
                                 </Text>
-                                <Text textAlign="justify">Um CRUD de cinemas é uma aplicação essencial para organizar e controlar cinemas de forma eficiente. Consiste em quatro operações básicas: Criar (Create), Ler (Read), Atualizar (Update) e Deletar (Delete), permitindo aos usuários gerenciar cinemas de maneira intuitiva e eficaz.</Text>
+                                <Text textAlign="justify">Um CRUD de filmes é uma aplicação essencial para organizar e controlar filmes de forma eficiente. Consiste em quatro operações básicas: Criar (Create), Ler (Read), Atualizar (Update) e Deletar (Delete), permitindo aos usuários gerenciar filmes de maneira intuitiva e eficaz.</Text>
                             </Flex>
                             <Flex>
                                 <Botao corTexto="white" classe="preto-lilas" aoClicar={abrirDrawerCadastro}> Cadastro </Botao>
 
-                               
+                                <Botao classe="preto-lilas" href="/filmes/visualizar" target="_blank"> Relatório Filme </Botao>
                             </Flex>
 
 
@@ -101,22 +101,22 @@ export default function CinemaSistema() {
                                     <Thead>
                                         <Tr>
                                             <Th>ID</Th>
-                                            <Th>SESSÃO</Th>
-                                            
-                                            
+                                            <Th>NOME</Th>
+                                            <Th>LOCAL</Th>
+                                          
                                         </Tr>
                                     </Thead>
                                     <Tbody  >
-                                        {cinema.map((cinema, index) => (
+                                        {filme.map((filme, index) => (
                                             <Tr key={index}>
-                                                <Td whiteSpace={'wrap'}>{cinema.id}</Td>
-                                                <Td whiteSpace={'wrap'}>{cinema.nome}</Td>
+                                                <Td whiteSpace={'wrap'}>{filme.id}</Td>
+                                                <Td whiteSpace={'wrap'}>{filme.nome}</Td>
                                                 
                                                 <Td>
                                                     <Flex>
-                                                        <Button className="amarelo-rejeita" onClick={() => deletarCinema(cinema.id!.toString())}> D</Button>
-                                                        <Button className="roxo-aceita" onClick={() => abrirDrawerAtualizar(cinema)}> V </Button>
-                                                       
+                                                        <Button className="amarelo-rejeita" onClick={() => deletarFilme(filme.id!.toString())}> D</Button>
+                                                        <Button className="roxo-aceita" onClick={() => abrirDrawerAtualizar(filme)}> V </Button>
+
                                                     </Flex>
                                                 </Td>
                                             </Tr>
@@ -125,8 +125,9 @@ export default function CinemaSistema() {
                                     <Tfoot>
                                         <Tr>
                                             <Th>ID</Th>
-                                            <Th>SESSÃO</Th>
-                                           
+                                            <Th>NOME</Th>
+                                            <Th>LOCAL</Th>
+                                            
 
                                         </Tr>
                                     </Tfoot>
@@ -137,12 +138,12 @@ export default function CinemaSistema() {
                                     placement="right"
                                     onClose={onDrawerAtualizarClose}
                                 >
-                                    {cinemaSelecionado && (
-                                        <DrawerAtualizarCinema
+                                    {filmeSelecionado && (
+                                        <DrawerAtualizarFilme
                                             isOpen={isDrawerAtualizarOpen}
-                                            cinemaInterface={cinemaSelecionado}
+                                            filmeInterface={filmeSelecionado}
                                             onClose={onDrawerAtualizarClose}
-                                            onUpdate={atualizarCinema}
+                                            onUpdate={atualizarFilme}
                                         />
                                     )}
                                 </Drawer>
@@ -154,7 +155,7 @@ export default function CinemaSistema() {
                                     onClose={onDrawerCadastroClose}
                                 >
                                     {(
-                                        <DrawerCadastroCinema
+                                        <DrawerCadastroFilme
                                             isOpen={isDrawerCadastroOpen}
                                             onClose={onDrawerCadastroClose}
                                         />
