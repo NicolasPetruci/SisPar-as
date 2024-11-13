@@ -76,7 +76,7 @@ export default function UsuarioSistema() {
                         <>
                             <Flex h='100%' flexDir={'column'} justifyContent='start' alignItems='start'>
                                 <Text textAlign='left' fontSize={22} fontWeight={900}>
-                                    EVENTOS
+                                    USUÁRIOS
                                 </Text>
                                 <Text textAlign="justify">Um CRUD de usuarios é uma aplicação essencial para organizar e controlar usuarios de forma eficiente. Consiste em quatro operações básicas: Criar (Create), Ler (Read), Atualizar (Update) e Deletar (Delete), permitindo aos usuários gerenciar usuarios de maneira intuitiva e eficaz.</Text>
                             </Flex>

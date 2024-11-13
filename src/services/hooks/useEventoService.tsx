@@ -82,7 +82,7 @@ export const useEventoService = () => {
     const updateEvento = async (updatedData: Evento) => {
         try {
             setLoading(false);
-            const response = await api.put(`/evento`, updatedData, {
+            const response = await api.put(`/evento/${updatedData.id}`, updatedData, {
                 headers: {
                     Authorization: `Bearer ${authContext.token.token}`
                 }
